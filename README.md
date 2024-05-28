@@ -16,3 +16,5 @@ A spin off of BandCamp done by Joe Rashid. I wanted this project to incorporate 
 ## Example Profile page and Wishlist
 ![Profile / Wishlist](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716877892/Profile_-_Wishlist_y5at22.png)
 
+## Uploading media wireframe
+![Uploading content](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716879560/Create_An_Album_fuxanu.png)
