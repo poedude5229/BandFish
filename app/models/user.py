@@ -32,6 +32,8 @@ class User(db.Model, UserMixin):
     role = db.Column(db.String(15))
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    reviews = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
+    # albums_podcasts = db.relationship('Album')
     @property
     def password(self):
         return self.hashed_password

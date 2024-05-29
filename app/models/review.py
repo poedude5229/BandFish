@@ -7,13 +7,15 @@ class Review(db.Model):
         __table_args__ = {'schema':SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer)
-    item_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums_podcasts.id')), nullable=False)
     title = db.Column(db.String(30))
     body = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now)
 
+    user = db.relationship('User', back_populates='reviews')
+    album_podcast = db.relationship('AlbumPodcast', back_populates='reviews')
     def to_dict(self):
         return {
             'id': self.id,
