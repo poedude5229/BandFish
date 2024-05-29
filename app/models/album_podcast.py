@@ -15,7 +15,7 @@ class AlbumPodcast(db.Model):
     price = db.Column(db.Numeric(10,2), nullable=False)
     genre = db.Column(db.String(50))
 
-    songs_episodes = db.relationship('SongEpisode', back_populates='album_podcast', cascade='all, delete-orphan')
+    songs_episodes = db.relationship('SongEpisode', back_populates='albums_podcasts')
 
 
     def to_dict(self):
