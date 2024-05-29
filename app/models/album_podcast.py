@@ -16,6 +16,7 @@ class AlbumPodcast(db.Model):
     genre = db.Column(db.String(50))
 
     songs_episodes = db.relationship('SongEpisode', back_populates='albums_podcasts')
+    user_owns = db.relationship('UserOwns', back_populates='album_podcast', cascade='all, delete-orphan')
     reviews = db.relationship('Review', back_populates='album_podcast', cascade='all, delete-orphan')
 
     def to_dict(self):
