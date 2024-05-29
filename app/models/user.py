@@ -3,10 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 # Join table for User and AlbumPodcast
-user_owns = db.Table('user_owns',
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('album_podcast_id', db.Integer, db.ForeignKey('albums_podcasts.id'), primary_key=True)
-)
+
 
 # Join table for User and SongEpisode
 # I think this is optional, I might have this so a user can just own the songs if they buy an album
