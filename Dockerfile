@@ -20,7 +20,7 @@ RUN pip install boto3
 
 
 COPY . .
-RUN flask db migrate
+# RUN flask db migrate
 RUN flask db upgrade
 RUN flask seed undo
 RUN flask seed all
