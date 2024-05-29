@@ -3,8 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 # Join table for User and AlbumPodcast
-user_album_podcast = db.Table('user_album_podcast',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+user_owns = db.Table('user_owns',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
     db.Column('album_podcast_id', db.Integer, db.ForeignKey('albums_podcasts.id'), primary_key=True)
 )
 
