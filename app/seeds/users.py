@@ -4,26 +4,42 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-         firstname="Bob", lastname="Saget", username='Demo', email='demo@aa.io', password='password', role="User")
+    mfdoom = User(
+         firstname="MF", lastname="DOOM", username='MFDOOM', email='mfdoom@dumile.io', password='password', role="Artist")
     armchris = User(
         firstname="Armand", lastname="Christophe", username='achristophe', email='armchris@aa.io', password='password', role="User")
     jeremy = User(
         firstname="Pearl", lastname="Jam", username='PearlJam', email='pearljam@aa.io', password='password', role="Artist")
-    daphne = User(
-        firstname="Daphne", lastname="Stone", username="BigD420", email="bigd420@email.com", password="daphne", role="User")
+    slightystoopid = User(
+        firstname="Slightly", lastname="Stoopid", username="closertothesun", email="2am@email.com", password="colli3m4n", role="Artist")
     sublime = User(
         firstname="Sublime", lastname="", username="Sublime", email="sublime@sublime.com", password="sublime", role="Artist")
-    lpotl = User(
-        firstname="The Last Podcast", lastname="on the Left", username="LPOTL", email="sidestorieslpotl@gmail.com", password="ham-man", role="Artist"
+    lpn = User(
+        firstname="The Last Podcast", lastname="Network", username="LastPodcastNetwork", email="sidestorieslpotl@gmail.com", password="ham-man", role="Artist"
+    )
+    aic = User(
+        firstname="Alice in", lastname="Chains", username="aliceinchains", email="aic@hatetofeel.com", password="nothingsong"
+    )
+    ff = User(
+        firstname="Foo", lastname="Fighters", username="foofighters", email="dgrohl@foofighters.com", password="learntofly"
+    )
+    aholowka = User(
+        firstname="Alec", lastname="Holowka", username="aholowka", email="aholowka@finji.co", password="nightmareyes"
+    )
+    pepper = User(
+        firstname="Pepper", lastname="", username="Pepper", email="stonelove@no1.sound", password="nop3rmission"
     )
 
-    db.session.add(demo)
+    db.session.add(mfdoom)
     db.session.add(armchris)
     db.session.add(jeremy)
-    db.session.add(daphne)
+    db.session.add(slightystoopid)
     db.session.add(sublime)
-    db.session.add(lpotl)
+    db.session.add(lpn)
+    db.session.add(aic)
+    db.session.add(ff)
+    db.session.add(aholowka)
+    db.session.add(pepper)
     db.session.commit()
 
 
