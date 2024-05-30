@@ -33,7 +33,7 @@ def seed_albums():
         artist_id=5, name="Sublime", album_art="https://i.scdn.co/image/ab67616d00001e028fc4b0dcfb9509553f195c85", type="Album", price=12.99, genre="Ska"
     )
     feellikethat = AlbumPodcast(
-        artist_id=5, name="Feel Like That (feat. Bradley Nowell)", album_art="https://i.scdn.co/image/ab67616d0000b27361b7e027205d656d5b14b473", type="Album", price=4.99, genre="Ska"
+        artist_id=5, name="Feel Like That (feat. Bradley Nowell)", album_art="https://i.scdn.co/image/ab67616d0000b27361b7e027205d656d5b14b473", type="Single", price=4.99, genre="Ska"
     )
     rtog = AlbumPodcast(
         artist_id=6, name="The Roundtable of Gentlemen", album_art="https://bandfishbucket.s3.amazonaws.com/4d7bbe279fb8815809b98003e2dd27aa6a86227e.jpg", type="Podcast", price=0.00, genre="Comedy"
@@ -62,9 +62,7 @@ def seed_albums():
     snsetebys = AlbumPodcast(
         artist_id=4, name="Slightly Not Stoned Enough to Eat Breakfast yet Stoopid", album_art="https://i.scdn.co/image/ab67616d00001e02390ecf99ae3cab55b1872582", type="Album", price=9.99, genre="Ska"
     )
-    cttsun = AlbumPodcast(
-        artist_id=4, name="Closer to the Sun", album_art="https://i.scdn.co/image/ab67616d0000b2736d07ac77f37c4e83f2d19972", type="Album", price=9.99, genre="Ska"
-    )
+
 
     db.session.add(lpotl)
     db.session.add(ten)
@@ -86,5 +84,12 @@ def seed_albums():
     db.session.add(konatown)
     db.session.add(chronchitis)
     db.session.add(snsetebys)
-    db.session.add(cttsun)
+    db.session.commit()
+
+def undo_albums():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.albums_podcasts RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM albums_podcasts"))
+
     db.session.commit()
