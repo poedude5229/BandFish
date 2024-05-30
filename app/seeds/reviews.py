@@ -110,7 +110,7 @@ def seed_reviews():
     db.session.add(r13a)
     db.session.add(r13b)
     db.session.add(r14a)
-    db.sesion.add(r14b)
+    db.session.add(r14b)
     db.session.add(r15)
     db.session.add(r16)
     db.session.add(r16a)
