@@ -12,7 +12,7 @@ class SongEpisode(db.Model):
     album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums_podcasts.id')), nullable=False)
     title = db.Column(db.String(255), nullable=False)
     source = db.Column(db.String(255))
-    duration = db.Column(db.Time)
+    duration = db.Column(db.String(8))
 
     albums_podcasts = db.relationship('AlbumPodcast', back_populates='songs_episodes')
 
