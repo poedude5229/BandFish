@@ -10,11 +10,20 @@ def seed_users():
         firstname="Armand", lastname="Christophe", username='achristophe', email='armchris@aa.io', password='password', role="User")
     jeremy = User(
         firstname="Pearl", lastname="Jam", username='PearlJam', email='pearljam@aa.io', password='password', role="Artist")
-
+    daphne = User(
+        firstname="Daphne", lastname="Stone", username="BigD420", email="bigd420@email.com", password="daphne", role="User")
+    sublime = User(
+        firstname="Sublime", lastname="", username="Sublime", email="sublime@sublime.com", password="sublime", role="Artist")
+    lpotl = User(
+        firstname="The Last Podcast", lastname="on the Left", username="LPOTL", email="sidestorieslpotl@gmail.com", password="ham-man", role="Artist"
+    )
 
     db.session.add(demo)
     db.session.add(armchris)
     db.session.add(jeremy)
+    db.session.add(daphne)
+    db.session.add(sublime)
+    db.session.add(lpotl)
     db.session.commit()
 
 
