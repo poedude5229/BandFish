@@ -32,6 +32,18 @@ def seed_users():
     joe = User(
         firstname="Joe", lastname="Mama", username="joemama", profile_pic="https://avatars.githubusercontent.com/u/148486236?v=4", profile_banner="https://bandfishbucket.s3.amazonaws.com/NRG95Bridge95startrails95FINAL.JPG", email="joemama@bababooey.com", password="nikitaBURGER", role="User"
     )
+    kned = User(
+        firstname="Katniss", lastname="Everdeen", username="katnisseverdeen", email="katnisseverdeen@bababooey.com", password="mockingjay555", role="User"
+    )
+    bw = User(
+        firstname="Bruce", lastname="Wayne", username="brucewayne", email="brucewayne@bababooey.com", password="darkknight456", role="User"
+    )
+    fb = User(
+        firstname="Frodo", lastname="Baggins", username="frodobaggins", email="frodobaggins@bababooey.com", password="onering111", role="User"
+    )
+    ij = User(
+        firstname="Indiana", lastname="Jones", username="indianajones", email="indianajones@bababooey.com", password="raiders333", role="User"
+    )
 
     db.session.add(mfdoom)
     db.session.add(armchris)
@@ -44,6 +56,10 @@ def seed_users():
     db.session.add(aholowka)
     db.session.add(pepper)
     db.session.add(joe)
+    db.session.add(kned)
+    db.session.add(bw)
+    db.session.add(fb)
+    db.session.add(ij)
     db.session.commit()
 
 
