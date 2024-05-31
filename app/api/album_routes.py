@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, json, request, redirect
 from app.models import AlbumPodcast, Review, User, SongEpisode, db
 from flask_login import login_required, current_user
-from app.forms import AlbumForm
+from app.forms import AlbumForm, EditAlbumForm
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 album_routes = Blueprint('albums', __name__)
 
@@ -58,6 +58,54 @@ def podcasts():
         fetched_list.append(podcast_dict)
     return {'podcasts': fetched_list}
 
+@album_routes.route("/new", methods=["POST"])
+@login_required
+def album_post():
+    form = AlbumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        album_art = form.album_art.data
+        album_art.filename = get_unique_filename(album_art.filename)
+        upload = upload_file_to_s3(album_art)
+        album_art_url = upload["url"]
+
+        new = AlbumPodcast(
+            name=form.data['name'],
+            album_art=album_art_url,
+            type=form.data['type'],
+            price=form.data['price'],
+            genre=form.data['genre']
+        )
+        db.session.add(new)
+        db.session.commit()
+        return new.to_dict(), 201
+    else:
+        return form.errors, 400
+
+@album_routes.route("<int:id>", methods=["PUT"])
+@login_required
+def update_album(id):
+    selected = AlbumPodcast.query.get(id)
+    if not selected:
+        return {"message":"Could not find the Album/Podcast to delete"}, 404
+
+    form = EditAlbumForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        album_art = form.album_art.data
+        album_art.filename = get_unique_filename(album_art.filename)
+        upload = upload_file_to_s3(album_art)
+        album_art_url = upload["url"]
+
+        selected.name = form.data['name']
+        selected.album_art = album_art_url
+        selected.type = form.data['type']
+        selected.price = form.data['price']
+        selected.genre = form.data['genre']
+        db.session.commit()
+
+    return selected.to_dict(), 200
+
 @album_routes.route('/<int:id>')
 def fetch_album_details(id):
     fetched = AlbumPodcast.query.get(id)
@@ -84,15 +132,17 @@ def fetch_album_details(id):
         return fetched_album
     return {"message":"Album/Podcast could not be found or does not exist"}
 
+
 @album_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_album(id):
     fetched_album2 = AlbumPodcast.query.get(id)
     if not fetched_album2:
-        return {"message":"Can't find the album to delete"}
+        return {"message":"Can't find the album to delete"}, 404
     else:
         if fetched_album2.artist_id == current_user.id:
             db.session.delete(fetched_album2)
             db.session.commit()
             return json.dumps({"message":"Successfully deleted the album"}), 202
-            
+        else:
+            return json.dumps({"message":"You are not authorizzed to delete this album or podcast"}), 403
