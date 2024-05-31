@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, json, request, redirect
 from app.models import AlbumPodcast, Review, User, SongEpisode, db
 from flask_login import login_required, current_user
-from app.forms import AlbumForm, EditAlbumForm, ReviewForm, EditReviewForm
+from app.forms import AlbumForm, EditAlbumForm, ReviewForm, EditReviewForm, SongForm, EditSong
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 album_routes = Blueprint('albums', __name__)
 
@@ -205,3 +205,95 @@ def delete_review(id, reviewId):
         db.session.commit()
 
     return json.dumps({"message":"Successfully deleted review"})
+
+@album_routes.route("/<int:id>/tracks", methods=["GET"])
+def get_album_songs(id):
+    requested_album = AlbumPodcast.query.get(id)
+
+    if requested_album:
+        alb1 = requested_album.to_dict()
+        songs = SongEpisode.query.filter(SongEpisode.album_id == id)
+        alb_songs = []
+        if songs:
+            for song in songs:
+                songdict = song.to_dict()
+                songdict['album_name'] = alb1['name']
+                alb_songs.append(songdict)
+        return {"songs": alb_songs}
+    return {"message":"Album / Podcast could not be found or does not exist"}
+
+@album_routes.route("/<int:id>/tracks/new", methods=["POST"])
+@login_required
+def song_post(id):
+    selected = AlbumPodcast.query.get(id)
+    if not selected:
+        return {"message":"Album / Podcast could not be found or does not exist"}
+
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        # title = form.data['title']
+        source = form.source.data
+        source.filename = get_unique_filename(source.filename)
+        upload = upload_file_to_s3(source)
+        source_url = upload['url']
+        if form.data['duration']:
+            songdur = form.data['duration']
+        else:
+            songdur = "0:00"
+        newsong = SongEpisode(
+            artist_id=current_user.id,
+            album_id=id,
+            title=form.data['title'],
+            source=source_url,
+            duration = songdur
+        )
+        db.session.add(newsong)
+        db.session.commit()
+        return newsong.to_dict(), 201
+    else:
+        return form.errors, 400
+
+@album_routes.route("/<int:id>/tracks/<int:trackId>", methods=["PUT"])
+@login_required
+def edit_song(id, trackId):
+    selected  = AlbumPodcast.query.get(id)
+    if not selected:
+        return {"message":"Album / Podcast couldn't be found or does not exist"}
+    song_to_update = SongEpisode.query.get(trackId)
+    form = EditSong()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        if form.source.data:
+            source = form.source.data
+            source.filename = get_unique_filename(source.filename)
+            upload = upload_file_to_s3(source)
+            source_url = upload['url']
+        else:
+            source_url = song_to_update['source']
+
+        if form.data['duration']:
+            songdur = form.data['duration']
+        else:
+            songdur = song_to_update['duration']
+        song_to_update.title = form.data['title']
+        song_to_update.source = source_url
+        song_to_update.duration = songdur
+
+        db.session.commit()
+
+    return song_to_update.to_dict(), 200
+
+
+@album_routes.route("/<int:id>/tracks/<int:trackId>", methods=["DELETE"])
+@login_required
+def delete_song(id, trackId):
+    got_album = AlbumPodcast.query.get(id)
+    if not got_album:
+        return {"message":"Album / Podcast could not be found or does not exist"}
+    get_song = SongEpisode.query.get(trackId)
+    if not get_song:
+        return {"message":"Song / Episode could not be found or does not exist"}
+    db.session.delete(get_song)
+    db.session.commit()
+    return json.dumps({"message":"Successfully deleted song."})
