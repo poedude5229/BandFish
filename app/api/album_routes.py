@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, json, request, redirect
 from app.models import AlbumPodcast, Review, User, SongEpisode, db
 from flask_login import login_required, current_user
-# from app.forms
+from app.forms import AlbumForm
+from .aws_helpers import upload_file_to_s3, get_unique_filename
 album_routes = Blueprint('albums', __name__)
 
 @album_routes.route("/all")
@@ -15,6 +16,29 @@ def albums_n_podcasts():
         album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
         fetched_list.append(album_dict)
     return {'albums and podcasts': fetched_list}
+
+@album_routes.route("/new", methods=["POST"])
+@login_required
+def new_album():
+    form = AlbumForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        album_art = form.album_art.data
+        album_art.filename = get_unique_filename(album_art.filename)
+        upload = upload_file_to_s3(album_art)
+        album_art_url = upload["url"]
+        new = AlbumPodcast(
+            artist_id=current_user.id,
+            name=form.data['name'],
+            album_art=album_art_url,
+            type=form.data['type'],
+            price=form.data['price'],
+            genre=form.data['genre']
+        )
+        db.session.add(new)
+        db.session.commit()
+        return new.to_dict()
 
 @album_routes.route("/albums")
 def albums():
@@ -60,7 +84,15 @@ def fetch_album_details(id):
         return fetched_album
     return {"message":"Album/Podcast could not be found or does not exist"}
 
-@album_routes.route("/new")
+@album_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
-def new_album():
-    pass
+def delete_album(id):
+    fetched_album2 = AlbumPodcast.query.get(id)
+    if not fetched_album2:
+        return {"message":"Can't find the album to delete"}
+    else:
+        if fetched_album2.artist_id == current_user.id:
+            db.session.delete(fetched_album2)
+            db.session.commit()
+            return json.dumps({"message":"Successfully deleted the album"}), 202
+            
