@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, json, request, redirect
 from app.models import AlbumPodcast, Review, User, SongEpisode, db
 from flask_login import login_required, current_user
-from app.forms import AlbumForm, EditAlbumForm
+from app.forms import AlbumForm, EditAlbumForm, ReviewForm, EditReviewForm
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 album_routes = Blueprint('albums', __name__)
 
@@ -163,3 +163,45 @@ def get_alb_reviews(id):
     else:
         all_reviews = {"reviews": []}
     return all_reviews
+
+@album_routes.route("/<int:id>/reviews/new", methods=["POST"])
+@login_required
+def post_alb_review(id):
+    form = ReviewForm()
+    if form.validate_on_submit():
+        new_review = Review(
+            user_id = current_user.id,
+            item_id = id,
+            title = form.data['title'],
+            body = form.data['body']
+        )
+        db.session.add(new_review)
+        db.session.commit()
+    return new_review.to_dict()
+
+@album_routes.route("/<int:id>/reviews/<int:reviewId>", methods=["PUT"])
+@login_required
+def update_review(id, reviewId):
+    form = EditReviewForm()
+    selected_review = Review.query.get(reviewId)
+    if not selected_review:
+        return {"message": "Review couldn't be found"}, 404
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        selected_review.title = form.data['title']
+        selected_review.body = form.data['rating']
+        db.session.commit()
+    return selected_review.to_dict(), 200
+
+@album_routes.route("/<int:id>/reviews/<int:reviewId>", methods=["DELETE"])
+@login_required
+def delete_review(id, reviewId):
+    indv_review = Review.query.get(reviewId)
+
+    if not indv_review:
+        return {"message":"Review couldn't be found"}
+    else:
+        db.session.delete(indv_review)
+        db.session.commit()
+
+    return json.dumps({"message":"Successfully deleted review"})
