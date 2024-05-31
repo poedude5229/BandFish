@@ -17,12 +17,12 @@ class SongEpisode(db.Model):
     albums_podcasts = db.relationship('AlbumPodcast', back_populates='songs_episodes')
 
     def to_dict(self):
-        duration_str = f'{self.duration.hour}:{self.duration.minute}' if self.duration else f'{0}:{00}'
+        # duration_str = f'{self.duration.hour}:{self.duration.minute}' if self.duration else f'{0}:{00}'
         return {
             'id': self.id,
             'artist_id': self.artist_id,
             'album_id': self.album_id,
             'title': self.title,
             'source': self.source,
-            'duration': duration_str
+            'duration': self.duration
         }

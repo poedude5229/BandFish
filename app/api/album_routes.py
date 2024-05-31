@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, json, request, redirect
-from app.models import AlbumPodcast, Review, User, db
+from app.models import AlbumPodcast, Review, User, SongEpisode, db
 from flask_login import login_required, current_user
 # from app.forms
 album_routes = Blueprint('albums', __name__)
@@ -38,7 +38,13 @@ def fetch_album_details(id):
     if fetched:
         fetched_album = fetched.to_dict()
         reviews = Review.query.filter(Review.item_id == id).all()
+        songs = SongEpisode.query.filter(SongEpisode.album_id == id).all()
         # fetched_album['reviews']
+        album_songs = []
+        for song in songs:
+            songdict = song.to_dict()
+            album_songs.append(songdict)
+        fetched_album['songs'] = album_songs
         album_reviews = []
         for review in reviews:
             reviewdict = review.to_dict()
