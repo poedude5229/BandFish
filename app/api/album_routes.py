@@ -5,7 +5,7 @@ from app.forms import AlbumForm, EditAlbumForm
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 album_routes = Blueprint('albums', __name__)
 
-@album_routes.route("/all")
+@album_routes.route("/all", methods=["GET"])
 def albums_n_podcasts():
     fetched = AlbumPodcast.query.all()
     fetched_list = []
@@ -42,18 +42,18 @@ def new_album():
 
 @album_routes.route("/albums")
 def albums():
-    fetched = AlbumPodcast.query.filter(AlbumPodcast.type != "Podcast").all()
+    fetched3 = AlbumPodcast.query.filter(AlbumPodcast.type != "Podcast").all()
     fetched_list = []
-    for album in fetched:
+    for album in fetched3:
         album_dict = album.to_dict()
         fetched_list.append(album_dict)
     return {'albums': fetched_list}
 
 @album_routes.route('/podcasts')
 def podcasts():
-    fetched = AlbumPodcast.query.filter(AlbumPodcast.type == "Podcast").all()
+    fetched4 = AlbumPodcast.query.filter(AlbumPodcast.type == "Podcast").all()
     fetched_list = []
-    for podcast in fetched:
+    for podcast in fetched4:
         podcast_dict = podcast.to_dict()
         fetched_list.append(podcast_dict)
     return {'podcasts': fetched_list}
@@ -146,3 +146,20 @@ def delete_album(id):
             return json.dumps({"message":"Successfully deleted the album"}), 202
         else:
             return json.dumps({"message":"You are not authorizzed to delete this album or podcast"}), 403
+
+@album_routes.route("/<int:id>/reviews", methods=["GET"])
+def get_alb_reviews(id):
+    album_reviews = Review.query.filter(Review.item_id == id).all()
+
+    if album_reviews is not None:
+        # all_reviews = {"reviews": [each.to_dict() for each in album_reviews]}
+        rv_list = []
+        for each in album_reviews:
+            better_format_review = each.to_dict()
+            rv_user = User.query.get(better_format_review['user_id'])
+            better_format_review['user'] = rv_user.to_dict()['username']
+            rv_list.append(better_format_review)
+        all_reviews = {'reviews': rv_list}
+    else:
+        all_reviews = {"reviews": []}
+    return all_reviews
