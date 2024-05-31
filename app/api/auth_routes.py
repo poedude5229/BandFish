@@ -51,16 +51,16 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        profile_pic=form.data['profile_pic'],
+        profile_pic = form.profile_pic.data
         profile_pic.filename = get_unique_filename(profile_pic.filename)
         upload = upload_file_to_s3(profile_pic)
-        print(upload)
         pfp_url = upload["url"]
-        profile_banner=form.data['profile_banner'],
+
+        profile_banner = form.profile_banner.data
         profile_banner.filename = get_unique_filename(profile_banner.filename)
         upload2 = upload_file_to_s3(profile_banner)
         pfb_url = upload2["url"]
-        print(upload2)
+
         user = User(
             firstname=form.data['firstname'],
             lastname=form.data['lastname'],
@@ -68,7 +68,6 @@ def sign_up():
             email=form.data['email'],
             profile_pic=pfp_url,
             profile_banner=pfb_url,
-            # role=form.data['role'],
             password=form.data['password']
         )
         db.session.add(user)

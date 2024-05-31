@@ -6,12 +6,14 @@ import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
-  const [firstname, setFirstname] = useState("")
-  const [lastname, setLastname] = useState("")
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
+  const [profileBanner, setProfileBanner] = useState(null);
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
@@ -25,13 +27,20 @@ function SignupFormModal() {
       });
     }
 
-    const serverResponse = await dispatch(
-      thunkSignup({
-        email,
-        username,
-        password,
-      })
-    );
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("username", username);
+    formData.append("password", password);
+    formData.append("firstname", firstname);
+    formData.append("lastname", lastname);
+    if (profilePic) {
+      formData.append("profile_pic", profilePic);
+    }
+    if (profileBanner) {
+      formData.append("profile_banner", profileBanner);
+    }
+
+    const serverResponse = await dispatch(thunkSignup(formData));
 
     if (serverResponse) {
       setErrors(serverResponse);
@@ -44,7 +53,25 @@ function SignupFormModal() {
     <>
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <label>
+          First Name
+          <input
+            type="text"
+            value={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Last Name
+          <input
+            type="text"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
+            required
+          />
+        </label>
         <label>
           Email
           <input
@@ -85,6 +112,22 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        <label>
+          Profile Picture
+          <input
+            type="file"
+            onChange={(e) => setProfilePic(e.target.files[0])}
+            required
+          />
+        </label>
+        <label>
+          Profile Banner
+          <input
+            type="file"
+            onChange={(e) => setProfileBanner(e.target.files[0])}
+            required
+          />
+        </label>
         <button type="submit">Sign Up</button>
       </form>
     </>
