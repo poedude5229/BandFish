@@ -9,7 +9,10 @@ def albums_n_podcasts():
     fetched = AlbumPodcast.query.all()
     fetched_list = []
     for album in fetched:
+        album_artist = User.query.get(album.artist_id)
+        artistdict = album_artist.to_dict()
         album_dict = album.to_dict()
+        album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
         fetched_list.append(album_dict)
     return {'albums and podcasts': fetched_list}
 
@@ -41,10 +44,11 @@ def fetch_album_details(id):
         songs = SongEpisode.query.filter(SongEpisode.album_id == id).all()
         # fetched_album['reviews']
         album_songs = []
-        for song in songs:
-            songdict = song.to_dict()
-            album_songs.append(songdict)
-        fetched_album['songs'] = album_songs
+        if songs:
+            for song in songs:
+                songdict = song.to_dict()
+                album_songs.append(songdict)
+        fetched_album['tracks'] = album_songs
         album_reviews = []
         for review in reviews:
             reviewdict = review.to_dict()

@@ -62,6 +62,9 @@ def seed_albums():
     snsetebys = AlbumPodcast(
         artist_id=4, name="Slightly Not Stoned Enough to Eat Breakfast yet Stoopid", album_art="https://i.scdn.co/image/ab67616d00001e02390ecf99ae3cab55b1872582", type="Album", price=9.99, genre="Ska"
     )
+    # newalb = AlbumPodcast(
+    #     artist_id=1, name="No song album", album_art="", type="Album", price=0.00, genre="None"
+    # )
 
 
     db.session.add(lpotl)
@@ -84,6 +87,7 @@ def seed_albums():
     db.session.add(konatown)
     db.session.add(chronchitis)
     db.session.add(snsetebys)
+    # db.session.add(newalb)
     db.session.commit()
 
 def undo_albums():
