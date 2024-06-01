@@ -1,21 +1,58 @@
 import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect, useRef } from "react";
+import OpenModalMenuItem from "./OpenModalMenuItem";
+import LoginFormModal from "../LoginFormModal";
+import SignupFormModal from "../SignupFormModal";
 
 function Navigation() {
-  return (
-    <ul id="topNavbar">
-      <li>
-        <NavLink id="home-navlink" to="/">
-          <img src="https://bandfishbucket.s3.amazonaws.com/bf.png" />
-          bandfish
-        </NavLink>
-      </li>
+  const dispatch = useDispatch();
+  const [showMenu, setShowMenu] = useState(true);
+  const ulRef = useRef();
+  let user = useSelector((state) => state.session.user);
+  // let session = useSelector((state) => state.sessionReducer)
+  useEffect(() => {
+    if (user && user !== null) {
+      setShowMenu(false);
+    }
+  });
 
-      <li style={{paddingRight: "12px"}}>
-        <ProfileButton />
-      </li>
-    </ul>
+  return (
+    <div>
+      <div>
+        <ul id="topNavbar">
+          <li id="home-navlink">
+            <NavLink id="homenavlinkchild" to="/">
+              <img src="https://bandfishbucket.s3.amazonaws.com/bf.png" />
+              bandfish
+            </NavLink>
+          </li>
+
+          <div style={{ position:"relative", right: "75px" }}>
+            {/* <ProfileButton /> */}
+            {showMenu && (
+              <ul id="login-list">
+                <>
+                  <OpenModalMenuItem
+                    style={{ color: "white" }}
+                    itemText="Log in"
+                    modalComponent={<LoginFormModal />}
+                  />
+                  <OpenModalMenuItem
+                    style={{ color: "white" }}
+                    itemText="Sign up"
+                    modalComponent={<SignupFormModal />}
+                  />
+                </>
+              </ul>
+            )}
+          </div>
+        </ul>
+      </div>
+      <div id="secondNavbar"></div>
+    </div>
   );
 }
 
