@@ -1,3 +1,57 @@
+@font-face {
+  font-family: Jomhuria;
+  src: url("../../../public/jomhuria.ttf");
+}
+
+#topNavbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #01001A;
+  position: absolute;
+  top: -17px;
+  width: 97.9%;
+  left: -10px;
+  height: 67px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .profile-dropdown {
   position: absolute;
+  background-color: white;
+  z-index: 1;
+  right: 12px;
+  top: 52px;
+}
+
+#home-navlink {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 44px;
+  font-family: Jomhuria;
+  color: white;
+}
+
+
+#home-navlink img {
+  width: 55px;
+  height: 55px;
+}
+
+/*
+#home-navlink a {
+  position: absolute;
+  top: 0px;
+}
+*/
+
+
+#topNavbar > li {
+  list-style: none;
+  text-decoration: none;
 }

@@ -4,12 +4,15 @@ import "./Navigation.css";
 
 function Navigation() {
   return (
-    <ul>
+    <ul id="topNavbar">
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink id="home-navlink" to="/">
+          <img src="https://bandfishbucket.s3.amazonaws.com/bf.png" />
+          bandfish
+        </NavLink>
       </li>
 
-      <li>
+      <li style={{paddingRight: "12px"}}>
         <ProfileButton />
       </li>
     </ul>
