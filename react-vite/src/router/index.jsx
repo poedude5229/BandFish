@@ -1,15 +1,15 @@
-import { createBrowserRouter } from 'react-router-dom';
-import LoginFormPage from '../components/LoginFormPage';
-import SignupFormPage from '../components/SignupFormPage';
-import Layout from './Layout';
-
+import { createBrowserRouter } from "react-router-dom";
+import LoginFormPage from "../components/LoginFormPage";
+import SignupFormPage from "../components/SignupFormPage";
+import Layout from "./Layout";
+import { Landing } from "../components/LandingPage/Landing";
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
         path: "/",
-        element: <h1></h1>,
+        element: <Landing />,
       },
       {
         path: "login",

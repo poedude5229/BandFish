@@ -16,6 +16,8 @@ function Navigation() {
   useEffect(() => {
     if (user && user !== null) {
       setShowMenu(false);
+    } else {
+      setShowMenu(true);
     }
   }, [user]);
 

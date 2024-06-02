@@ -1,0 +1,97 @@
+@font-face {
+  font-family: Jomhuria;
+  src: url("../../../public/jomhuria.ttf");
+}
+
+#sublime-promo {
+  position: fixed;
+  top: 126px;
+  left: 0;
+  width: 1017px;
+  height: 623px;
+}
+
+#sublime-promo * {
+  background-color: #d9d9d9;
+}
+
+#five-dollar-div {
+  width: 312px;
+  height: 62px;
+  position: absolute;
+  top: 500px;
+  left: 600px;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  font-family: Jomhuria;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+#five-dollar-div p {
+  /* position: absolute; */
+  margin-left: 12px;
+  font-size: 32px;
+  margin-top: 5px;
+}
+#five-dollar-div div {
+  position: absolute;
+  margin-left: 20px;
+  gap: 14px;
+  top: 38px;
+  /* font-size: 20px; */
+  display: flex;
+}
+#five-dollar-div a {
+  font-size: 22px;
+  color: black;
+  margin-bottom: 12px;
+}
+
+#five-dollar-div svg {
+  position: absolute;
+  left: 80px;
+  margin-top: 2px;
+}
+
+#fivedolla-atdoor {
+  width: 1017px;
+  height: 623px;
+}
+
+#bbb-lpotl {
+  width: 420px;
+  height: 342px;
+  position: fixed;
+  right: 0;
+  top: 126px;
+}
+
+#bbb-lpotl * {
+    background-color: #d9d9d9;
+}
+
+#bbb-lpotl img {
+  width: 423px;
+  height: 342px;
+}
+
+#lpotl-link {
+  position: absolute;
+  width: 240px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 63px;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  right: 40px;
+  top: 260px;
+}
+
+#lpotl-link a {
+  text-decoration: none;
+  font-family: Jomhuria;
+  font-size: 28px;
+  color: black;
+}
