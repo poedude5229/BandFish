@@ -16,6 +16,7 @@
   flex-wrap: wrap;
   align-items: center;
   margin: 0;
+  z-index: 1;
 }
 
 .profile-dropdown {
@@ -72,6 +73,7 @@
   top: 67px;
   height: 60px;
   left: 0;
+  z-index: 1;
 }
 #secondNavbar * {
   background-color: #d9d9d9;

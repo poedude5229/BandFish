@@ -6,98 +6,178 @@
 * {
   font-family: Jomhuria;
 }
-@media screen and (max-width: 1437px) {
+
+/* @media screen and (min-width: 1438px) {
   #sublime-promo {
     position: fixed;
     top: 126px;
     left: 0;
-    width: 1017px;
-    height: 623px;
+    width: 75vw;
   }
 
-  #sublime-promo * {
-    background-color: #d9d9d9;
+  #sublime-promo img {
+    width: 75vw;
   }
+} */
 
-  #five-dollar-div {
-    width: 312px;
-    height: 62px;
-    position: absolute;
-    top: 500px;
-    left: 600px;
-    background-color: #d9d9d9;
-    border-radius: 5px;
-    font-family: Jomhuria;
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-  }
+/* @media screen and (max-width: 1437px) { */
+#sublime-promo {
+  position: absolute;
+  margin-top: 126px;
+  left: 0;
+  width: 72%;
+  height: 623px;
+}
 
-  #five-dollar-div p {
-    margin-left: 12px;
-    font-size: 32px;
-    margin-top: 5px;
-  }
+#sublime-promo img {
+  width: 100%;
+}
 
-  #five-dollar-div div {
-    position: absolute;
-    margin-left: 20px;
-    gap: 14px;
-    top: 38px;
-    display: flex;
-  }
+#sublime-promo * {
+  background-color: #d9d9d9;
+}
 
-  #five-dollar-div a {
-    font-size: 22px;
-    color: black;
-    margin-bottom: 12px;
-  }
+#five-dollar-div {
+  width: 312px;
+  height: 62px;
+  position: relative;
+  /* top: 650px;
+    left: 600px; */
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  font-family: Jomhuria;
+  display: flex;
+  flex-direction: column;
+  margin-top: -102px;
+  margin-left: 55%;
+  gap: 0px;
+  margin-right: 10px;
+}
 
-  #five-dollar-div svg {
-    position: absolute;
-    left: 80px;
-    margin-top: 2px;
-  }
+#five-dollar-div p {
+  margin-left: 12px;
+  font-size: 32px;
+  margin-top: 5px;
+}
 
-  #fivedolla-atdoor {
-    width: 1017px;
-    height: 623px;
-  }
+#five-dollar-div div {
+  position: absolute;
+  margin-left: 20px;
+  gap: 14px;
+  top: 38px;
+  display: flex;
+  height: 12px;
+}
 
-  #bbb-lpotl {
-    width: 420px;
-    height: 342px;
-    position: fixed;
-    right: 0;
-    top: 126px;
-  }
+#five-dollar-div a {
+  font-size: 22px;
+  color: black;
+  margin-bottom: 12px;
+}
 
-  #bbb-lpotl * {
-    background-color: #d9d9d9;
-  }
+#five-dollar-div svg {
+  position: absolute;
+  left: 80px;
+  margin-top: 2px;
+}
 
-  #bbb-lpotl img {
-    width: 423px;
-    height: 342px;
-  }
+#fivedolla-atdoor {
+  width: 1017px;
+  height: 623px;
+}
 
-  #lpotl-link {
-    position: absolute;
-    width: 240px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    height: 63px;
-    background-color: #d9d9d9;
-    border-radius: 5px;
-    right: 40px;
-    top: 260px;
-  }
+#sidebar-promo-container {
+  width: 30%;
+  height: 623px;
+  position: relative;
+  right: 0;
+  left: 70%;
+  top: 126px;
+  display: flex;
+  flex-direction: column;
+}
 
-  #lpotl-link a {
-    text-decoration: none;
-    font-family: Jomhuria;
-    font-size: 28px;
-    color: black;
-  }
+#bbb-lpotl {
+  width: 100%;
+  height: 50%;
+  /* position: fixed; */
+  right: 0;
+  top: 126px;
+}
+
+#bbb-lpotl * {
+  background-color: #d9d9d9;
+}
+
+#bbb-lpotl img {
+  width: 100%;
+  height: 100%;
+}
+
+#lpotl-link {
+  position: relative;
+  width: 240px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 63px;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  /* right: 40px;
+    top: 260px; */
+  margin-top: -82px;
+  margin-left: 30%;
+}
+
+#lpotl-link a {
+  text-decoration: none;
+  font-family: Jomhuria;
+  font-size: 28px;
+  color: black;
+}
+/* } */
+
+#aic-promo {
+  width: 100%;
+  height: 50%;
+}
+
+#aic-promo img {
+  width: 100%;
+  height: 100%;
+}
+
+#aic-link {
+  position: relative;
+  width: 240px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  background-color: #d9d9d9;
+  margin-top: -82px;
+  margin-left: 20%;
+  color: black;
+  /* z-index: 1; */
+  border-radius: 5px;
+}
+
+#aic-link * {
+  background-color: #d9d9d9;
+}
+
+#aic-link a {
+  color: black;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+#rest-of-page-header {
+  position: absolute;
+  margin-top: 770px;
+  width: 200px;
+  color: white;
+  font-size: 40px;
+  margin-left: 24px;
 }

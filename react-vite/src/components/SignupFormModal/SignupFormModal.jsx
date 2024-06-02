@@ -50,7 +50,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div style={{ zIndex: "1000", backgroundColor: "#d9d9d9" }}>
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -130,7 +130,7 @@ function SignupFormModal() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
