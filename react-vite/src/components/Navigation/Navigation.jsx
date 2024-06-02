@@ -17,7 +17,7 @@ function Navigation() {
     if (user && user !== null) {
       setShowMenu(false);
     }
-  });
+  }, [user]);
 
   return (
     <div>
@@ -30,7 +30,7 @@ function Navigation() {
             </NavLink>
           </li>
 
-          <div style={{ position:"relative", right: "75px" }}>
+          <div style={{ position: "relative", right: "75px" }}>
             {/* <ProfileButton /> */}
             {showMenu && (
               <ul id="login-list">
@@ -51,7 +51,19 @@ function Navigation() {
           </div>
         </ul>
       </div>
-      <div id="secondNavbar"></div>
+      <div id="secondNavbar">
+        <ul id="secondNavlist">
+          <li>
+            <NavLink className="secondNavlist-link">Genres</NavLink>
+          </li>
+          <li>
+            <NavLink className="secondNavlist-link">Albums</NavLink>
+          </li>
+          <li>
+            <NavLink className="secondNavlist-link">Podcasts</NavLink>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }

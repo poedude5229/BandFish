@@ -67,4 +67,26 @@
 
 #secondNavbar {
   background-color: #d9d9d9;
+  position: fixed;
+  width: 100%;
+  top: 67px;
+  height: 60px;
+  left: 0;
+}
+
+#secondNavlist {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 300px;
+  margin-left: -32px;
+  margin-top: 17px;
+}
+
+.secondNavlist-link {
+  text-decoration: none;
+  color: #8d8d8d;
+  font-family: Jomhuria;
+  font-size: 30px;
 }
