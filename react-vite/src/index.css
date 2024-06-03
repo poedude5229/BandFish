@@ -12,3 +12,10 @@
   background-color: #d9d9d9;
 }
 
+#modal-background {
+  background-color: rgba(0, 0, 0, 0.301);
+}
+
+#modal {
+    background-color: rgba(0,0,0, 0.301);
+}
