@@ -60,7 +60,9 @@ function Navigation() {
             <NavLink className="secondNavlist-link">Genres</NavLink>
           </li>
           <li>
-            <NavLink className="secondNavlist-link">Albums</NavLink>
+            <NavLink className="secondNavlist-link" to="/albums">
+              Albums
+            </NavLink>
           </li>
           <li>
             <NavLink className="secondNavlist-link">Podcasts</NavLink>

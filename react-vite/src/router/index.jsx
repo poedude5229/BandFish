@@ -20,6 +20,10 @@ export const router = createBrowserRouter([
         element: <SignupFormPage />,
       },
       {
+        path: "/albums",
+        element: <h1>Yello</h1>,
+      },
+      {
         path: `/:albumId`,
         element: <h1>Hello I am still working on this component</h1>,
       },
