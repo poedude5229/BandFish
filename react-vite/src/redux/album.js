@@ -30,7 +30,7 @@ export const loadJustAlbumsThunk = () => async (dispatch) => {
     return { errors: data };
   }
 
-  await dispatch(loadAlbumsThunk(data.albums));
+  await dispatch(loadJustAlbums(data.albums));
   return data;
 };
 

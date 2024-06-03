@@ -97,35 +97,53 @@
   background-color: white;
   z-index: 100000;
   right: 12px;
-  top: 60px;
+  top: 67px;
   height: 100px;
   display: flex;
   flex-direction: column;
   list-style: none;
   padding-top: 25px;
-  padding-right: 25px;
+  padding-right: 55px;
+  justify-content: center;
+  align-items: flex-start;
   gap: 10px;
   border-radius: 5px;
   font-size: 20px;
+  padding: 0;
+  margin-left: 12px;
+  width: 200px;
+  overflow: clip;
 }
 
-.profile-dropdown ul {
-  margin-top: 25px;
+.profile-dropdown {
+  /* margin-top: 25px; */
   list-style: none;
+  text-align: left;
+}
+
+.profile-dropdown li {
+  padding-left: 12px;
+  width: 200px;
+}
+
+.profile-dropdown li:hover {
+  background-color: grey;
 }
 
 .profile-dropdown * {
   background-color: white;
+  font-size: 24px;
 }
 
 #logout-button {
   border: none;
   cursor: pointer;
-  background-color: #01001a;
+  background-color: #ffffff00;
   font-size: 24px;
-  color: #d9d9d9;
-  left: 70px;
+  color: #000000;
+  margin-left: -76px;
   top: 90px;
-  position: absolute;
+  /* position: absolute; */
   border-radius: 5px;
+  width: 200px;
 }
