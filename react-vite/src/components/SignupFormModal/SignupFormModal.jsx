@@ -50,10 +50,20 @@ function SignupFormModal() {
   };
 
   return (
-    <div style={{ zIndex: "1000", backgroundColor: "#d9d9d9" }}>
-      <h1>Sign Up</h1>
+    <div
+      style={{
+        zIndex: "1000",
+        backgroundColor: "#d9d9d9",
+      }}
+    >
+      <h1 style={{ fontSize: "48px", marginLeft: "12px" }}>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form
+        id="signupFormModal"
+        style={{ display: "flex", flexDirection: "column" }}
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
         <label>
           First Name
           <input
@@ -115,6 +125,8 @@ function SignupFormModal() {
         <label>
           Profile Picture
           <input
+            className="filetypeSignup"
+            style={{ backgroundColor: "#d9d9d9" }}
             type="file"
             onChange={(e) => setProfilePic(e.target.files[0])}
             required
@@ -123,6 +135,8 @@ function SignupFormModal() {
         <label>
           Profile Banner
           <input
+            className="filetypeSignup"
+            style={{ backgroundColor: "#d9d9d9" }}
             type="file"
             onChange={(e) => setProfileBanner(e.target.files[0])}
             required

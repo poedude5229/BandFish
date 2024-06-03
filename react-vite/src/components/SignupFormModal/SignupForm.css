@@ -1,0 +1,46 @@
+#signupFormModal {
+  width: 500px;
+}
+
+#signupFormModal label {
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+#signupFormModal input {
+  /* margin-left: ; */
+  border: none;
+  border-radius: 5px;
+  width: 200px;
+  background-color: #8d8d8d;
+}
+
+#signupFormModal input:focus-within {
+  outline: none;
+}
+
+#signupFormModal button {
+  width: 100px;
+  height: 50px;
+  background-color: #01001a;
+  color: #d9d9d9;
+  border: none;
+  font-size: 24px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filetypeSignup button {
+  background-color: #d9d9d9;
+}
+
+#signupFormModal #file-upload-button {
+  font-size: 12px;
+}
