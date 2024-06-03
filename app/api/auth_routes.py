@@ -57,9 +57,11 @@ def sign_up():
         pfp_url = upload["url"]
 
         profile_banner = form.profile_banner.data
-        profile_banner.filename = get_unique_filename(profile_banner.filename)
-        upload2 = upload_file_to_s3(profile_banner)
-        pfb_url = upload2["url"]
+        pfb_url = None
+        if profile_banner:
+            profile_banner.filename = get_unique_filename(profile_banner.filename)
+            upload2 = upload_file_to_s3(profile_banner)
+            pfb_url = upload2["url"]
 
         user = User(
             firstname=form.data['firstname'],

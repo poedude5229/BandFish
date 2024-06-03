@@ -139,7 +139,7 @@ function SignupFormModal() {
             style={{ backgroundColor: "#d9d9d9" }}
             type="file"
             onChange={(e) => setProfileBanner(e.target.files[0])}
-            required
+           
           />
         </label>
         <button type="submit">Sign Up</button>
