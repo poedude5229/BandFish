@@ -34,6 +34,7 @@ function Navigation() {
 
           <div style={{ position: "relative", right: "75px" }}>
             {/* <ProfileButton /> */}
+            {showMenu == false && <ProfileButton />}
             {showMenu && (
               <ul id="login-list">
                 <>

@@ -16,15 +16,7 @@
   flex-wrap: wrap;
   align-items: center;
   margin: 0;
-  z-index: 1;
-}
-
-.profile-dropdown {
-  position: absolute;
-  background-color: white;
-  z-index: 1;
-  right: 12px;
-  top: 52px;
+  z-index: 10;
 }
 
 #home-navlink {
@@ -94,4 +86,46 @@
   color: #8d8d8d;
   font-family: Jomhuria;
   font-size: 30px;
+}
+
+#pfp-button:focus {
+  outline: none;
+}
+
+.profile-dropdown {
+  position: fixed;
+  background-color: white;
+  z-index: 100000;
+  right: 12px;
+  top: 60px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding-top: 25px;
+  padding-right: 25px;
+  gap: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.profile-dropdown ul {
+  margin-top: 25px;
+  list-style: none;
+}
+
+.profile-dropdown * {
+  background-color: white;
+}
+
+#logout-button {
+  border: none;
+  cursor: pointer;
+  background-color: #01001a;
+  font-size: 24px;
+  color: #d9d9d9;
+  left: 70px;
+  top: 90px;
+  position: absolute;
+  border-radius: 5px;
 }

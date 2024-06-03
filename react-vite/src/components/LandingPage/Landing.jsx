@@ -1,8 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { SlArrowRight } from "react-icons/sl";
 import "./Landing.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import { loadAlbumsThunk } from "../../redux/album";
+import { useEffect } from "react";
 export function Landing() {
+  let dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadAlbumsThunk());
+  }, [dispatch]);
+  let albums = useSelector((state) => state.albumReducer);
+
   return (
     <>
       <div style={{ width: "100%", position: "absolute", left: "0", top: "0" }}>
@@ -47,6 +55,7 @@ export function Landing() {
         </div>
       </div>
       <h3 id="rest-of-page-header">Hot right now...</h3>
+      <div></div>
     </>
   );
 }

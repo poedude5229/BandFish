@@ -15,7 +15,7 @@ def albums_n_podcasts():
         album_dict = album.to_dict()
         album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
         fetched_list.append(album_dict)
-    return {'albums and podcasts': fetched_list}
+    return {'albums_and_podcasts': fetched_list}
 
 @album_routes.route("/new", methods=["POST"])
 @login_required
