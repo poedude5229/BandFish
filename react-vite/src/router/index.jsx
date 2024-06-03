@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
+      {
+        path: `/:albumId`,
+        element: <h1>Hello I am still working on this component</h1>,
+      },
     ],
   },
 ]);

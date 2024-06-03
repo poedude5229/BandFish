@@ -7,10 +7,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 1000;
+  border-radius: 5%;
 }
 
- #modal-background {
+#modal-background {
   position: fixed;
   top: 0;
   right: 0;
@@ -21,4 +22,9 @@
 #modal-content {
   position: absolute;
   background-color: white;
+  border-radius: 5%;
+}
+
+#signupFormModal {
+  border-radius: 5%;
 }

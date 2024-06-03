@@ -54,6 +54,7 @@ function SignupFormModal() {
       style={{
         zIndex: "1000",
         backgroundColor: "#d9d9d9",
+        borderRadius: "5%",
       }}
     >
       <h1 style={{ fontSize: "48px", marginLeft: "12px" }}>Sign Up</h1>
@@ -139,7 +140,6 @@ function SignupFormModal() {
             style={{ backgroundColor: "#d9d9d9" }}
             type="file"
             onChange={(e) => setProfileBanner(e.target.files[0])}
-           
           />
         </label>
         <button type="submit">Sign Up</button>

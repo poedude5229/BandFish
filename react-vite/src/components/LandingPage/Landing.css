@@ -181,3 +181,59 @@
   font-size: 40px;
   margin-left: 24px;
 }
+
+.carousel-wrapper {
+  position: absolute;
+  margin-top: 830px;
+  width: 99%;
+  overflow: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  gap: 48px;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.carousel-container::-webkit-scrollbar {
+  visibility: hidden;
+}
+.carousel_album_art {
+  width: 100px;
+  height: 100px;
+}
+
+.carousel-button.left {
+  position: absolute;
+  margin-top: 40px;
+}
+
+.carousel-button.right {
+  position: absolute;
+  right: 0;
+  margin-top: 40px;
+}
+
+.carousel-button {
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+}
+
+.carousel-button * {
+  background-color: #d9d9d9;
+}
+
+.carousel-button:focus {
+  outline: none;
+}

@@ -4,13 +4,14 @@ import "./Landing.css";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAlbumsThunk } from "../../redux/album";
 import { useEffect } from "react";
+import { Carousel } from "../Carousel";
 export function Landing() {
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadAlbumsThunk());
-  }, [dispatch]);
-  let albums = useSelector((state) => state.albumReducer);
-
+}, [dispatch]);
+let albums = useSelector((state) => state.albums);
+// console.log(albums);
   return (
     <>
       <div style={{ width: "100%", position: "absolute", left: "0", top: "0" }}>
@@ -55,7 +56,7 @@ export function Landing() {
         </div>
       </div>
       <h3 id="rest-of-page-header">Hot right now...</h3>
-      <div></div>
+      <Carousel />
     </>
   );
 }
