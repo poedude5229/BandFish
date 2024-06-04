@@ -1,0 +1,21 @@
+#album-sidebar-container {
+  position: fixed;
+  width: 30%;
+  right: 0;
+  top: 147px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.album-sidebar-img {
+  width: 350px;
+}
+
+#album-sidebar-title {
+  color: white;
+  font-size: 40px;
+  margin-top: 16px;
+  text-align: center;
+  width: 70%;
+}

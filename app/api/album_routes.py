@@ -46,6 +46,10 @@ def albums():
     fetched_list = []
     for album in fetched3:
         album_dict = album.to_dict()
+        album_artist = User.query.get(album.artist_id)
+        artistdict = album_artist.to_dict()
+        album_dict = album.to_dict()
+        album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
         fetched_list.append(album_dict)
     return {'albums': fetched_list}
 

@@ -127,7 +127,7 @@
 }
 
 .profile-dropdown li:hover {
-  background-color: grey;
+  background-color: rgba(128, 128, 128, 0.6);
 }
 
 .profile-dropdown * {

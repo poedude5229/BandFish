@@ -2,7 +2,7 @@
   position: absolute;
   top: 147px;
   padding-left: 24px;
-  width: 910px;
+  width: 65%;
   display: flex;
   flex-flow: row wrap;
   gap: 32px 16px;
@@ -17,4 +17,16 @@
 .album-art-albums-page {
   width: 215px;
   height: 215px;
+}
+
+.albums-page-album-title {
+  font-size: 24px;
+  margin-top: 0px;
+  margin-left: 5px;
+}
+
+.albums-page-album-artist {
+  font-size: 24px;
+  margin-top: -24px;
+  margin-left: 5px;
 }
