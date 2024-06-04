@@ -13,7 +13,6 @@ const AlbumCreation = () => {
   const [type, setType] = useState("Album");
   const [price, setPrice] = useState("1.00");
   const [genre, setGenre] = useState("Rock");
-  const [errors, setErrors] = useState({});
   const [errorArr, setErrorArr] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -22,26 +21,32 @@ const AlbumCreation = () => {
   }, [navigate, currentUser]);
 
   const validateForm = () => {
-    const validationErrors = {};
-    if (!name) validationErrors.name = "Name is required.";
-    if (!albumArt) validationErrors.albumArt = "Album art is required.";
-    if (!type) validationErrors.type = "Type is required.";
-    if (!price || isNaN(price))
-      validationErrors.price = "Valid price is required.";
-    if (!genre) validationErrors.genre = "Genre is required.";
+    const validationErrors = [];
+    if (!name) validationErrors.push("Name is required.");
+    if (!albumArt) {
+      validationErrors.push("Album art is required.");
+    } else {
+      const validFileTypes = ["image/jpeg", "image/png", "image/jpg"];
+      if (!validFileTypes.includes(albumArt.type)) {
+        validationErrors.push("Album art must be a JPG or PNG image.");
+      }
+    }
+    if (!type) validationErrors.push("Type is required.");
+    if (!price || isNaN(price) || parseFloat(price) < 0.99) {
+      validationErrors.push("Price must be greater than 0.99 moneys.");
+    }
+    if (!genre) validationErrors.push("Genre is required.");
     return validationErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors({});
     setErrorArr([]);
     setIsSubmitting(true);
 
     const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      setErrorArr(Object.values(validationErrors));
+    if (validationErrors.length > 0) {
+      setErrorArr(validationErrors);
       setIsSubmitting(false);
       return;
     }
@@ -54,8 +59,14 @@ const AlbumCreation = () => {
     formData.append("genre", genre);
 
     await dispatch(createAlbumThunk(formData))
-      .then(setIsSubmitting(false))
-      .then(navigate("/"));
+      .then(() => {
+        setIsSubmitting(false);
+        navigate("/");
+      })
+      .catch((err) => {
+        setErrorArr([err.message]);
+        setIsSubmitting(false);
+      });
   };
 
   const handlePriceFocus = () => {
@@ -81,7 +92,6 @@ const AlbumCreation = () => {
   return (
     <div id="albumFormContainer">
       <h1>Add your Content</h1>
-      {errors.server && <p>{errors.server}</p>}
       <ul>
         {errorArr.map((error, idx) => (
           <li key={idx} style={{ color: "red" }}>
