@@ -1,7 +1,8 @@
 #albumFormContainer {
   position: absolute;
-  top: 147px;
+  top: 120px;
   margin-left: 12px;
+  padding-bottom: 120px;
 }
 
 #albumFormContainer h1 {
@@ -24,6 +25,7 @@
   color: white;
   gap: 18px;
   width: 400px;
+  padding-bottom: 100px;
 }
 
 #albumForm label {
@@ -48,4 +50,16 @@
 }
 #albumForm option {
   background-color: #d9d9d9;
+}
+
+#albumForm #album-form-submit-button {
+  width: 270px;
+  height: 70px;
+  border-radius: 5px;
+  position: absolute;
+  top: 600px;
+  left: 175px;
+  background-color: #d9d9d9;
+  font-size: 40px;
+  cursor: pointer;
 }

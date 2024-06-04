@@ -42,7 +42,7 @@ const AlbumCreation = () => {
 
   const handlePriceChange = (e) => {
     const value = e.target.value;
-    const formattedValue = value.replace(/[^0-9.]/g, ""); // Allow only numbers and dots
+    const formattedValue = value.replace(/[^0-9.]/g, "");
     setPrice(formattedValue);
   };
 
@@ -135,7 +135,7 @@ const AlbumCreation = () => {
           </select>
         </label>
         <button id="album-form-submit-button" type="submit">
-          Submit
+          Submit and Upload
         </button>
       </form>
     </div>
