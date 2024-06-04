@@ -25,8 +25,10 @@ export function Landing() {
           <div id="five-dollar-div">
             <p>Lord have his grilled cheese</p>
             <div>
-              <NavLink>Check this out</NavLink>
-              <SlArrowRight style={{ fontSize: "14px" }} />
+              <NavLink to="/albums/11">
+                Check out Sublime's new single{" "}
+                <SlArrowRight style={{ fontSize: "14px" }} />
+              </NavLink>
             </div>
           </div>
         </div>
@@ -48,7 +50,7 @@ export function Landing() {
               alt="Layne staley being cute"
             />
             <div id="aic-link">
-              <NavLink>
+              <NavLink to="/albums/3">
                 You'll have "No Excuses" not to check out Alice in Chains
               </NavLink>
             </div>

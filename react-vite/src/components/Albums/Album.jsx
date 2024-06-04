@@ -32,14 +32,16 @@ export function AlbumDetails() {
         <span id="album-details-page-attribution">
           by<span id="album-details-page-author">{betterAlbum?.artist}</span>
         </span>
-        <span id="big-audio">
-          <span className="downloadHider"></span>
-          <audio
-            className="audio"
-            src={betterAlbum?.tracks?.[0].source}
-            controls
-          ></audio>
-        </span>
+        { betterAlbum?.tracks?.length > 0 &&
+          <span id="big-audio">
+            <span className="downloadHider"></span>
+            <audio
+              className="audio"
+              src={betterAlbum?.tracks?.[0]?.source}
+              controls
+            ></audio>
+          </span>
+        }
         <span id="bandfish-filler-text">
           <span style={{ color: "#8d8d8d", fontSize: "32px" }}>
             Digital Album
@@ -55,38 +57,39 @@ export function AlbumDetails() {
           </span>
         </div>
         <div id="album-details-page-tracklist">
-          {betterAlbum?.tracks?.map((track) => (
-            <>
-              <div>
-                <label>{track?.title}</label>
-                <span
-                  style={{
-                    width: "300px",
-                    backgroundColor: "#f1f3f4",
-                    height: "54px",
-                    display: "flex",
-                    borderRadius: "5px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <span className="downloadBlockerSmall"></span>
-                  <audio
-                    className="audio"
-                    src={track?.source}
+          {betterAlbum?.tracks?.length > 0 &&
+            betterAlbum?.tracks?.map((track) => (
+              <>
+                <div>
+                  <label>{track?.title}</label>
+                  <span
                     style={{
-                      width: "100%",
-                      height: "40px",
-                      border: "none",
-                      outline: "none",
-                      backgroundColor: "rgba(0,0,0,0)",
+                      width: "300px",
+                      backgroundColor: "#f1f3f4",
+                      height: "54px",
+                      display: "flex",
+                      borderRadius: "5px",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
-                    controls
-                  ></audio>
-                </span>
-              </div>
-            </>
-          ))}
+                  >
+                    <span className="downloadBlockerSmall"></span>
+                    <audio
+                      className="audio"
+                      src={track?.source}
+                      style={{
+                        width: "100%",
+                        height: "40px",
+                        border: "none",
+                        outline: "none",
+                        backgroundColor: "rgba(0,0,0,0)",
+                      }}
+                      controls
+                    ></audio>
+                  </span>
+                </div>
+              </>
+            ))}
         </div>
       </div>
       <div id="album-details-page-sidebar">
@@ -96,7 +99,15 @@ export function AlbumDetails() {
             src={betterAlbum?.album_art}
             alt={`${betterAlbum?.name} album art`}
           />
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div id="album-reviews-container">
+            <span style={{ fontSize: "24px" }}>Supported by</span>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             <img
               id="album-details-page-sidebar-artist-pfp"
               src={betterAlbum?.artist_pfp}

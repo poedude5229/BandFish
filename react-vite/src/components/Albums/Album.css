@@ -116,9 +116,16 @@
 
 #album-details-page-sidebar-art {
   width: 400px;
+  height: 400px;
 }
 
 #album-details-page-sidebar-artist-pfp {
   width: 105px;
   height: 105px;
+}
+
+#album-reviews-container {
+  color: white;
+  position: absolute;
+  top: 420px;
 }
