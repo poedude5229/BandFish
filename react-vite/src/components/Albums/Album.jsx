@@ -12,9 +12,16 @@ export function AlbumDetails() {
   useEffect(() => {
     dispatch(loadSingleAlbumThunk(albumId));
   }, [dispatch]);
+
   let album = useSelector((state) => state.albums);
   let betterAlbum = Object.values({ ...album })[0];
   console.log(betterAlbum?.tracks[0].source);
+  useEffect(() => {
+    const audioElements = document.querySelectorAll(".audio");
+    audioElements.forEach((audioElement) => {
+      audioElement.addEventListener("contextmenu", (e) => e.preventDefault());
+    });
+  }, [betterAlbum]);
   return (
     <>
       <div id="album-details-page-container">
@@ -23,7 +30,13 @@ export function AlbumDetails() {
           by<span id="album-details-page-author">{betterAlbum?.artist}</span>
         </span>
         <span id="big-audio">
-          <audio id="audio" src={betterAlbum?.tracks[0].source} controls></audio>
+          <span className="downloadHider"></span>
+          <audio
+            className="audio"
+            src={betterAlbum?.tracks[0].source}
+            controls
+            contextMenu="disabled"
+          ></audio>
         </span>
         <span id="bandfish-filler-text">
           <span style={{ color: "#8d8d8d", fontSize: "32px" }}>
