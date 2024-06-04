@@ -9,7 +9,7 @@ const AlbumCreation = () => {
   const currentUser = useSelector((state) => state.session.user);
   const [name, setName] = useState("");
   const [albumArt, setAlbumArt] = useState(null);
-  const [type, setType] = useState("");
+  const [type, setType] = useState("Album");
   const [price, setPrice] = useState("0.00");
   const [genre, setGenre] = useState("");
   const [errors, setErrors] = useState({});
@@ -33,6 +33,27 @@ const AlbumCreation = () => {
       setErrors(serverResponse);
     }
   };
+
+  const handlePriceFocus = () => {
+    if (price === "0.00") {
+      setPrice("");
+    }
+  };
+
+  const handlePriceChange = (e) => {
+    const value = e.target.value;
+    const formattedValue = value.replace(/[^0-9.]/g, ""); // Allow only numbers and dots
+    setPrice(formattedValue);
+  };
+
+  const handlePriceBlur = () => {
+    if (price === "" || isNaN(price)) {
+      setPrice("0.00");
+    } else {
+      setPrice(parseFloat(price).toFixed(2));
+    }
+  };
+
   return (
     <div id="albumFormContainer">
       <h1>Add your Content</h1>
@@ -79,11 +100,9 @@ const AlbumCreation = () => {
           <input
             type="text"
             value={price}
-            onChange={(e) =>
-              +e.target.value > -0.0000001
-                ? setPrice((+e.target.value).toFixed(2))
-                : setPrice((0).toFixed(2))
-            }
+            onFocus={handlePriceFocus}
+            onChange={handlePriceChange}
+            onBlur={handlePriceBlur}
           />
         </label>
         <label>
@@ -115,6 +134,9 @@ const AlbumCreation = () => {
             {type == "Podcast" && <option value="Podcast">Podcast</option>}
           </select>
         </label>
+        <button id="album-form-submit-button" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
