@@ -26,7 +26,7 @@
 
 #bandfish-filler-text {
   color: #fff;
-  font-size: 28px;
+  font-size: 24px;
   display: flex;
   flex-direction: column;
   width: 444px;
@@ -34,7 +34,7 @@
 }
 
 #big-audio {
-  background-color: #F1F3F4;
+  background-color: #f1f3f4;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 12px;
@@ -43,16 +43,15 @@
   align-items: center;
   justify-content: center;
   margin-top: 12px;
-  margin-bottom: 12px;
   width: 420px;
 }
 .downloadHider {
-    background-color: #f1f3f4;
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    z-index: 1;
-    margin-left: 380px;
+  background-color: #f1f3f4;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 380px;
 }
 
 #big-audio audio {
@@ -61,4 +60,41 @@
   border: none;
   outline: none;
   background-color: rgba(0, 0, 0, 0);
+}
+
+#e-commerce-start {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+#e-commerce-start * {
+  font-size: 36px;
+  color: #962c50;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#album-details-page-tracklist {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#album-details-page-tracklist label {
+  display: flex;
+  flex-direction: column;
+  color: #962c50;
+  justify-content: center;
+  gap: 8px;
+  font-size: 24px;
+}
+
+.downloadBlockerSmall {
+  background-color: #f1f3f4;
+  position: absolute;
+  z-index: 2;
+  height: 40px;
+  width: 40px;
+  margin-left: 240px;
 }

@@ -35,7 +35,6 @@ export function AlbumDetails() {
             className="audio"
             src={betterAlbum?.tracks[0].source}
             controls
-            contextMenu="disabled"
           ></audio>
         </span>
         <span id="bandfish-filler-text">
@@ -45,6 +44,47 @@ export function AlbumDetails() {
           Includes unlimited streaming via the BandFish website, plus bragging
           rights. Maybe in the future we'll let you download this!
         </span>
+        <div id="e-commerce-start">
+          <span>Buy Digital Album</span>
+          <span style={{ display: "flex", gap: "4px" }}>
+            <span style={{ color: "white" }}>${betterAlbum?.price}</span>
+            <span style={{ color: "#8d8d8d" }}>USD</span>
+          </span>
+        </div>
+        <div id="album-details-page-tracklist">
+          {betterAlbum?.tracks.map((track) => (
+            <>
+              <div>
+                <label>{track?.title}</label>
+                <span
+                  style={{
+                    width: "300px",
+                    backgroundColor: "#f1f3f4",
+                    height: "54px",
+                    display: "flex",
+                    borderRadius: "5px",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <span className="downloadBlockerSmall"></span>
+                  <audio
+                    className="audio"
+                    src={track?.source}
+                    style={{
+                      width: "100%",
+                      height: "40px",
+                      border: "none",
+                      outline: "none",
+                      backgroundColor: "rgba(0,0,0,0)",
+                    }}
+                    controls
+                  ></audio>
+                </span>
+              </div>
+            </>
+          ))}
+        </div>
       </div>
     </>
   );
