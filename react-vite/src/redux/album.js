@@ -45,18 +45,18 @@ export const createAlbumThunk = (restaurant) => async (dispatch) => {
   await dispatch(createAlbum(data));
 };
 
-export const editAlbumThunk =
-  (restaurantId, restaurant) => async (dispatch) => {
-    const res = await fetch(`/api/albums/${restaurantId}`, {
-      method: "PUT",
-      body: restaurant,
-    });
-    const data = await res.json();
+export const editAlbumThunk = (albumId, album) => async (dispatch) => {
+  const res = await fetch(`/api/albums/${albumId}`, {
+    method: "PUT",
+    body: album,
+  });
+  const data = await res.json();
 
-    if (!res.ok) {
-      return { errors: data };
-    }
-  };
+  if (!res.ok) {
+    return { errors: data };
+  }
+  await dispatch(editAlbum(data));
+};
 
 export const loadAlbumsThunk = () => async (dispatch) => {
   let res = await fetch("/api/albums/all");
@@ -138,6 +138,9 @@ function albumReducer(state = {}, action) {
       const newState = { ...state };
       newState[action.payload.id] = action.payload;
       return newState;
+    }
+    case UPDATE_ALBUM: {
+      return { ...state, [action.album.id]: action.album };
     }
     default:
       return state;
