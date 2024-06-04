@@ -3,23 +3,49 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createAlbumThunk } from "../../redux/album";
 import "./AlbumForm.css";
+
 const AlbumCreation = () => {
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.session.user);
   const [name, setName] = useState("");
   const [albumArt, setAlbumArt] = useState(null);
   const [type, setType] = useState("Album");
-  const [price, setPrice] = useState("0.00");
-  const [genre, setGenre] = useState("");
+  const [price, setPrice] = useState("1.00");
+  const [genre, setGenre] = useState("Rock");
   const [errors, setErrors] = useState({});
   const [errorArr, setErrorArr] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [navigate, currentUser]);
 
+  const validateForm = () => {
+    const validationErrors = {};
+    if (!name) validationErrors.name = "Name is required.";
+    if (!albumArt) validationErrors.albumArt = "Album art is required.";
+    if (!type) validationErrors.type = "Type is required.";
+    if (!price || isNaN(price))
+      validationErrors.price = "Valid price is required.";
+    if (!genre) validationErrors.genre = "Genre is required.";
+    return validationErrors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({});
+    setErrorArr([]);
+    setIsSubmitting(true);
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      setErrorArr(Object.values(validationErrors));
+      setIsSubmitting(false);
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("album_art", albumArt);
@@ -27,11 +53,9 @@ const AlbumCreation = () => {
     formData.append("price", price);
     formData.append("genre", genre);
 
-    const serverResponse = await dispatch(createAlbumThunk(formData));
-
-    if (serverResponse) {
-      setErrors(serverResponse);
-    }
+    await dispatch(createAlbumThunk(formData))
+      .then(setIsSubmitting(false))
+      .then(navigate("/"));
   };
 
   const handlePriceFocus = () => {
@@ -58,6 +82,13 @@ const AlbumCreation = () => {
     <div id="albumFormContainer">
       <h1>Add your Content</h1>
       {errors.server && <p>{errors.server}</p>}
+      <ul>
+        {errorArr.map((error, idx) => (
+          <li key={idx} style={{ color: "red" }}>
+            {error}
+          </li>
+        ))}
+      </ul>
       <hr />
       <form
         id="albumForm"
@@ -112,7 +143,7 @@ const AlbumCreation = () => {
             id="album-form-genre-select"
             onChange={(e) => setGenre(e.target.value)}
           >
-            {type == "Album" && (
+            {type === "Album" && (
               <>
                 <option value="Rock">Rock</option>
                 <option value="Reggae">Reggae</option>
@@ -127,15 +158,33 @@ const AlbumCreation = () => {
                 <option value="Electronic">Electronic</option>
                 <option value="Latin">Latin</option>
                 <option value="Blues">Blues</option>
-                <option value="Country">Country</option>
-                <option value="Pop">Pop</option>
+                <option value="Classical">Classical</option>
+                <option value="Indie">Indie</option>
+                <option value="Folk">Folk</option>
+                <option value="Funk">Funk</option>
               </>
             )}
-            {type == "Podcast" && <option value="Podcast">Podcast</option>}
+            {type === "Podcast" && (
+              <>
+                <option value="Fiction">Fiction</option>
+                <option value="True Crime">True Crime</option>
+                <option value="News">News</option>
+                <option value="Sports">Sports</option>
+                <option value="History">History</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Education">Education</option>
+                <option value="Science">Science</option>
+                <option value="Business">Business</option>
+              </>
+            )}
           </select>
         </label>
-        <button id="album-form-submit-button" type="submit">
-          Submit and Upload
+        <button
+          type="submit"
+          id="album-form-submit-button"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Submitting..." : "Create"}
         </button>
       </form>
     </div>
