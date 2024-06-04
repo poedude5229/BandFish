@@ -98,7 +98,7 @@
   z-index: 100000;
   right: 12px;
   top: 67px;
-  height: 100px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -106,7 +106,7 @@
   padding-right: 55px;
   justify-content: center;
   align-items: flex-start;
-  gap: 10px;
+  /* gap: 10px; */
   border-radius: 5px;
   font-size: 20px;
   padding: 0;
@@ -124,6 +124,7 @@
 .profile-dropdown li {
   padding-left: 12px;
   width: 200px;
+  /* font-size: 30px; */
 }
 
 .profile-dropdown li:hover {

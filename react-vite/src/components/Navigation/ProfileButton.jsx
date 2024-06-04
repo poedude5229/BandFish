@@ -5,6 +5,7 @@ import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { NavLink } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -56,11 +57,42 @@ function ProfileButton() {
           <ul className={"profile-dropdown"} ref={ulRef}>
             {user && (
               <>
-                <li>{user.username}</li>
-                <li>{user.email}</li>
+                <li
+                  style={{
+                    height: "50px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <span
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0)",
+                      fontSize: "32px",
+                    }}
+                  >
+                    {user.username}
+                  </span>
+                </li>
                 <li>
-                  <button id="logout-button" onClick={logout}>
-                    Log Out
+                  <NavLink
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0)",
+                      textDecoration: "none",
+                      color: "black",
+                      fontSize: "28px",
+                    }}
+                    to="/new"
+                  >
+                    upload media
+                  </NavLink>
+                </li>
+                <li>
+                  <button
+                    style={{ fontSize: "28px" }}
+                    id="logout-button"
+                    onClick={logout}
+                  >
+                    log out
                   </button>
                 </li>
               </>
