@@ -4,6 +4,7 @@ import SignupFormPage from "../components/SignupFormPage";
 import Layout from "./Layout";
 import { Landing } from "../components/LandingPage/Landing";
 import { Albums } from "../components/Albums/Albums";
+import { Podcasts } from "../components/Podcasts/Podcasts";
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "/albums",
         element: <Albums />,
+      },
+      {
+        path: "/podcasts",
+        element: <Podcasts />
       },
       {
         path: `/:albumId`,

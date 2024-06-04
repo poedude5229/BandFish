@@ -1,6 +1,8 @@
 const LOAD_ALL_ALBUMS = "albums/LOAD_ALL_ALBUMS";
 const LOAD_JUST_ALBUMS = "albums/LOAD_JUST_ALBUMS";
 const LOAD_SINGLE_ALBUM = "albums/LOAD_SINGLE_ALBUM";
+const LOAD_JUST_PODCASTS = "albums/LOAD_JUST_PODCASTS";
+const UPDATE_ALBUM = "albums/UPDATE_ALBUM";
 const loadAllAlbums = (albums) => ({
   type: LOAD_ALL_ALBUMS,
   payload: albums,
@@ -14,6 +16,16 @@ const loadJustAlbums = (albums) => ({
 const loadSingleAlbum = (album) => ({
   type: LOAD_SINGLE_ALBUM,
   payload: album,
+});
+
+const loadJustPodasts = (podcasts) => ({
+  type: LOAD_JUST_PODCASTS,
+  payload: podcasts,
+});
+
+const editAlbum = (album) => ({
+  type: UPDATE_ALBUM,
+  album,
 });
 
 export const loadAlbumsThunk = () => async (dispatch) => {
@@ -37,6 +49,18 @@ export const loadJustAlbumsThunk = () => async (dispatch) => {
   }
 
   await dispatch(loadJustAlbums(data.albums));
+  return data;
+};
+
+export const loadJustPodcastsThunk = () => async (dispatch) => {
+  let res = await fetch("/api/albums/podcasts");
+  let data = await res.json();
+
+  if (!res.ok) {
+    return { errors: data };
+  }
+
+  await dispatch(loadJustPodasts(data.podcasts));
   return data;
 };
 
@@ -67,6 +91,14 @@ function albumReducer(state = {}, action) {
       });
       return newState;
     }
+    case LOAD_JUST_PODCASTS: {
+      const newState = {};
+      action.payload.forEach((podcast) => {
+        newState[podcast.id] = podcast;
+      });
+      return newState;
+    }
+
     case LOAD_SINGLE_ALBUM: {
       const newState = {};
       newState[action.payload.id] = action.payload;

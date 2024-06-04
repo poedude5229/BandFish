@@ -14,6 +14,7 @@ def albums_n_podcasts():
         artistdict = album_artist.to_dict()
         album_dict = album.to_dict()
         album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        album_dict['artist-pfp'] = f"{artistdict['profile_pic']}"
         fetched_list.append(album_dict)
     return {'albums_and_podcasts': fetched_list}
 
@@ -50,6 +51,7 @@ def albums():
         artistdict = album_artist.to_dict()
         album_dict = album.to_dict()
         album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        album_dict['artist-pfp'] = f"{artistdict['profile_pic']}"
         fetched_list.append(album_dict)
     return {'albums': fetched_list}
 
@@ -59,6 +61,10 @@ def podcasts():
     fetched_list = []
     for podcast in fetched4:
         podcast_dict = podcast.to_dict()
+        podcast_artist = User.query.get(podcast.artist_id)
+        artistdict = podcast_artist.to_dict()
+        podcast_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        podcast_dict['artist-pfp'] = f"{artistdict['profile_pic']}"
         fetched_list.append(podcast_dict)
     return {'podcasts': fetched_list}
 

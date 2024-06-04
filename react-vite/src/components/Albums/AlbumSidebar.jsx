@@ -15,8 +15,24 @@ export function AlbumSideBar({ album }) {
             alt={`${album?.name} cover image`}
             className="album-sidebar-img"
           />
-          <span id="album-sidebar-title">{album?.name}</span>
-          <span id="album-sidebar-artist"></span>
+          <div id="album-sidebar-details-container">
+            <span id="album-sidebar-title">{album?.name}</span>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "8px"
+              }}
+            >
+              <img
+                id="album-sidebar-artist-pfp"
+                src={album["artist-pfp"]}
+                alt={`${album?.artist} picture`}
+              />
+              <span id="album-sidebar-artist">{album?.artist}</span>
+            </div>
+          </div>
         </div>
       )}
     </>

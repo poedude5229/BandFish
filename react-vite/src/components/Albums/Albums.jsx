@@ -18,14 +18,17 @@ export function Albums() {
   }, [dispatch]);
   let albums = useSelector((state) => state.albums);
   let albArray = Object?.values(albums);
-  const [selected, setSelected] = useState(albArray[0]);
+  const [selected, setSelected] = useState(undefined);
   //   console.log(selected);
+  useEffect(() => {
+    setSelected(albums[2]);
+  }, [albums]);
 
   return (
     <>
       <div id="albums-container">
         {albArray.map((album) => (
-          <div key={album.id} className="album-container">
+          <div key={album?.id} className="album-container">
             <img
               src={album?.album_art}
               alt={`${album?.name} cover art`}

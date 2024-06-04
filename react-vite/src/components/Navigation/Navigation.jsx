@@ -65,7 +65,9 @@ function Navigation() {
             </NavLink>
           </li>
           <li>
-            <NavLink className="secondNavlist-link">Podcasts</NavLink>
+            <NavLink className="secondNavlist-link" to="/podcasts">
+              Podcasts
+            </NavLink>
           </li>
         </ul>
       </div>
