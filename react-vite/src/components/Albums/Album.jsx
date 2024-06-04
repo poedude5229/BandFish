@@ -18,7 +18,7 @@ export function AlbumDetails() {
     () => dispatch(loadSingleAlbumThunk(albumId));
   }
   let betterAlbum = Object?.values({ ...album })?.[0];
-//   console.log(betterAlbum?.tracks?.[0].source);
+  //   console.log(betterAlbum?.tracks?.[0].source);
   useEffect(() => {
     const audioElements = document.querySelectorAll(".audio");
     audioElements.forEach((audioElement) => {
@@ -88,6 +88,28 @@ export function AlbumDetails() {
             </>
           ))}
         </div>
+      </div>
+      <div id="album-details-page-sidebar">
+        <div id="album-details-page-sidebar-photo-container">
+          <img
+            id="album-details-page-sidebar-art"
+            src={betterAlbum?.album_art}
+            alt={`${betterAlbum?.name} album art`}
+          />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <img
+              id="album-details-page-sidebar-artist-pfp"
+              src={betterAlbum?.artist_pfp}
+              alt={`${betterAlbum?.artist} pfp`}
+            />
+            <span
+              style={{ color: "white", fontSize: "32px", textAlign: "center" }}
+            >
+              {betterAlbum?.artist}
+            </span>
+          </div>
+        </div>
+        <div id="album-details-page-sidebar-reviews"></div>
       </div>
     </>
   );

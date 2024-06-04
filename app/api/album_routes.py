@@ -139,8 +139,10 @@ def fetch_album_details(id):
             reviewuser = User.query.get(reviewdict['user_id'])
             # print(reviewuser.to_dict())
             reviewdict['user'] = reviewuser.to_dict()['username']
+            reviewdict['user_pfp'] = reviewuser.to_dict()['profile_pic']
             album_reviews.append(reviewdict)
         fetched_album['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        fetched_album['artist_pfp'] = artistdict['profile_pic']
         fetched_album['reviews'] = album_reviews
         return fetched_album
     return {"message":"Album/Podcast could not be found or does not exist"}

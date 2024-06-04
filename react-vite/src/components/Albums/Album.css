@@ -98,3 +98,26 @@
   width: 40px;
   margin-left: 240px;
 }
+
+#album-details-page-sidebar {
+  position: absolute;
+  right: 50px;
+  top: 147px;
+  width: 30%;
+}
+
+#album-details-page-sidebar-photo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+#album-details-page-sidebar-art {
+  width: 400px;
+}
+
+#album-details-page-sidebar-artist-pfp {
+  width: 105px;
+  height: 105px;
+}
