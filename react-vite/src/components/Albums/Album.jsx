@@ -6,16 +6,19 @@ import { NavLink } from "react-router-dom";
 import "./Album.css";
 
 export function AlbumDetails() {
-  let { albumId } = useParams();
+  const { albumId } = useParams();
   let dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadSingleAlbumThunk(albumId));
-  }, [dispatch]);
+  }, [dispatch, albumId]);
 
   let album = useSelector((state) => state.albums);
-  let betterAlbum = Object.values({ ...album })[0];
-  console.log(betterAlbum?.tracks[0].source);
+  if (!album) {
+    () => dispatch(loadSingleAlbumThunk(albumId));
+  }
+  let betterAlbum = Object?.values({ ...album })?.[0];
+//   console.log(betterAlbum?.tracks?.[0].source);
   useEffect(() => {
     const audioElements = document.querySelectorAll(".audio");
     audioElements.forEach((audioElement) => {
@@ -33,7 +36,7 @@ export function AlbumDetails() {
           <span className="downloadHider"></span>
           <audio
             className="audio"
-            src={betterAlbum?.tracks[0].source}
+            src={betterAlbum?.tracks?.[0].source}
             controls
           ></audio>
         </span>
@@ -52,7 +55,7 @@ export function AlbumDetails() {
           </span>
         </div>
         <div id="album-details-page-tracklist">
-          {betterAlbum?.tracks.map((track) => (
+          {betterAlbum?.tracks?.map((track) => (
             <>
               <div>
                 <label>{track?.title}</label>
