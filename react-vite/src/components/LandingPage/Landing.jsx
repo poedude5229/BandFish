@@ -9,9 +9,9 @@ export function Landing() {
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadAlbumsThunk());
-}, [dispatch]);
-let albums = useSelector((state) => state.albums);
-// console.log(albums);
+  }, [dispatch]);
+  let albums = useSelector((state) => state.albums);
+  // console.log(albums);
   return (
     <>
       <div style={{ width: "100%", position: "absolute", left: "0", top: "0" }}>
@@ -37,7 +37,7 @@ let albums = useSelector((state) => state.albums);
               alt="Beach Blanket Bingo Promo"
             />
             <div id="lpotl-link">
-              <NavLink>
+              <NavLink to="/albums/1">
                 We're just trying to warn you of <span>THE BRIDGE!</span>
               </NavLink>
             </div>

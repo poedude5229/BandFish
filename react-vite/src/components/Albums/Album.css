@@ -1,0 +1,42 @@
+#album-details-page-container {
+  position: absolute;
+  top: 147px;
+  padding-left: 24px;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+
+#album-details-page-name {
+  color: white;
+  font-size: 56px;
+}
+
+#album-details-page-attribution {
+  color: #8d8d8d;
+  display: flex;
+  font-size: 36px;
+  gap: 8px;
+  margin-top: -30px;
+}
+
+#album-details-page-author {
+  color: #962c50;
+}
+
+#bandfish-filler-text {
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  width: 444px;
+  margin-top: 32px;
+}
+
+#big-audio {
+  /* background-color: white; */
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 420px;
+  height: 20px;
+}

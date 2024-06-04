@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import { Landing } from "../components/LandingPage/Landing";
 import { Albums } from "../components/Albums/Albums";
 import { Podcasts } from "../components/Podcasts/Podcasts";
+import { AlbumDetails } from "../components/Albums/Album";
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -27,11 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/podcasts",
-        element: <Podcasts />
+        element: <Podcasts />,
       },
       {
-        path: `/:albumId`,
-        element: <h1>Hello I am still working on this component</h1>,
+        path: `/albums/:albumId`,
+        element: <AlbumDetails />,
       },
     ],
   },
