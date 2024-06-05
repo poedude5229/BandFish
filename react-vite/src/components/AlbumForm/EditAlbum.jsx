@@ -18,7 +18,7 @@ const AlbumEdit = () => {
   const [genre, setGenre] = useState("");
   const [errorArr, setErrorArr] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+ 
   useEffect(() => {
     dispatch(loadSingleAlbumThunk(albumId));
   }, [dispatch, albumId]);
@@ -68,7 +68,7 @@ const AlbumEdit = () => {
     await dispatch(editAlbumThunk(albumId, formData))
       .then(() => {
         setIsSubmitting(false);
-        navigate(`/albums/${albumId}`); 
+        navigate(`/albums/${albumId}`);
       })
       .catch((err) => {
         setErrorArr([err.message]);

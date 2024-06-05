@@ -4,6 +4,7 @@ const LOAD_SINGLE_ALBUM = "albums/LOAD_SINGLE_ALBUM";
 const LOAD_JUST_PODCASTS = "albums/LOAD_JUST_PODCASTS";
 const UPDATE_ALBUM = "albums/UPDATE_ALBUM";
 const CREATE_ALBUM = "albums/CREATE_ALBUM";
+const DELETE_ALBUM = "albums/DELETE_ALBUM";
 const loadAllAlbums = (albums) => ({
   type: LOAD_ALL_ALBUMS,
   payload: albums,
@@ -32,6 +33,11 @@ const createAlbum = (album) => ({
 const editAlbum = (album) => ({
   type: UPDATE_ALBUM,
   album,
+});
+
+const deleteAlbum = (albumId) => ({
+  type: DELETE_ALBUM,
+  payload: albumId,
 });
 
 export const createAlbumThunk = (restaurant) => async (dispatch) => {
@@ -105,6 +111,17 @@ export const loadSingleAlbumThunk = (id) => async (dispatch) => {
   await dispatch(loadSingleAlbum(data));
 };
 
+export const deleteAlbumThunk = (id) => async (dispatch) => {
+  let res = await fetch(`/api/albums/${id}`, {
+    method: "DELETE",
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    return { errors: data };
+  }
+  await dispatch(deleteAlbum(id));
+};
+
 function albumReducer(state = {}, action) {
   switch (action.type) {
     case LOAD_ALL_ALBUMS: {
@@ -141,6 +158,11 @@ function albumReducer(state = {}, action) {
     }
     case UPDATE_ALBUM: {
       return { ...state, [action.album.id]: action.album };
+    }
+    case DELETE_ALBUM: {
+      const newState = { ...state };
+      delete newState[action.payload];
+      return newState;
     }
     default:
       return state;

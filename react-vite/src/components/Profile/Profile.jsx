@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { useEffect, useState } from "react";
 import { loadAlbumsThunk } from "../../redux/album";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import DeleteAlbumModal from "./DeleteModal";
+
 function Profile() {
   const currentUser = useSelector((state) => state.session.user);
   const allAlbums = Object?.values(useSelector((state) => state.albums));
@@ -77,13 +80,13 @@ function Profile() {
         >
           Your collection
         </span>
-        <span
+        {/* <span
           onClick={handleWishlistClick}
           style={wishlistActive ? { color: "white" } : { color: "#8d8d8d" }}
           className="profile-section-selector"
         >
           Your wishlist
-        </span>
+        </span> */}
       </div>
       <hr id="profile-section-top-divider" />
       {contentActive && (
@@ -115,9 +118,14 @@ function Profile() {
                 >
                   Update Album
                 </button>
-                <button className="user-content-album-button user-content-album-delete">
-                  Delete Album
-                </button>
+                <OpenModalMenuItem
+                  itemText={
+                    <button className="user-content-album-delete">
+                      Delete Album
+                    </button>
+                  }
+                  modalComponent={<DeleteAlbumModal id={album?.id} />}
+                />
               </div>
             </div>
           ))}
