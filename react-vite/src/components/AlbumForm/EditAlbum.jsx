@@ -58,7 +58,9 @@ const AlbumEdit = () => {
 
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("album_art", albumArt);
+    if (albumArt) {
+      formData.append("album_art", albumArt); // Append only if a new file is provided
+    }
     formData.append("type", type);
     formData.append("price", price);
     formData.append("genre", genre);
@@ -66,7 +68,7 @@ const AlbumEdit = () => {
     await dispatch(editAlbumThunk(albumId, formData))
       .then(() => {
         setIsSubmitting(false);
-        navigate(`/albums/${albumId}`); // Redirect to album details page
+        navigate(`/albums/${albumId}`); 
       })
       .catch((err) => {
         setErrorArr([err.message]);

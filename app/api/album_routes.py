@@ -97,24 +97,26 @@ def album_post():
 def update_album(id):
     selected = AlbumPodcast.query.get(id)
     if not selected:
-        return {"message":"Could not find the Album/Podcast to delete"}, 404
+        return {"message": "Could not find the Album/Podcast to update"}, 404
 
     form = EditAlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         album_art = form.album_art.data
-        album_art.filename = get_unique_filename(album_art.filename)
-        upload = upload_file_to_s3(album_art)
-        album_art_url = upload["url"]
+        if album_art:
+            album_art.filename = get_unique_filename(album_art.filename)
+            upload = upload_file_to_s3(album_art)
+            album_art_url = upload["url"]
+            selected.album_art = album_art_url
 
         selected.name = form.data['name']
-        selected.album_art = album_art_url
         selected.type = form.data['type']
         selected.price = form.data['price']
         selected.genre = form.data['genre']
         db.session.commit()
 
-    return selected.to_dict(), 200
+        return selected.to_dict(), 200
+    return {"errors": form.errors}, 400
 
 @album_routes.route('/<int:id>')
 def fetch_album_details(id):

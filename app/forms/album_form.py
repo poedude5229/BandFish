@@ -13,7 +13,7 @@ class AlbumForm(FlaskForm):
 
 class EditAlbumForm(FlaskForm):
     name = StringField("Album Title: ", validators=[DataRequired()])
-    album_art = FileField("Album Cover Image: ", validators=[FileRequired(), FileAllowed(["png", "jpg", "jpeg"]),])
+    album_art = FileField("Album Cover Image: ", validators=[FileAllowed(["png", "jpg", "jpeg"])])
     type = StringField("Media Type: ", validators=[DataRequired()])
     price = DecimalField("Price: ", validators=[DataRequired()])
     genre = StringField("Genre: ", validators=[DataRequired()])
