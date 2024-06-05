@@ -8,6 +8,7 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: #01001a;
+  background: linear-gradient(100deg, #01001a, rgb(60, 60, 60));
   position: fixed;
   top: 0;
   width: 100%;
@@ -21,6 +22,10 @@
 
 #home-navlink {
   margin-left: -16px;
+  background-color: rgba(0,0,0,0);
+}
+#home-navlink * {
+  background-color: rgba(0,0,0,0);
 }
 
 #home-navlink img {
@@ -56,6 +61,11 @@
   color: white;
   text-decoration: none;
   font-size: 44px;
+  margin-top: 5px;
+}
+
+#homenavlinkchild img {
+  margin-bottom: 10px;
 }
 
 #secondNavbar {
@@ -86,6 +96,13 @@
   color: #8d8d8d;
   font-family: Jomhuria;
   font-size: 30px;
+}
+
+#pfp-button {
+  background-color: rgba(0,0,0,0);
+}
+#pfp-button * {
+  background-color: rgba(0,0,0,0);
 }
 
 #pfp-button:focus {

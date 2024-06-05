@@ -8,6 +8,7 @@ import { Podcasts } from "../components/Podcasts/Podcasts";
 import { AlbumDetails } from "../components/Albums/Album";
 import AlbumCreation from "../components/AlbumForm/AlbumForm";
 import AlbumEdit from "../components/AlbumForm/EditAlbum";
+import Profile from "../components/Profile/Profile";
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/albums/:albumId/edit",
         element: <AlbumEdit />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

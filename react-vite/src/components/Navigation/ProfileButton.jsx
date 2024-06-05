@@ -72,6 +72,22 @@ function ProfileButton() {
                   >
                     {user.username}
                   </span>
+                  <span
+                    style={{ backgroundColor: "rgba(0,0,0,0)" }}
+                    id="profile-button-link"
+                  >
+                    <NavLink
+                      to="/profile"
+                      style={{
+                        color: "#8d8d8d",
+                        backgroundColor: "rgba(0,0,0,0)",
+                        textDecoration: "none",
+                      }}
+                      onClick={closeMenu}
+                    >
+                      profile
+                    </NavLink>
+                  </span>
                 </li>
                 <li>
                   <NavLink

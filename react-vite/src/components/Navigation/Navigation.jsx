@@ -32,7 +32,7 @@ function Navigation() {
             </NavLink>
           </li>
 
-          <div style={{ position: "relative", right: "75px" }}>
+          <div style={{ position: "relative", right: "75px", backgroundColor: "rgba(0,0,0,0)" }}>
             {/* <ProfileButton /> */}
             {showMenu == false && <ProfileButton />}
             {showMenu && (
