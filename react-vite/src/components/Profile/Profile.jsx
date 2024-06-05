@@ -29,11 +29,11 @@ function Profile() {
     }
   }, [currentUser, navigate]);
 
-  const handleCollectionClick = () => {
-    setCollectionActive(true);
-    setWishlistActive(false);
-    setContentActive(false);
-  };
+//   const handleCollectionClick = () => {
+//     setCollectionActive(true);
+//     setWishlistActive(false);
+//     setContentActive(false);
+//   };
 
   const handleWishlistClick = () => {
     setCollectionActive(false);
@@ -73,20 +73,20 @@ function Profile() {
         >
           Your content
         </span>
-        <span
+        {/* <span
           onClick={handleCollectionClick}
           style={collectionActive ? { color: "white" } : { color: "#8d8d8d" }}
           className="profile-section-selector"
         >
           Your collection
-        </span>
-        {/* <span
+        </span> */}
+        <span
           onClick={handleWishlistClick}
           style={wishlistActive ? { color: "white" } : { color: "#8d8d8d" }}
           className="profile-section-selector"
         >
           Your wishlist
-        </span> */}
+        </span>
       </div>
       <hr id="profile-section-top-divider" />
       {contentActive && (

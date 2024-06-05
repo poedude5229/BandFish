@@ -135,12 +135,35 @@
   flex-direction: row;
   list-style: none;
   position: absolute;
-  left: 500px;
-  top: 38px;
+  left: 480px;
+  top: 30px;
   width: 200px;
+  gap: 24px;
 }
 
 #managerial-component button {
-    color: black;
-    background-color: #8d8d8d;
+  width: 100px;
+  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.managerial-update {
+  background-color: #8d8d8d;
+  transition-duration: 500ms;
+}
+.managerial-delete {
+  background-color: #8d8d8d;
+  transition-duration: 500ms;
+}
+
+.managerial-update:hover {
+  color: black;
+  background-color: rgb(70, 70, 70);
+}
+
+.managerial-delete:hover {
+  color: black;
+  background-color: red;
 }

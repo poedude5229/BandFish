@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadJustPodcastsThunk } from "../../redux/album";
 import "../Albums/Albums.css";
 import { AlbumSideBar } from "../Albums/AlbumSidebar";
+import { useNavigate } from "react-router-dom";
 function truncateTitle(text) {
   if (text.length > 30) {
     return text.slice(0, 30) + "...";
@@ -17,6 +18,7 @@ export function Podcasts() {
   }, [dispatch]);
   let albums = useSelector((state) => state.albums);
   let podArray = Object?.values(albums);
+  let navigate = useNavigate();
   const [selected2, setSelected2] = useState(undefined);
 
   return (
@@ -30,7 +32,11 @@ export function Podcasts() {
               className="album-art-albums-page"
               onClick={() => setSelected2(podcast)}
             />
-            <p className="albums-page-album-title">
+            <p
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate(`/albums/${podcast?.id}`)}
+              className="albums-page-album-title"
+            >
               {truncateTitle(podcast?.name)}
             </p>
             <p className="albums-page-album-artist">by {podcast?.artist}</p>

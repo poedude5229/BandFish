@@ -4,13 +4,14 @@ import { useParams } from "react-router-dom";
 import { loadSingleAlbumThunk } from "../../redux/album";
 import { NavLink } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
-import DeleteAlbumModal from "./DeleteModal.jsx"
+import DeleteAlbumModal from "./DeleteModal.jsx";
+import { useNavigate } from "react-router-dom";
 import "./Album.css";
 
 export function AlbumDetails() {
   const { albumId } = useParams();
   let dispatch = useDispatch();
-
+  let navigate = useNavigate();
   useEffect(() => {
     dispatch(loadSingleAlbumThunk(albumId));
   }, [dispatch, albumId]);
@@ -33,18 +34,18 @@ export function AlbumDetails() {
         <h1 id="album-details-page-name">{betterAlbum?.name}</h1>
         {currentUser && currentUser?.id == betterAlbum?.artist_id && (
           <ul id="managerial-component">
-            <li>
-              <button
-                className="managerial-component-button managerial-update"
-                onClick={() => navigate(`/albums/${betterAlbum?.id}/edit`)}
-              >
+            <li onClick={() => navigate(`/albums/${betterAlbum?.id}/edit`)}>
+              <button className="managerial-component-button managerial-update">
                 Update Album
               </button>
             </li>
             <OpenModalMenuItem
               itemText={
-                <button className="managerial-component-button managerial-delete">Delete Album</button>
+                <button className="managerial-component-button managerial-delete">
+                  Delete Album
+                </button>
               }
+              modalComponent={<DeleteAlbumModal id={betterAlbum?.id} />}
             />
           </ul>
         )}
