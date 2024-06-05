@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadSingleAlbumThunk } from "../../redux/album";
 import { NavLink } from "react-router-dom";
+import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
+import DeleteAlbumModal from "./DeleteModal.jsx"
 import "./Album.css";
 
 export function AlbumDetails() {
@@ -12,7 +14,7 @@ export function AlbumDetails() {
   useEffect(() => {
     dispatch(loadSingleAlbumThunk(albumId));
   }, [dispatch, albumId]);
-
+  let currentUser = useSelector((state) => state.session.user);
   let album = useSelector((state) => state.albums);
   if (!album) {
     () => dispatch(loadSingleAlbumThunk(albumId));
@@ -29,10 +31,27 @@ export function AlbumDetails() {
     <>
       <div id="album-details-page-container">
         <h1 id="album-details-page-name">{betterAlbum?.name}</h1>
+        {currentUser && currentUser?.id == betterAlbum?.artist_id && (
+          <ul id="managerial-component">
+            <li>
+              <button
+                className="managerial-component-button managerial-update"
+                onClick={() => navigate(`/albums/${betterAlbum?.id}/edit`)}
+              >
+                Update Album
+              </button>
+            </li>
+            <OpenModalMenuItem
+              itemText={
+                <button className="managerial-component-button managerial-delete">Delete Album</button>
+              }
+            />
+          </ul>
+        )}
         <span id="album-details-page-attribution">
           by<span id="album-details-page-author">{betterAlbum?.artist}</span>
         </span>
-        { betterAlbum?.tracks?.length > 0 &&
+        {betterAlbum?.tracks?.length > 0 && (
           <span id="big-audio">
             <span className="downloadHider"></span>
             <audio
@@ -41,7 +60,7 @@ export function AlbumDetails() {
               controls
             ></audio>
           </span>
-        }
+        )}
         <span id="bandfish-filler-text">
           <span style={{ color: "#8d8d8d", fontSize: "32px" }}>
             Digital Album

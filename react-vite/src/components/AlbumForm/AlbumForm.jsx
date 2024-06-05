@@ -33,7 +33,7 @@ const AlbumCreation = () => {
     }
     if (!type) validationErrors.push("Type is required.");
     if (!price || isNaN(price) || parseFloat(price) < 0.99) {
-      validationErrors.push("Price must be greater than 0.99 moneys.");
+      validationErrors.push("Price must be at least 0.99 moneys.");
     }
     if (!genre) validationErrors.push("Genre is required.");
     return validationErrors;
