@@ -93,21 +93,31 @@ function Profile() {
               <img
                 className="user-content-album-block-art"
                 src={album?.album_art}
-                alt=""
+                alt="An album cover"
+                onClick={() => navigate(`/albums/${album?.id}`)}
               />
               <span
+                className="user-content-album-name"
                 style={{
                   color: "white",
                   fontSize: "25px",
                   width: "185px",
                   marginTop: "10px",
                 }}
+                onClick={() => navigate(`/albums/${album?.id}`)}
               >
                 {album?.name}
               </span>
               <div className="user-content-album-buttons-container">
-                <button className="user-content-album-button"></button>
-                <button className="user-content-album-button"></button>
+                <button
+                  onClick={() => navigate(`/albums/${album?.id}/edit`)}
+                  className="user-content-album-button user-content-album-update"
+                >
+                  Update Album
+                </button>
+                <button className="user-content-album-button user-content-album-delete">
+                  Delete Album
+                </button>
               </div>
             </div>
           ))}

@@ -145,7 +145,7 @@ def fetch_album_details(id):
         fetched_album['artist_pfp'] = artistdict['profile_pic']
         fetched_album['reviews'] = album_reviews
         return fetched_album
-    return {"message":"Album/Podcast could not be found or does not exist"}
+    return {"message":"Album/Podcast could not be found or does not exist"}, 404
 
 
 @album_routes.route("/<int:id>", methods=["DELETE"])
