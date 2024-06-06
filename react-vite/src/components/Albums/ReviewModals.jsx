@@ -1,19 +1,24 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { deleteReviewThunk, loadSingleAlbumThunk } from "../../redux/album";
+import {
+  deleteReviewThunk,
+  loadSingleAlbumThunk,
+  postReviewForAlbumThunk,
+} from "../../redux/album";
+import { useEffect, useState } from "react";
 
 export function DeleteReviewModal({ albumId, reviewId }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { closeModal } = useModal();
 
-  const deleteReviewEvent = (e) => {
+  const deleteReviewEvent = async (e) => {
     e.preventDefault();
 
-    dispatch(deleteReviewThunk(albumId, reviewId));
-    navigate(`/albums/${albumId}`);
-    dispatch(loadSingleAlbumThunk(albumId));
+    await dispatch(deleteReviewThunk(albumId, reviewId))
+    await(dispatch(loadSingleAlbumThunk(albumId)))
+      .then(navigate(`/albums/${albumId}`))
     closeModal();
   };
 
@@ -38,5 +43,88 @@ export function DeleteReviewModal({ albumId, reviewId }) {
         </div>
       </div>
     </>
+  );
+}
+
+export function CreateReviewModal({ albumId }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { closeModal } = useModal();
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [validationErrors, setValidationErrors] = useState({});
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  useEffect(() => {
+    const errors = {};
+
+    if (title.length < 2 || title.length > 60) {
+      errors.title =
+        "Review title is required and must be between 2 and 60 characters";
+    }
+    if (body.length < 2 || body.length > 254) {
+      errors.body =
+        "Review body is required and must be between 2 and 254 characters";
+    }
+    setValidationErrors(errors);
+  }, [title, body]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setHasSubmitted(true);
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("body", body);
+
+    await dispatch(postReviewForAlbumThunk(albumId, formData));
+    await dispatch(loadSingleAlbumThunk(albumId));
+    navigate(`/albums/${albumId}`);
+    closeModal();
+  };
+
+  return (
+    <div className="create-review-modal">
+      <h1>Leave a review</h1>
+      <div className="create-review-container">
+        <label>
+          Put a witty title for your review here
+          <input
+            type="text"
+            className="review-title-input"
+            value={title}
+            maxLength="60"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+        {validationErrors.title && (
+          <p className="form-errors" style={{ color: "red" }}>
+            {validationErrors.title}
+          </p>
+        )}
+        <label>
+          Write a thoughtful description of this album
+          <input
+            type="text"
+            className="review-body-input"
+            value={body}
+            maxLength="254"
+            onChange={(e) => setBody(e.target.value)}
+          />
+        </label>
+        {validationErrors.body && (
+          <p className="form-errors" style={{ color: "red" }}>
+            {validationErrors.body}
+          </p>
+        )}
+        <button
+          onClick={handleSubmit}
+          className="submit-dat-review"
+          disabled={Object.values(validationErrors).length > 0}
+        >
+          Submit Review
+        </button>
+      </div>
+    </div>
   );
 }

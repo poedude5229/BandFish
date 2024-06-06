@@ -7,7 +7,7 @@ import { BsExplicitFill } from "react-icons/bs";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteAlbumModal from "./DeleteModal.jsx";
 import { useNavigate } from "react-router-dom";
-import { DeleteReviewModal } from "./ReviewModals.jsx";
+import { CreateReviewModal, DeleteReviewModal } from "./ReviewModals.jsx";
 import "./Album.css";
 
 export function AlbumDetails() {
@@ -160,19 +160,21 @@ export function AlbumDetails() {
                   </div>
                   <p className="album-review-body">{review?.body}</p>
                   {currentUser && review?.user_id == currentUser.id && (
-                    <OpenModalMenuItem
-                      itemText={
-                        <button className="delete-dialog-trigger-button">
-                          Delete Review
-                        </button>
-                      }
-                      modalComponent={
-                        <DeleteReviewModal
-                          albumId={betterAlbum?.id}
-                          reviewId={review?.id}
-                        />
-                      }
-                    />
+                    <div>
+                      <OpenModalMenuItem
+                        itemText={
+                          <button className="delete-dialog-trigger-button">
+                            Delete Review
+                          </button>
+                        }
+                        modalComponent={
+                          <DeleteReviewModal
+                            albumId={betterAlbum?.id}
+                            reviewId={review?.id}
+                          />
+                        }
+                      />
+                    </div>
                   )}
                 </div>
               ))}
@@ -198,7 +200,10 @@ export function AlbumDetails() {
         </div>
         {currentUser && !betterAlbReviewsIds.includes(currentUser?.id) && (
           <div id="album-details-page-sidebar-review-post">
-            <button>Leave a Review!</button>
+            <OpenModalMenuItem
+              itemText={<button>Leave a Review!</button>}
+              modalComponent={<CreateReviewModal albumId={betterAlbum?.id} />}
+            />
           </div>
         )}
       </div>

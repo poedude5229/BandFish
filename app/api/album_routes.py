@@ -185,6 +185,7 @@ def get_alb_reviews(id):
 @login_required
 def post_alb_review(id):
     form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_review = Review(
             user_id = current_user.id,
@@ -194,7 +195,11 @@ def post_alb_review(id):
         )
         db.session.add(new_review)
         db.session.commit()
-    return new_review.to_dict()
+        return new_review.to_dict()
+    else:
+        errors = form.errors
+        return jsonify({"errors": errors})
+
 
 @album_routes.route("/<int:id>/reviews/<int:reviewId>", methods=["PUT"])
 @login_required

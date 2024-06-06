@@ -214,9 +214,10 @@
   /* background-color: #8d8d8d; */
   position: absolute;
   top: 410px;
+  list-style: none;
 }
 
-#album-details-page-sidebar-review-post button {
+#album-details-page-sidebar-review-post * {
   background-color: #8d8d8d;
   height: 50px;
   width: 100px;
@@ -227,7 +228,7 @@
   transition-duration: 400ms;
 }
 
-#album-details-page-sidebar-review-post button:hover {
+#album-details-page-sidebar-review-post *:hover {
   background-color: white;
 }
 
