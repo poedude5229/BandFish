@@ -53,6 +53,34 @@ function LoginFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
+        <div style={{ display: "flex", width: "300px", alignItems: "center" }}>
+          <hr
+            style={{
+              width: "100px",
+              height: "2px",
+              border: "1px solid black",
+              backgroundColor: "black",
+            }}
+          />
+          <p style={{ fontSize: "24px" }}>or</p>
+          <hr
+            style={{
+              width: "100px",
+              height: "2px",
+              border: "1px solid black",
+              backgroundColor: "black",
+            }}
+          />
+        </div>
+        <button
+          onClick={() =>
+            setEmail("indianajones@bababooey.com", setPassword("raiders333"))
+          }
+          type="submit"
+          style={{ marginBottom: "24px", color: "white" }}
+        >
+          Log in as Demo User
+        </button>
       </form>
     </div>
   );
