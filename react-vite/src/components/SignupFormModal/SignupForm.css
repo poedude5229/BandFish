@@ -1,5 +1,6 @@
 #signupFormModal {
   width: 700px;
+  margin-top: -24px;
 }
 
 #signupFormModal label {
@@ -8,6 +9,7 @@
   flex-direction: column;
   margin-left: 12px;
   margin-right: 12px;
+  margin-top: 0px;
 }
 
 #signupFormModal input {
@@ -38,6 +40,9 @@
   margin-bottom: 12px;
   border-radius: 5px;
   cursor: pointer;
+  position: absolute;
+  top: 350px;
+  left: 500px;
 }
 
 .filetypeSignup button {
@@ -74,6 +79,11 @@ input[type="file"] {
   font-size: 20px;
 }
 
-#container-for-profile-uploads input#file-upload-button {
-  cursor: pointer;
+
+.errValids-message {
+  color: red;
+  margin-top: 2px;
+  margin-left: 12px;
+  font-size: 20px;
+  margin-bottom: 1px;
 }

@@ -52,9 +52,7 @@ export const thunkSignup = (user) => async (dispatch) => {
     return null;
   } else {
     const data = await response.json();
-    if (data.errors) {
-      return data.errors;
-    }
+    return data;
   }
 };
 

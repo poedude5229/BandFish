@@ -15,11 +15,34 @@ function SignupFormModal() {
   const [profilePic, setProfilePic] = useState(null);
   const [profileBanner, setProfileBanner] = useState(null);
   const [errors, setErrors] = useState({});
-  const [errValids, setErrValids] = useState({});
+  const [errValids, setErrValids] = useState([]);
   const { closeModal } = useModal();
   useEffect(() => {
-    // let errorObj = {};
-  });
+    let errorArr = [];
+    if (firstname.length < 4 || firstname.length > 40) {
+      errorArr.push("First name must be between 4 and 40 characters");
+    }
+    if (lastname.length < 4 || lastname.length > 40) {
+      errorArr.push("Last name must be between 4 and 40 characters");
+    }
+    if (username.length < 4 || username.length > 25) {
+      errorArr.push("Username must be between 4 and 25 characters");
+    }
+    if (
+      email.length < 4 ||
+      !email.includes("@") ||
+      !email.includes(".") ||
+      email.length > 255
+    ) {
+      errorArr.push(
+        "Please provide a valid email. Your email should be between 4 and 255 characters"
+      );
+    }
+    if (password.length < 8) {
+      errorArr.push("Please provide a password longer than 8 characters.");
+    }
+    setErrValids(errorArr);
+  }, [firstname, lastname, email, username, password]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,11 +86,20 @@ function SignupFormModal() {
         borderRadius: "5%",
       }}
     >
-      <h1 style={{ fontSize: "60px", marginLeft: "12px" }}>Sign Up</h1>
-      {errors.server && <p>{errors.server}</p>}
+      <h1
+        style={{
+          fontSize: "60px",
+          marginLeft: "12px",
+          marginTop: "0px",
+          backgroundColor: "rgba(0,0,0,0)",
+        }}
+      >
+        Sign Up
+      </h1>
+      {errors.server && <p  className="errValids-message">{errors.server}</p>}
       <form
         id="signupFormModal"
-        style={{ display: "flex", flexDirection: "column" }}
+        style={{ display: "flex", flexDirection: "column", }}
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -80,6 +112,12 @@ function SignupFormModal() {
             required
           />
         </label>
+        {errValids.length > 0 &&
+          errValids.find((error) => error.includes("First")) && (
+            <p className="errValids-message">
+              {errValids.find((error) => error.includes("First"))}
+            </p>
+          )}
         <label>
           Last Name
           <input
@@ -89,6 +127,12 @@ function SignupFormModal() {
             required
           />
         </label>
+        {errValids.length > 0 &&
+          errValids.find((error) => error.includes("Last")) && (
+            <p className="errValids-message">
+              {errValids.find((error) => error.includes("Last"))}
+            </p>
+          )}
         <label>
           Email
           <input
@@ -98,7 +142,13 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="errValids-message">{errors.email}</p>}
+        {errValids.length > 0 &&
+          errValids.find((error) => error.includes("mail")) && (
+            <p className="errValids-message">
+              {errValids.find((error) => error.includes("mail"))}
+            </p>
+          )}
         <label>
           Username
           <input
@@ -108,7 +158,13 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="errValids-message">{errors.username}</p>}
+        {errValids.length > 0 &&
+          errValids.find((error) => error.includes("ser")) && (
+            <p className="errValids-message">
+              {errValids.find((error) => error.includes("ser"))}
+            </p>
+          )}
         <label>
           Password
           <input
@@ -119,10 +175,17 @@ function SignupFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
+        {errValids.length > 0 &&
+          errValids.find((error) => error.includes("ass")) && (
+            <p className="errValids-message">
+              {errValids.find((err) => err.includes("ass"))}
+            </p>
+          )}
         <label>
           Confirm Password
           <input
             type="password"
+            style={{marginBottom: "12px"}}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
@@ -150,7 +213,17 @@ function SignupFormModal() {
             />
           </label>
         </div>
-        <button type="submit">Sign Up</button>
+        <button
+          type="submit"
+          disabled={errValids.length}
+          style={
+            errValids.length > 0
+              ? { cursor: "not-allowed" }
+              : { cursor: "pointer" }
+          }
+        >
+          Sign Up
+        </button>
       </form>
     </div>
   );
