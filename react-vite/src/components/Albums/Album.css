@@ -246,3 +246,76 @@
 .delete-dialog-trigger-button:hover {
   background-color: red;
 }
+
+.update-review-button {
+  background-color: #8d8d8d;
+  font-size: 28px;
+  width: 120px;
+  margin-top: -24px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition-duration: 500ms;
+  border: none;
+  border-radius: 5px;
+}
+
+/* .update-review-button:hover {
+  background-color: rgb(70, 70, 70) !important;
+} */
+
+.delete-review-modal {
+  background-color: #8d8d8d;
+  border-radius: 5px !important;
+}
+
+.delete-modal-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-modal-container h1 {
+  font-size: 50px;
+  width: 500px;
+  margin-left: 12px;
+}
+
+
+
+.delete-review-button-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 24px;
+}
+
+.delete-review-button-container button {
+  height: 50px;
+  width: 100px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#confirm-delete-review-button {
+  background-color: white !important;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 500ms;
+}
+
+#cancel-delete-review-button {
+  background-color: white !important;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 500ms;
+}
+
+#confirm-delete-review-button:hover {
+  background-color: red !important;
+
+}
+
+#cancel-delete-review-button:hover {
+  background-color: rgb(70, 70, 70) !important;
+  color: white !important;
+}

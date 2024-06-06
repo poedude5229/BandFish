@@ -8,6 +8,7 @@ import {
   editReviewForAlbumThunk,
 } from "../../redux/album";
 import { useEffect, useState } from "react";
+import "./Modals.css";
 
 export function DeleteReviewModal({ albumId, reviewId }) {
   const dispatch = useDispatch();
@@ -179,9 +180,9 @@ export function UpdateModal({ reviewId, albumId, review }) {
   };
 
   return (
-    <div className="create-review-modal">
+    <div className="create-review-modal" style={{ borderRadius: "5px" }}>
       <h1>Update your review</h1>
-      <div className="create-review-container">
+      <div className="create-review-container" style={{ borderRadius: "5px" }}>
         <label>
           Put a witty title for your review here
           <input
@@ -215,7 +216,9 @@ export function UpdateModal({ reviewId, albumId, review }) {
           onClick={handleSubmit}
           className="submit-dat-review"
           disabled={Object.values(validationErrors).length > 0}
-        ></button>
+        >
+          Update Your Review
+        </button>
       </div>
     </div>
   );

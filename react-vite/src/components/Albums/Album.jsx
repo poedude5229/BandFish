@@ -164,7 +164,7 @@ export function AlbumDetails() {
                   </div>
                   <p className="album-review-body">{review?.body}</p>
                   {currentUser && review?.user_id == currentUser.id && (
-                    <div>
+                    <div style={{ marginTop: "" }}>
                       <OpenModalMenuItem
                         modalComponent={
                           <UpdateModal

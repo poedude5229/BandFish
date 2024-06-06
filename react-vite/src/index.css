@@ -6,6 +6,7 @@
 #modal-content {
   background-color: #d9d9d9;
   z-index: 1;
+  border-radius: 5px !important;
 }
 
 #modal-content * {
@@ -17,5 +18,5 @@
 }
 
 #modal {
-    background-color: rgba(0,0,0, 0.301);
+  background-color: rgba(0, 0, 0, 0.301);
 }
