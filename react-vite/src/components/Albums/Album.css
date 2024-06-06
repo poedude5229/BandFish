@@ -146,11 +146,14 @@
 #managerial-component {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   list-style: none;
   position: absolute;
   left: 480px;
   top: 30px;
-  width: 200px;
+  width: 240px;
+  max-width: 240px;
+  height: 150px;
   gap: 24px;
 }
 
@@ -160,6 +163,10 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  height: 25px;
+}
+#managerial-component li {
+  height: 25px;
 }
 
 .managerial-update {
@@ -169,6 +176,11 @@
 .managerial-delete {
   background-color: #8d8d8d;
   transition-duration: 500ms;
+}
+.track-add {
+  background-color: #8d8d8d;
+  transition-duration: 500ms;
+  margin-top: -40px;
 }
 
 .managerial-update:hover {
@@ -279,8 +291,6 @@
   margin-left: 12px;
 }
 
-
-
 .delete-review-button-container {
   display: flex;
   flex-direction: row;
@@ -312,7 +322,6 @@
 
 #confirm-delete-review-button:hover {
   background-color: red !important;
-
 }
 
 #cancel-delete-review-button:hover {

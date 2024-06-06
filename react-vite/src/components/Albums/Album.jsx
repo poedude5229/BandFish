@@ -61,6 +61,9 @@ export function AlbumDetails() {
               }
               modalComponent={<DeleteAlbumModal id={betterAlbum?.id} />}
             />
+            <OpenModalMenuItem
+              itemText={<button className="track-add">Add a track</button>}
+            />
           </ul>
         )}
         <span id="album-details-page-attribution">
@@ -216,14 +219,16 @@ export function AlbumDetails() {
             </span>
           </div>
         </div>
-        {currentUser && !betterAlbReviewsIds.includes(currentUser?.id) && (
-          <div id="album-details-page-sidebar-review-post">
-            <OpenModalMenuItem
-              itemText={<button>Leave a Review!</button>}
-              modalComponent={<CreateReviewModal albumId={betterAlbum?.id} />}
-            />
-          </div>
-        )}
+        {currentUser &&
+          !betterAlbReviewsIds.includes(currentUser?.id) &&
+          currentUser?.id !== betterAlbum?.artist_id && (
+            <div id="album-details-page-sidebar-review-post">
+              <OpenModalMenuItem
+                itemText={<button>Leave a Review!</button>}
+                modalComponent={<CreateReviewModal albumId={betterAlbum?.id} />}
+              />
+            </div>
+          )}
       </div>
     </>
   );

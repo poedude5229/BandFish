@@ -10,6 +10,11 @@ const CREATE_REVIEW = "albums/CREATE_REVIEW";
 const EDIT_REVIEW = "albums/EDIT_REVIEW";
 const DELETE_REVIEW = "albums/DELETE_REVIEW";
 
+const ADD_TRACK = "albums/ADD_TRACK";
+const MODIFY_TRACK = "albums/MODIFY_TRACK";
+const DELETE_TRACK = "albums/DELETE_TRACK";
+
+// ALBUM ACTIONS
 const loadAllAlbums = (albums) => ({
   type: LOAD_ALL_ALBUMS,
   payload: albums,
@@ -45,6 +50,7 @@ const deleteAlbum = (albumId) => ({
   payload: albumId,
 });
 
+// REVIEW ACTIONS
 const createReview = (review) => ({
   type: CREATE_REVIEW,
   payload: review,
@@ -60,6 +66,23 @@ const deleteReview = (reviewId) => ({
   payload: reviewId,
 });
 
+// TRACK ACTIONS
+const addTrackForAlbum = (track) => ({
+  type: ADD_TRACK,
+  payload: track,
+});
+
+const modifyTrackForAlbum = (track) => ({
+  type: MODIFY_TRACK,
+  track,
+});
+
+const deleteTrackForAlbum = (trackId) => ({
+  type: DELETE_TRACK,
+  payload: trackId,
+});
+
+// Review Thunks
 export const postReviewForAlbumThunk =
   (albumId, review) => async (dispatch) => {
     const res = await fetch(`/api/albums/${albumId}/reviews/new`, {
@@ -98,10 +121,11 @@ export const deleteReviewThunk = (albumId, reviewId) => async (dispatch) => {
   await dispatch(deleteReview(reviewId));
 };
 
-export const createAlbumThunk = (restaurant) => async (dispatch) => {
+// Album Thunks
+export const createAlbumThunk = (album) => async (dispatch) => {
   const res = await fetch("/api/albums/new", {
     method: "POST",
-    body: restaurant,
+    body: album,
   });
 
   const data = await res.json();
@@ -179,6 +203,41 @@ export const deleteAlbumThunk = (id) => async (dispatch) => {
   }
   await dispatch(deleteAlbum(id));
 };
+
+// Track Thunks
+export const addTrackForAlbumThunk = (albumId, track) => async (dispatch) => {
+  let res = await fetch(`/api/albums/${albumId}/tracks/new`, {
+    method: "POST",
+    body: track,
+  });
+  const data = await res.json();
+
+  if (!res.ok) return { errors: data };
+  await dispatch(addTrackForAlbum(data));
+  return data;
+};
+
+export const updateTrackForAlbumThunk =
+  (albumId, track, trackId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/tracks/${trackId}`, {
+      method: "PUT",
+      body: track,
+    });
+
+    const data = await res.json();
+    if (!res.ok) return { errors: data };
+    await dispatch(modifyTrackForAlbum(track));
+  };
+
+export const deleteTrackForAlbumThunk =
+  (albumId, trackId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/tracks/${trackId}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    if (!res.ok) return { errors: data };
+    await dispatch(deleteAlbumThunk(trackId));
+  };
 
 function albumReducer(state = {}, action) {
   switch (action.type) {

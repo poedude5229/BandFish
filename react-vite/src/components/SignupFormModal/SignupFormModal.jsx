@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
@@ -15,16 +15,22 @@ function SignupFormModal() {
   const [profilePic, setProfilePic] = useState(null);
   const [profileBanner, setProfileBanner] = useState(null);
   const [errors, setErrors] = useState({});
+  const [errValids, setErrValids] = useState({});
   const { closeModal } = useModal();
+  useEffect(() => {
+    // let errorObj = {};
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (password !== confirmPassword) {
       return setErrors({
         confirmPassword:
           "Confirm Password field must be the same as the Password field",
       });
+
+      // errorObj["confirmPassword"] =
+      //   "Confirm Password field must be the same as the Password field";
     }
 
     const formData = new FormData();
