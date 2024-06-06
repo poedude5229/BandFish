@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { SlArrowRight } from "react-icons/sl";
 import "./Landing.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { loadAlbumsThunk } from "../../redux/album";
 import { useEffect } from "react";
 import { Carousel } from "../Carousel";
@@ -10,7 +10,7 @@ export function Landing() {
   useEffect(() => {
     dispatch(loadAlbumsThunk());
   }, [dispatch]);
-  let albums = useSelector((state) => state.albums);
+  // let albums = useSelector((state) => state.albums);
   // console.log(albums);
   return (
     <>
@@ -26,7 +26,7 @@ export function Landing() {
             <p>Lord have his grilled cheese</p>
             <div>
               <NavLink to="/albums/11">
-                Check out Sublime's new single{" "}
+                Check out Sublime&apos;s new single{" "}
                 <SlArrowRight style={{ fontSize: "14px" }} />
               </NavLink>
             </div>
@@ -40,7 +40,7 @@ export function Landing() {
             />
             <div id="lpotl-link">
               <NavLink to="/albums/1">
-                We're just trying to warn you of <span>THE BRIDGE!</span>
+                We&apos;re just trying to warn you of <span>THE BRIDGE!</span>
               </NavLink>
             </div>
           </div>
@@ -51,7 +51,7 @@ export function Landing() {
             />
             <div id="aic-link">
               <NavLink to="/albums/3">
-                You'll have "No Excuses" not to check out Alice in Chains
+                You&apos;ll have &quot;No Excuses&quot; not to check out Alice in Chains
               </NavLink>
             </div>
           </div>

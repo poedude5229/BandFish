@@ -34,6 +34,13 @@
   margin-top: 32px;
 }
 
+#big-track-title {
+  color: #962c50;
+  font-size: 32px;
+  margin-bottom: -14px;
+  margin-top: 0px;
+}
+
 #big-audio {
   background-color: #f1f3f4;
   border: 1px solid #ddd;
@@ -81,6 +88,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-bottom: 20px;
 }
 #album-details-page-tracklist label {
   display: flex;
@@ -166,4 +174,21 @@
 .managerial-delete:hover {
   color: black;
   background-color: red;
+}
+
+#reviews-list {
+  list-style: none;
+  margin-left: -40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.album-review {
+  display: flex;
+}
+
+.review-pfp {
+  width: 40px;
+  height: 40px;
 }

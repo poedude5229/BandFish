@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { loadSingleAlbumThunk } from "../../redux/album";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
+// import { loadSingleAlbumThunk } from "../../redux/album";
 import "./AlbumSidebar.css";
 import { useNavigate } from "react-router-dom";
 export function AlbumSideBar({ album }) {

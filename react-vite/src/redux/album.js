@@ -5,6 +5,10 @@ const LOAD_JUST_PODCASTS = "albums/LOAD_JUST_PODCASTS";
 const UPDATE_ALBUM = "albums/UPDATE_ALBUM";
 const CREATE_ALBUM = "albums/CREATE_ALBUM";
 const DELETE_ALBUM = "albums/DELETE_ALBUM";
+
+const CREATE_REVIEW = "albums/CREATE_REVIEW";
+const EDIT_REVIEW = "albums/EDIT_REVIEW";
+
 const loadAllAlbums = (albums) => ({
   type: LOAD_ALL_ALBUMS,
   payload: albums,
@@ -39,6 +43,42 @@ const deleteAlbum = (albumId) => ({
   type: DELETE_ALBUM,
   payload: albumId,
 });
+
+const createReview = (review) => ({
+  type: CREATE_REVIEW,
+  payload: review,
+});
+
+const editReview = (review) => ({
+  type: EDIT_REVIEW,
+  payload: review,
+});
+
+export const postReviewForAlbumThunk =
+  (albumId, review) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/reviews/new`, {
+      method: "POST",
+      body: review,
+    });
+    const data = await res.json();
+    if (!res.ok) return { errors: data };
+    await dispatch(createReview(data));
+    return data;
+  };
+
+export const editReviewForAlbumThunk =
+  (albumId, review, reviewId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/reviews/${reviewId}`, {
+      method: "PUT",
+      body: review,
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return { errors: data };
+    }
+    await dispatch(editReview(data));
+    return data;
+  };
 
 export const createAlbumThunk = (restaurant) => async (dispatch) => {
   const res = await fetch("/api/albums/new", {

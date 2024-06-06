@@ -106,7 +106,7 @@ const AlbumCreation = () => {
         encType="multipart/form-data"
       >
         <label>
-          What's your content's name?
+          What&apos;s your content&apos;s name?
           <input
             type="text"
             value={name}

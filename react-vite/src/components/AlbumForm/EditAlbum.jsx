@@ -8,7 +8,7 @@ const AlbumEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { albumId } = useParams();
-  const currentUser = useSelector((state) => state.session.user);
+  // const currentUser = useSelector((state) => state.session.user);
   const album = useSelector((state) => state.albums[albumId]);
 
   const [name, setName] = useState("");

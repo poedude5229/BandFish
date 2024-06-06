@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadSingleAlbumThunk } from "../../redux/album";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteAlbumModal from "./DeleteModal.jsx";
 import { useNavigate } from "react-router-dom";
@@ -53,21 +53,24 @@ export function AlbumDetails() {
           by<span id="album-details-page-author">{betterAlbum?.artist}</span>
         </span>
         {betterAlbum?.tracks?.length > 0 && (
-          <span id="big-audio">
-            <span className="downloadHider"></span>
-            <audio
-              className="audio"
-              src={betterAlbum?.tracks?.[0]?.source}
-              controls
-            ></audio>
-          </span>
+          <>
+            <p id="big-track-title">{betterAlbum?.tracks?.[0]?.title}</p>
+            <span id="big-audio">
+              <span className="downloadHider"></span>
+              <audio
+                className="audio"
+                src={betterAlbum?.tracks?.[0]?.source}
+                controls
+              ></audio>
+            </span>
+          </>
         )}
         <span id="bandfish-filler-text">
           <span style={{ color: "#8d8d8d", fontSize: "32px" }}>
             Digital Album
           </span>
           Includes unlimited streaming via the BandFish website, plus bragging
-          rights. Maybe in the future we'll let you download this!
+          rights. Maybe in the future we&apos;ll let you download this!
         </span>
         <div id="e-commerce-start">
           <span>Buy Digital Album</span>
@@ -121,6 +124,27 @@ export function AlbumDetails() {
           />
           <div id="album-reviews-container">
             <span style={{ fontSize: "24px" }}>Supported by</span>
+            <ul id="reviews-list">
+              {betterAlbum?.reviews?.map((review) => (
+                <li key={review?.id} className="album-review">
+                  <img className="review-pfp" src={review?.user_pfp} alt="" />{" "}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      marginTop: "-36px",
+                      backgroundColor: "rgba(0,0,0,0)",
+                      marginLeft: "12px",
+                      width: "400px",
+                    }}
+                  >
+                    <p style={{ fontSize: "30px" }}>{review?.user}</p>
+                    <p style={{ fontSize: "22px" }}>{review?.title}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
           <div
             style={{

@@ -17,12 +17,18 @@
 .album-art-albums-page {
   width: 215px;
   height: 215px;
+  cursor: pointer;
 }
 
 .albums-page-album-title {
   font-size: 24px;
   margin-top: 0px;
   margin-left: 5px;
+  cursor: pointer;
+}
+
+.albums-page-album-title:hover {
+  text-decoration: underline;
 }
 
 .albums-page-album-artist {

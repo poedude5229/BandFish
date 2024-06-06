@@ -8,9 +8,9 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 function Navigation() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(true);
-  const ulRef = useRef();
+  // const ulRef = useRef();
   let user = useSelector((state) => state.session.user);
   // let session = useSelector((state) => state.sessionReducer)
   useEffect(() => {

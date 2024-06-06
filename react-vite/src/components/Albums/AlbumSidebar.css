@@ -20,6 +20,10 @@
   width: 70%;
 }
 
+#album-sidebar-title:hover {
+  text-decoration: underline;
+}
+
 #album-sidebar-artist {
   color: white;
   font-size: 32px;

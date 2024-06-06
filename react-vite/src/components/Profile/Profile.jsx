@@ -8,7 +8,7 @@ import DeleteAlbumModal from "./DeleteModal";
 
 function Profile() {
   const currentUser = useSelector((state) => state.session.user);
-  const allAlbums = Object?.values(useSelector((state) => state.albums));
+  const allAlbums = Object.values(useSelector((state) => state.albums));
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,7 +19,7 @@ function Profile() {
   );
   console.log(ownedAlbums);
 
-  const [collectionActive, setCollectionActive] = useState(false);
+  // const [collectionActive, setCollectionActive] = useState(false);
   const [wishlistActive, setWishlistActive] = useState(false);
   const [contentActive, setContentActive] = useState(true);
 
@@ -36,13 +36,13 @@ function Profile() {
 //   };
 
   const handleWishlistClick = () => {
-    setCollectionActive(false);
+    // setCollectionActive(false);
     setWishlistActive(true);
     setContentActive(false);
   };
 
   const handleContentClick = () => {
-    setCollectionActive(false);
+    // setCollectionActive(false);
     setWishlistActive(false);
     setContentActive(true);
   };
