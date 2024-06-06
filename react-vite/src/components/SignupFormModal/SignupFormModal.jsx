@@ -96,10 +96,10 @@ function SignupFormModal() {
       >
         Sign Up
       </h1>
-      {errors.server && <p  className="errValids-message">{errors.server}</p>}
+      {errors.server && <p className="errValids-message">{errors.server}</p>}
       <form
         id="signupFormModal"
-        style={{ display: "flex", flexDirection: "column", }}
+        style={{ display: "flex", flexDirection: "column" }}
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -158,7 +158,9 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p className="errValids-message">{errors.username}</p>}
+        {errors.username && (
+          <p className="errValids-message">{errors.username}</p>
+        )}
         {errValids.length > 0 &&
           errValids.find((error) => error.includes("ser")) && (
             <p className="errValids-message">
@@ -185,7 +187,7 @@ function SignupFormModal() {
           Confirm Password
           <input
             type="password"
-            style={{marginBottom: "12px"}}
+            style={{ marginBottom: "12px" }}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
@@ -193,7 +195,7 @@ function SignupFormModal() {
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <div id="container-for-profile-uploads">
-          <label>
+          <label className="custom-file-upload">
             Profile Picture
             <input
               className="filetypeSignup"
@@ -203,7 +205,7 @@ function SignupFormModal() {
               required
             />
           </label>
-          <label>
+          <label className="custom-file-upload">
             Profile Banner
             <input
               className="filetypeSignup"

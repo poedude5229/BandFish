@@ -13,6 +13,7 @@ import {
   UpdateModal,
 } from "./ReviewModals.jsx";
 import "./Album.css";
+import { AddTrackModal } from "../AlbumForm/AddTrackForm.jsx";
 
 export function AlbumDetails() {
   const { albumId } = useParams();
@@ -63,6 +64,7 @@ export function AlbumDetails() {
             />
             <OpenModalMenuItem
               itemText={<button className="track-add">Add a track</button>}
+              modalComponent={<AddTrackModal albumId={betterAlbum?.id} />}
             />
           </ul>
         )}

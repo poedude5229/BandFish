@@ -22,9 +22,9 @@ const AlbumCreation = () => {
 
   const validateForm = () => {
     const validationErrors = [];
-    if (!name) validationErrors.push("Name is required.");
+    if (!name) validationErrors.push("Title is required.");
     if (!albumArt) {
-      validationErrors.push("Album art is required.");
+      validationErrors.push("Artwork is required.");
     } else {
       const validFileTypes = ["image/jpeg", "image/png", "image/jpg"];
       if (!validFileTypes.includes(albumArt.type)) {
@@ -92,7 +92,7 @@ const AlbumCreation = () => {
   return (
     <div id="albumFormContainer">
       <h1>Add your Content</h1>
-      <ul>
+      <ul style={{ position: "absolute", fontSize: "24px" }}>
         {errorArr.map((error, idx) => (
           <li key={idx} style={{ color: "red" }}>
             {error}

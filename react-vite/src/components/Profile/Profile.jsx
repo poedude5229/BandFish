@@ -15,7 +15,7 @@ function Profile() {
     dispatch(loadAlbumsThunk());
   }, [dispatch]);
   const ownedAlbums = allAlbums?.filter(
-    (album) => album?.artist_id == currentUser.id
+    (album) => album?.artist_id == currentUser?.id
   );
   console.log(ownedAlbums);
 
@@ -52,18 +52,18 @@ function Profile() {
       <div id="profile-page-photo-container">
         <img
           id="profile-page-banner"
-          src={currentUser.profile_banner}
-          alt={`${currentUser.username}'s banner`}
+          src={currentUser?.profile_banner}
+          alt={`${currentUser?.username}'s banner`}
         />
       </div>
       <img
         id="profile-page-avatar"
-        src={currentUser.profile_pic}
-        alt={`${currentUser.username}'s avatar`}
+        src={currentUser?.profile_pic}
+        alt={`${currentUser?.username}'s avatar`}
       />
       <div id="sappy-container">
-        <p id="your-username-big">{currentUser.username}</p>
-        <p id="profile-page-welcome">Welcome, {currentUser.firstname}!</p>
+        <p id="your-username-big">{currentUser?.username}</p>
+        <p id="profile-page-welcome">Welcome, {currentUser?.firstname}!</p>
       </div>
       <div id="profile-things-container">
         <span

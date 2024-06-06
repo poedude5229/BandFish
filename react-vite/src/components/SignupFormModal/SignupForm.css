@@ -45,13 +45,33 @@
   left: 500px;
 }
 
-.filetypeSignup button {
+/* .filetypeSignup button {
   background-color: #01001a !important;
 }
 
 .filetypeSignup {
   background-color: rgba(0, 0, 0, 0) !important;
   width: 100px;
+} */
+.filetypeSignup {
+  display: none;
+}
+
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #01001a !important;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.custom-file-upload:hover {
+  background-color: #45a049 !important;
+  /* border: 2px solid #45a049; */
 }
 
 input[type="file"] {
