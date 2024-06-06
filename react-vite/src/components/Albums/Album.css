@@ -11,6 +11,11 @@
   color: white;
   font-size: 56px;
   width: 400px;
+  display: flex;
+  gap: 18px;
+}
+#album-details-page-name svg {
+  margin-top: -3px;
 }
 
 #album-details-page-attribution {
@@ -102,7 +107,7 @@
 .downloadBlockerSmall {
   background-color: #f1f3f4;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   height: 40px;
   width: 40px;
   margin-left: 240px;
@@ -135,7 +140,7 @@
 #album-reviews-container {
   color: white;
   position: absolute;
-  top: 420px;
+  top: 470px;
 }
 
 #managerial-component {
@@ -178,17 +183,65 @@
 
 #reviews-list {
   list-style: none;
-  margin-left: -40px;
+  margin-left: -30px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  margin-top: 12px;
+  gap: 35px;
 }
 
 .album-review {
   display: flex;
+  margin-left: 30px;
 }
 
 .review-pfp {
   width: 40px;
   height: 40px;
+}
+
+.album-review-body {
+  display: flex;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  margin-left: 52px;
+  margin-top: 20px;
+  width: 250px;
+  font-size: 20px;
+}
+
+#album-details-page-sidebar-review-post {
+  /* background-color: #8d8d8d; */
+  position: absolute;
+  top: 410px;
+}
+
+#album-details-page-sidebar-review-post button {
+  background-color: #8d8d8d;
+  height: 50px;
+  width: 100px;
+  font-size: 28px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition-duration: 400ms;
+}
+
+#album-details-page-sidebar-review-post button:hover {
+  background-color: white;
+}
+
+.delete-dialog-trigger-button {
+  background-color: #8d8d8d;
+  font-size: 28px;
+  width: 120px;
+  margin-top: -24px;
+  cursor: pointer;
+  transition-duration: 500ms;
+  border: none;
+  border-radius: 5px;
+}
+
+.delete-dialog-trigger-button:hover {
+  background-color: red;
 }

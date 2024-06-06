@@ -8,6 +8,7 @@ const DELETE_ALBUM = "albums/DELETE_ALBUM";
 
 const CREATE_REVIEW = "albums/CREATE_REVIEW";
 const EDIT_REVIEW = "albums/EDIT_REVIEW";
+const DELETE_REVIEW = "albums/DELETE_REVIEW";
 
 const loadAllAlbums = (albums) => ({
   type: LOAD_ALL_ALBUMS,
@@ -54,6 +55,11 @@ const editReview = (review) => ({
   payload: review,
 });
 
+const deleteReview = (reviewId) => ({
+  type: DELETE_REVIEW,
+  payload: reviewId,
+});
+
 export const postReviewForAlbumThunk =
   (albumId, review) => async (dispatch) => {
     const res = await fetch(`/api/albums/${albumId}/reviews/new`, {
@@ -79,6 +85,17 @@ export const editReviewForAlbumThunk =
     await dispatch(editReview(data));
     return data;
   };
+
+export const deleteReviewThunk = (albumId, reviewId) => async (dispatch) => {
+  const res = await fetch(`/api/albums/${albumId}/reviews/${reviewId}`, {
+    method: "DELETE",
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    return { errors: data };
+  }
+  await dispatch(deleteReview(reviewId));
+};
 
 export const createAlbumThunk = (restaurant) => async (dispatch) => {
   const res = await fetch("/api/albums/new", {
@@ -200,6 +217,22 @@ function albumReducer(state = {}, action) {
       return { ...state, [action.album.id]: action.album };
     }
     case DELETE_ALBUM: {
+      const newState = { ...state };
+      delete newState[action.payload];
+      return newState;
+    }
+    case CREATE_REVIEW: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    }
+
+    case EDIT_REVIEW: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    }
+    case DELETE_REVIEW: {
       const newState = { ...state };
       delete newState[action.payload];
       return newState;

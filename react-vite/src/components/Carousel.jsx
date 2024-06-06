@@ -20,7 +20,7 @@ export function Carousel() {
   }, [dispatch]);
   let albums = useSelector((state) => state.albums);
   let albArray = Object.values(albums);
-  console.log(albArray);
+  // console.log(albArray);
   let navigate = useNavigate();
   const carouselRef = useRef(null);
   const scrollLeft = () => {

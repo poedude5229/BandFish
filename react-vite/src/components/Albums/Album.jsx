@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { loadSingleAlbumThunk } from "../../redux/album";
+import { BsExplicitFill } from "react-icons/bs";
 // import { NavLink } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteAlbumModal from "./DeleteModal.jsx";
 import { useNavigate } from "react-router-dom";
+import { DeleteReviewModal } from "./ReviewModals.jsx";
 import "./Album.css";
 
 export function AlbumDetails() {
@@ -21,6 +23,11 @@ export function AlbumDetails() {
     () => dispatch(loadSingleAlbumThunk(albumId));
   }
   let betterAlbum = Object?.values({ ...album })?.[0];
+  let betterAlbReviewsIds = [];
+  betterAlbum?.reviews?.forEach((review) =>
+    betterAlbReviewsIds.push(review?.user_id)
+  );
+  // console.log(betterAlbReviewsIds);
   //   console.log(betterAlbum?.tracks?.[0].source);
   useEffect(() => {
     const audioElements = document.querySelectorAll(".audio");
@@ -31,7 +38,10 @@ export function AlbumDetails() {
   return (
     <>
       <div id="album-details-page-container">
-        <h1 id="album-details-page-name">{betterAlbum?.name}</h1>
+        <h1 id="album-details-page-name">
+          {betterAlbum?.name}
+          <BsExplicitFill style={{ width: "30px" }} />
+        </h1>
         {currentUser && currentUser?.id == betterAlbum?.artist_id && (
           <ul id="managerial-component">
             <li onClick={() => navigate(`/albums/${betterAlbum?.id}/edit`)}>
@@ -123,10 +133,16 @@ export function AlbumDetails() {
             alt={`${betterAlbum?.name} album art`}
           />
           <div id="album-reviews-container">
-            <span style={{ fontSize: "24px" }}>Supported by</span>
-            <ul id="reviews-list">
+            <span style={{ fontSize: "24px", paddingBottom: "12px" }}>
+              {betterAlbum?.reviews?.length > 0
+                ? "Supported by"
+                : currentUser && currentUser.id !== betterAlbum?.artist_id
+                ? "Be the first to review this album!"
+                : "No reviews for this album yet..."}
+            </span>
+            <div id="reviews-list">
               {betterAlbum?.reviews?.map((review) => (
-                <li key={review?.id} className="album-review">
+                <div key={review?.id} className="album-review">
                   <img className="review-pfp" src={review?.user_pfp} alt="" />{" "}
                   <div
                     style={{
@@ -142,9 +158,25 @@ export function AlbumDetails() {
                     <p style={{ fontSize: "30px" }}>{review?.user}</p>
                     <p style={{ fontSize: "22px" }}>{review?.title}</p>
                   </div>
-                </li>
+                  <p className="album-review-body">{review?.body}</p>
+                  {currentUser && review?.user_id == currentUser.id && (
+                    <OpenModalMenuItem
+                      itemText={
+                        <button className="delete-dialog-trigger-button">
+                          Delete Review
+                        </button>
+                      }
+                      modalComponent={
+                        <DeleteReviewModal
+                          albumId={betterAlbum?.id}
+                          reviewId={review?.id}
+                        />
+                      }
+                    />
+                  )}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
           <div
             style={{
@@ -164,7 +196,11 @@ export function AlbumDetails() {
             </span>
           </div>
         </div>
-        <div id="album-details-page-sidebar-reviews"></div>
+        {currentUser && !betterAlbReviewsIds.includes(currentUser?.id) && (
+          <div id="album-details-page-sidebar-review-post">
+            <button>Leave a Review!</button>
+          </div>
+        )}
       </div>
     </>
   );
