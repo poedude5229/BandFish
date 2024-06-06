@@ -47,10 +47,12 @@ function ProfileButton() {
         style={{ cursor: "pointer", border: "none" }}
         onClick={toggleMenu}
       >
-        <img
-          src={user.profile_pic}
-          style={{ width: "45px", height: "45px", borderRadius: "50%" }}
-        />
+        {user && (
+          <img
+            src={user?.profile_pic}
+            style={{ width: "45px", height: "45px", borderRadius: "50%" }}
+          />
+        )}
       </button>
       {showMenu && user && (
         <>

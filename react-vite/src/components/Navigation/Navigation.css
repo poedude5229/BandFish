@@ -165,3 +165,11 @@
   border-radius: 5px;
   width: 200px;
 }
+
+#login-list {
+  background-color: rgba(0,0,0,0);
+}
+
+#login-list li {
+  background-color: rgba(0,0,0,0);
+}
