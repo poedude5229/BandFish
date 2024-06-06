@@ -211,7 +211,7 @@ def update_review(id, reviewId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         selected_review.title = form.data['title']
-        selected_review.body = form.data['rating']
+        selected_review.body = form.data['body']
         db.session.commit()
     return selected_review.to_dict(), 200
 

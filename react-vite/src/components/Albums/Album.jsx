@@ -7,7 +7,11 @@ import { BsExplicitFill } from "react-icons/bs";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteAlbumModal from "./DeleteModal.jsx";
 import { useNavigate } from "react-router-dom";
-import { CreateReviewModal, DeleteReviewModal } from "./ReviewModals.jsx";
+import {
+  CreateReviewModal,
+  DeleteReviewModal,
+  UpdateModal,
+} from "./ReviewModals.jsx";
 import "./Album.css";
 
 export function AlbumDetails() {
@@ -161,6 +165,20 @@ export function AlbumDetails() {
                   <p className="album-review-body">{review?.body}</p>
                   {currentUser && review?.user_id == currentUser.id && (
                     <div>
+                      <OpenModalMenuItem
+                        modalComponent={
+                          <UpdateModal
+                            reviewId={review?.id}
+                            albumId={betterAlbum?.id}
+                            review={review}
+                          />
+                        }
+                        itemText={
+                          <button className="update-review-button">
+                            Update Review
+                          </button>
+                        }
+                      />
                       <OpenModalMenuItem
                         itemText={
                           <button className="delete-dialog-trigger-button">
