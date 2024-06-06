@@ -1,9 +1,9 @@
 #signupFormModal {
-  width: 500px;
+  width: 700px;
 }
 
 #signupFormModal label {
-  font-size: 24px;
+  font-size: 32px;
   display: flex;
   flex-direction: column;
   margin-left: 12px;
@@ -12,10 +12,13 @@
 
 #signupFormModal input {
   /* margin-left: ; */
+  padding-left: 12px;
+  font-size: 18px;
   border: none;
   border-radius: 5px;
-  width: 200px;
-  background-color: #8d8d8d;
+  width: 400px;
+  background-color: #ffffff;
+  height: 24px;
 }
 
 #signupFormModal input:focus-within {
@@ -38,9 +41,39 @@
 }
 
 .filetypeSignup button {
-  background-color: #d9d9d9;
+  background-color: #01001a !important;
 }
 
-#signupFormModal #file-upload-button {
-  font-size: 12px;
+.filetypeSignup {
+  background-color: rgba(0, 0, 0, 0) !important;
+  width: 100px;
+}
+
+input[type="file"] {
+  font-size: 24;
+}
+
+#container-for-profile-uploads {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  width: 150px;
+  left: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+#container-for-profile-uploads label {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#container-for-profile-uploads input {
+  margin-left: -12px;
+  font-size: 20px;
+}
+
+#container-for-profile-uploads input#file-upload-button {
+  cursor: pointer;
 }

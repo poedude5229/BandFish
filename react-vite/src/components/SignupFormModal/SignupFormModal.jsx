@@ -57,7 +57,7 @@ function SignupFormModal() {
         borderRadius: "5%",
       }}
     >
-      <h1 style={{ fontSize: "48px", marginLeft: "12px" }}>Sign Up</h1>
+      <h1 style={{ fontSize: "60px", marginLeft: "12px" }}>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form
         id="signupFormModal"
@@ -123,25 +123,27 @@ function SignupFormModal() {
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <label>
-          Profile Picture
-          <input
-            className="filetypeSignup"
-            style={{ backgroundColor: "#d9d9d9" }}
-            type="file"
-            onChange={(e) => setProfilePic(e.target.files[0])}
-            required
-          />
-        </label>
-        <label>
-          Profile Banner
-          <input
-            className="filetypeSignup"
-            style={{ backgroundColor: "#d9d9d9" }}
-            type="file"
-            onChange={(e) => setProfileBanner(e.target.files[0])}
-          />
-        </label>
+        <div id="container-for-profile-uploads">
+          <label>
+            Profile Picture
+            <input
+              className="filetypeSignup"
+              style={{ backgroundColor: "#d9d9d9" }}
+              type="file"
+              onChange={(e) => setProfilePic(e.target.files[0])}
+              required
+            />
+          </label>
+          <label>
+            Profile Banner
+            <input
+              className="filetypeSignup"
+              style={{ backgroundColor: "#d9d9d9" }}
+              type="file"
+              onChange={(e) => setProfileBanner(e.target.files[0])}
+            />
+          </label>
+        </div>
         <button type="submit">Sign Up</button>
       </form>
     </div>
