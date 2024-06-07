@@ -2,3 +2,21 @@
 * {
   background-color: #01001a;
 }
+
+#modal-content {
+  background-color: #d9d9d9;
+  z-index: 1;
+  border-radius: 5px !important;
+}
+
+#modal-content * {
+  background-color: #d9d9d9;
+}
+
+#modal-background {
+  background-color: rgba(0, 0, 0, 0.301);
+}
+
+#modal {
+  background-color: rgba(0, 0, 0, 0.301);
+}

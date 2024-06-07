@@ -42,8 +42,9 @@ def seed_users():
         firstname="Frodo", lastname="Baggins", username="frodobaggins", email="frodobaggins@bababooey.com", password="onering111", role="User"
     )
     ij = User(
-        firstname="Indiana", lastname="Jones", username="indianajones", email="indianajones@bababooey.com", password="raiders333", role="User"
+        firstname="Indiana", lastname="Jones", username="indianajones", email="indianajones@bababooey.com", password="raiders333", role="User", profile_pic="https://bandfishbucket.s3.amazonaws.com/1c69f339e921465fb528ef78a5f87e76.jpg", profile_banner="https://bandfishbucket.s3.amazonaws.com/indianajonesbanner.jpg"
     )
+
 
     db.session.add(mfdoom)
     db.session.add(armchris)

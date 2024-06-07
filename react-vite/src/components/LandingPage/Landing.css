@@ -3,12 +3,34 @@
   src: url("../../../public/jomhuria.ttf");
 }
 
+* {
+  font-family: Jomhuria;
+}
+
+/* @media screen and (min-width: 1438px) {
+  #sublime-promo {
+    position: fixed;
+    top: 126px;
+    left: 0;
+    width: 75vw;
+  }
+
+  #sublime-promo img {
+    width: 75vw;
+  }
+} */
+
+/* @media screen and (max-width: 1437px) { */
 #sublime-promo {
-  position: fixed;
-  top: 126px;
+  position: absolute;
+  margin-top: 126px;
   left: 0;
-  width: 1017px;
+  width: 72%;
   height: 623px;
+}
+
+#sublime-promo img {
+  width: 100%;
 }
 
 #sublime-promo * {
@@ -18,30 +40,35 @@
 #five-dollar-div {
   width: 312px;
   height: 62px;
-  position: absolute;
-  top: 500px;
-  left: 600px;
+  position: relative;
+  /* top: 650px;
+    left: 600px; */
   background-color: #d9d9d9;
   border-radius: 5px;
   font-family: Jomhuria;
   display: flex;
   flex-direction: column;
+  margin-top: -102px;
+  margin-left: 55%;
   gap: 0px;
+  margin-right: 10px;
 }
+
 #five-dollar-div p {
-  /* position: absolute; */
   margin-left: 12px;
   font-size: 32px;
   margin-top: 5px;
 }
+
 #five-dollar-div div {
   position: absolute;
   margin-left: 20px;
   gap: 14px;
   top: 38px;
-  /* font-size: 20px; */
   display: flex;
+  height: 12px;
 }
+
 #five-dollar-div a {
   font-size: 22px;
   color: black;
@@ -50,7 +77,7 @@
 
 #five-dollar-div svg {
   position: absolute;
-  left: 80px;
+  left: 170px;
   margin-top: 2px;
 }
 
@@ -59,25 +86,36 @@
   height: 623px;
 }
 
+#sidebar-promo-container {
+  width: 30%;
+  height: 623px;
+  position: relative;
+  right: 0;
+  left: 70%;
+  top: 126px;
+  display: flex;
+  flex-direction: column;
+}
+
 #bbb-lpotl {
-  width: 420px;
-  height: 342px;
-  position: fixed;
+  width: 100%;
+  height: 50%;
+  /* position: fixed; */
   right: 0;
   top: 126px;
 }
 
 #bbb-lpotl * {
-    background-color: #d9d9d9;
+  background-color: #d9d9d9;
 }
 
 #bbb-lpotl img {
-  width: 423px;
-  height: 342px;
+  width: 100%;
+  height: 100%;
 }
 
 #lpotl-link {
-  position: absolute;
+  position: relative;
   width: 240px;
   text-align: center;
   display: flex;
@@ -85,8 +123,10 @@
   height: 63px;
   background-color: #d9d9d9;
   border-radius: 5px;
-  right: 40px;
-  top: 260px;
+  /* right: 40px;
+    top: 260px; */
+  margin-top: -82px;
+  margin-left: 30%;
 }
 
 #lpotl-link a {
@@ -94,4 +134,106 @@
   font-family: Jomhuria;
   font-size: 28px;
   color: black;
+}
+/* } */
+
+#aic-promo {
+  width: 100%;
+  height: 50%;
+}
+
+#aic-promo img {
+  width: 100%;
+  height: 100%;
+}
+
+#aic-link {
+  position: relative;
+  width: 240px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65px;
+  background-color: #d9d9d9;
+  margin-top: -82px;
+  margin-left: 20%;
+  color: black;
+  /* z-index: 1; */
+  border-radius: 5px;
+}
+
+#aic-link * {
+  background-color: #d9d9d9;
+}
+
+#aic-link a {
+  color: black;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+#rest-of-page-header {
+  position: absolute;
+  margin-top: 770px;
+  width: 200px;
+  color: white;
+  font-size: 40px;
+  margin-left: 24px;
+}
+
+.carousel-wrapper {
+  position: absolute;
+  margin-top: 830px;
+  width: 99%;
+  overflow: hidden;
+}
+
+.carousel-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  gap: 48px;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.carousel-container::-webkit-scrollbar {
+  visibility: hidden;
+}
+.carousel_album_art {
+  width: 100px;
+  height: 100px;
+}
+
+.carousel-button.left {
+  position: absolute;
+  margin-top: 40px;
+}
+
+.carousel-button.right {
+  position: absolute;
+  right: 0;
+  margin-top: 40px;
+}
+
+.carousel-button {
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+}
+
+.carousel-button * {
+  background-color: #d9d9d9;
+}
+
+.carousel-button:focus {
+  outline: none;
 }

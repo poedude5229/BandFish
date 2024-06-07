@@ -12,7 +12,7 @@ def seed_albums():
         artist_id=7, name="Jar of Flies", album_art="https://aliceinchains.com/app/uploads/2018/08/715jk3EdIVL._SY355_.jpg", type="Album", price=9.99, genre="Rock"
     )
     tripod = AlbumPodcast(
-        artist_id=7, name="Alice in Chains", album_art="https://aliceinchains.com/music/alice-in-chains/", type="Album", price=11.99, genre="Rock"
+        artist_id=7, name="Alice in Chains", album_art="https://bandfishbucket.s3.amazonaws.com/220px-Alice_in_Chains_album.jpg", type="Album", price=11.99, genre="Rock"
     )
     dirt = AlbumPodcast(
         artist_id=7, name="Dirt", album_art="https://aliceinchains.com/app/uploads/2018/08/600x600bf-60.jpg", type="Album", price=11.99, genre="Rock"
@@ -36,7 +36,7 @@ def seed_albums():
         artist_id=5, name="Feel Like That (feat. Bradley Nowell)", album_art="https://i.scdn.co/image/ab67616d0000b27361b7e027205d656d5b14b473", type="Single", price=4.99, genre="Ska"
     )
     rtog = AlbumPodcast(
-        artist_id=6, name="The Roundtable of Gentlemen", album_art="https://bandfishbucket.s3.amazonaws.com/4d7bbe279fb8815809b98003e2dd27aa6a86227e.jpg", type="Podcast", price=0.00, genre="Comedy"
+        artist_id=6, name="The Roundtable of Gentlemen", album_art="https://bandfishbucket.s3.amazonaws.com/Round%2BTable.jpg", type="Podcast", price=0.00, genre="Comedy"
     )
     mmfood = AlbumPodcast(
         artist_id=1, name="MM...FOOD", album_art="https://i.scdn.co/image/ab67616d00001e0252f194d02c39909d1b284799", type="Album", price=9.99, genre="Hip-Hop"
@@ -48,7 +48,7 @@ def seed_albums():
         artist_id=1, name="Madvillainy", album_art="https://i.scdn.co/image/ab67616d0000b27374dc897ea75402db37ef239a", type="Album", price=10.99, genre="Hip-Hop"
     )
     nitw1 = AlbumPodcast(
-        artist_id=9, name="Night in the Woods (Original Soundtrack, Vol. 1) [At the End of Everything]", album_art="https://open.spotify.com/album/0f0tXQKGvvaYRsVZrzr4O8", type="Album", price=14.99, genre="Soundtrack"
+        artist_id=9, name="Night in the Woods (Original Soundtrack, Vol. 1) [At the End of Everything]", album_art="https://bandfishbucket.s3.amazonaws.com/nitw1.jpg", type="Album", price=14.99, genre="Soundtrack"
     )
     nitw2 = AlbumPodcast(
         artist_id=9, name="Night in the Woods (Original Soundtrack, Vol. 2) [Hold onto Anything]", album_art="https://i.scdn.co/image/ab67616d00001e029a283d61746fc5fef104732b", type="Album", price=12.99, genre="Soundtrack"

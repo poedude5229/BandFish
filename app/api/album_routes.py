@@ -14,8 +14,9 @@ def albums_n_podcasts():
         artistdict = album_artist.to_dict()
         album_dict = album.to_dict()
         album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        album_dict['artist-pfp'] = f"{artistdict['profile_pic']}"
         fetched_list.append(album_dict)
-    return {'albums and podcasts': fetched_list}
+    return {'albums_and_podcasts': fetched_list}
 
 @album_routes.route("/new", methods=["POST"])
 @login_required
@@ -46,6 +47,11 @@ def albums():
     fetched_list = []
     for album in fetched3:
         album_dict = album.to_dict()
+        album_artist = User.query.get(album.artist_id)
+        artistdict = album_artist.to_dict()
+        album_dict = album.to_dict()
+        album_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        album_dict['artist-pfp'] = f"{artistdict['profile_pic']}"
         fetched_list.append(album_dict)
     return {'albums': fetched_list}
 
@@ -55,6 +61,10 @@ def podcasts():
     fetched_list = []
     for podcast in fetched4:
         podcast_dict = podcast.to_dict()
+        podcast_artist = User.query.get(podcast.artist_id)
+        artistdict = podcast_artist.to_dict()
+        podcast_dict['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        podcast_dict['artist-pfp'] = f"{artistdict['profile_pic']}"
         fetched_list.append(podcast_dict)
     return {'podcasts': fetched_list}
 
@@ -87,24 +97,26 @@ def album_post():
 def update_album(id):
     selected = AlbumPodcast.query.get(id)
     if not selected:
-        return {"message":"Could not find the Album/Podcast to delete"}, 404
+        return {"message": "Could not find the Album/Podcast to update"}, 404
 
     form = EditAlbumForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         album_art = form.album_art.data
-        album_art.filename = get_unique_filename(album_art.filename)
-        upload = upload_file_to_s3(album_art)
-        album_art_url = upload["url"]
+        if album_art:
+            album_art.filename = get_unique_filename(album_art.filename)
+            upload = upload_file_to_s3(album_art)
+            album_art_url = upload["url"]
+            selected.album_art = album_art_url
 
         selected.name = form.data['name']
-        selected.album_art = album_art_url
         selected.type = form.data['type']
         selected.price = form.data['price']
         selected.genre = form.data['genre']
         db.session.commit()
 
-    return selected.to_dict(), 200
+        return selected.to_dict(), 200
+    return {"errors": form.errors}, 400
 
 @album_routes.route('/<int:id>')
 def fetch_album_details(id):
@@ -114,6 +126,8 @@ def fetch_album_details(id):
         fetched_album = fetched.to_dict()
         reviews = Review.query.filter(Review.item_id == id).all()
         songs = SongEpisode.query.filter(SongEpisode.album_id == id).all()
+        artist = User.query.get(fetched_album['artist_id'])
+        artistdict = artist.to_dict()
         # fetched_album['reviews']
         album_songs = []
         if songs:
@@ -127,10 +141,13 @@ def fetch_album_details(id):
             reviewuser = User.query.get(reviewdict['user_id'])
             # print(reviewuser.to_dict())
             reviewdict['user'] = reviewuser.to_dict()['username']
+            reviewdict['user_pfp'] = reviewuser.to_dict()['profile_pic']
             album_reviews.append(reviewdict)
+        fetched_album['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
+        fetched_album['artist_pfp'] = artistdict['profile_pic']
         fetched_album['reviews'] = album_reviews
         return fetched_album
-    return {"message":"Album/Podcast could not be found or does not exist"}
+    return {"message":"Album/Podcast could not be found or does not exist"}, 404
 
 
 @album_routes.route("/<int:id>", methods=["DELETE"])
@@ -168,6 +185,7 @@ def get_alb_reviews(id):
 @login_required
 def post_alb_review(id):
     form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_review = Review(
             user_id = current_user.id,
@@ -177,7 +195,11 @@ def post_alb_review(id):
         )
         db.session.add(new_review)
         db.session.commit()
-    return new_review.to_dict()
+        return new_review.to_dict()
+    else:
+        errors = form.errors
+        return jsonify({"errors": errors})
+
 
 @album_routes.route("/<int:id>/reviews/<int:reviewId>", methods=["PUT"])
 @login_required
@@ -189,7 +211,7 @@ def update_review(id, reviewId):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         selected_review.title = form.data['title']
-        selected_review.body = form.data['rating']
+        selected_review.body = form.data['body']
         db.session.commit()
     return selected_review.to_dict(), 200
 
@@ -257,12 +279,14 @@ def song_post(id):
 @album_routes.route("/<int:id>/tracks/<int:trackId>", methods=["PUT"])
 @login_required
 def edit_song(id, trackId):
-    selected  = AlbumPodcast.query.get(id)
+    selected = AlbumPodcast.query.get(id)
     if not selected:
-        return {"message":"Album / Podcast couldn't be found or does not exist"}
+        return {"message": "Album / Podcast couldn't be found or does not exist"}
+
     song_to_update = SongEpisode.query.get(trackId)
     form = EditSong()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         if form.source.data:
             source = form.source.data
@@ -270,19 +294,19 @@ def edit_song(id, trackId):
             upload = upload_file_to_s3(source)
             source_url = upload['url']
         else:
-            source_url = song_to_update['source']
+            source_url = song_to_update.source 
 
         if form.data['duration']:
             songdur = form.data['duration']
-        else:
-            songdur = song_to_update['duration']
+            song_to_update.duration = songdur
+
         song_to_update.title = form.data['title']
         song_to_update.source = source_url
-        song_to_update.duration = songdur
 
         db.session.commit()
 
     return song_to_update.to_dict(), 200
+
 
 
 @album_routes.route("/<int:id>/tracks/<int:trackId>", methods=["DELETE"])

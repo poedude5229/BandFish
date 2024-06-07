@@ -1,0 +1,44 @@
+#album-sidebar-container {
+  position: fixed;
+  width: 30%;
+  right: 0;
+  top: 147px;
+  display: flex;
+  flex-direction: column;
+}
+
+.album-sidebar-img {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#album-sidebar-title {
+  color: white;
+  font-size: 40px;
+  margin-top: 16px;
+  width: 70%;
+}
+
+#album-sidebar-title:hover {
+  text-decoration: underline;
+}
+
+#album-sidebar-artist {
+  color: white;
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+#album-sidebar-details-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 10%;
+}
+
+#album-sidebar-artist-pfp {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}

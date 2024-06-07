@@ -29,9 +29,9 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div id="loginModalFormContainer">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form id="loginModalForm" onSubmit={handleSubmit}>
         <label>
           Email
           <input
@@ -41,7 +41,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p style={{textAlign: "center", color: "red", fontSize:"20px"}}>{errors.email}</p>}
         <label>
           Password
           <input
@@ -51,10 +51,38 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p style={{textAlign: "center", color: "red", fontSize:"20px"}}>{errors.password}</p>}
         <button type="submit">Log In</button>
+        <div style={{ display: "flex", width: "300px", alignItems: "center" }}>
+          <hr
+            style={{
+              width: "100px",
+              height: "2px",
+              border: "1px solid black",
+              backgroundColor: "black",
+            }}
+          />
+          <p style={{ fontSize: "24px" }}>or</p>
+          <hr
+            style={{
+              width: "100px",
+              height: "2px",
+              border: "1px solid black",
+              backgroundColor: "black",
+            }}
+          />
+        </div>
+        <button
+          onClick={() =>
+            setEmail("indianajones@bababooey.com", setPassword("raiders333"))
+          }
+          type="submit"
+          style={{ marginBottom: "24px", color: "white", width: "90px" }}
+        >
+          Log in as Demo User
+        </button>
       </form>
-    </>
+    </div>
   );
 }
 

@@ -1,0 +1,38 @@
+#albums-container {
+  position: absolute;
+  top: 147px;
+  padding-left: 24px;
+  width: 65%;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 32px 16px;
+}
+
+.album-container {
+  color: white;
+  height: 267px;
+  width: 215px;
+}
+
+.album-art-albums-page {
+  width: 215px;
+  height: 215px;
+  cursor: pointer;
+}
+
+.albums-page-album-title {
+  font-size: 24px;
+  margin-top: 0px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.albums-page-album-title:hover {
+  text-decoration: underline;
+}
+
+.albums-page-album-artist {
+  font-size: 24px;
+  margin-top: -24px;
+  margin-left: 5px;
+}

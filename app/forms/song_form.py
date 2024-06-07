@@ -11,5 +11,5 @@ class SongForm(FlaskForm):
 
 class EditSong(FlaskForm):
     title = StringField("Change the name of the song: ", validators=[DataRequired()])
-    source = FileField("Pick the wrong mp3? No problem, upload the new one here", validators=[FileRequired(), FileAllowed(["mp3"])])
+    source = FileField("Pick the wrong mp3? No problem, upload the new one here", validators=[FileAllowed(["mp3"])])
     duration = StringField("How long is this track? Format hour:minute:seconds or minute:seconds")

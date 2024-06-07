@@ -8,9 +8,9 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 
 function Navigation() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(true);
-  const ulRef = useRef();
+  // const ulRef = useRef();
   let user = useSelector((state) => state.session.user);
   // let session = useSelector((state) => state.sessionReducer)
   useEffect(() => {
@@ -32,8 +32,9 @@ function Navigation() {
             </NavLink>
           </li>
 
-          <div style={{ position: "relative", right: "75px" }}>
+          <div style={{ position: "relative", right: "75px", backgroundColor: "rgba(0,0,0,0)" }}>
             {/* <ProfileButton /> */}
+            {showMenu == false && <ProfileButton />}
             {showMenu && (
               <ul id="login-list">
                 <>
@@ -59,10 +60,14 @@ function Navigation() {
             <NavLink className="secondNavlist-link">Genres</NavLink>
           </li>
           <li>
-            <NavLink className="secondNavlist-link">Albums</NavLink>
+            <NavLink className="secondNavlist-link" to="/albums">
+              Albums
+            </NavLink>
           </li>
           <li>
-            <NavLink className="secondNavlist-link">Podcasts</NavLink>
+            <NavLink className="secondNavlist-link" to="/podcasts">
+              Podcasts
+            </NavLink>
           </li>
         </ul>
       </div>

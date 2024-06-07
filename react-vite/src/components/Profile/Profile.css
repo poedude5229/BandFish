@@ -1,0 +1,153 @@
+#profile-page-photo-container {
+  top: 128px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  height: 155px;
+  overflow: clip;
+}
+
+#profile-page-banner {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transform: translate(0, -50%);
+}
+
+#profile-page-avatar {
+  position: absolute;
+  z-index: 1;
+  width: 225px;
+  height: 225px;
+  top: 190px;
+  left: 100px;
+}
+
+#sappy-container {
+  z-index: 1;
+  color: white;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  top: 190px;
+  left: 370px;
+  display: flex;
+  flex-direction: column;
+}
+
+#your-username-big {
+  z-index: 1;
+  color: white;
+  font-size: 96px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#profile-page-welcome {
+  color: #8d8d8d;
+  margin-top: -110px;
+  font-size: 40px;
+}
+
+#profile-things-container {
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 450px;
+  left: 100px;
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+}
+
+.profile-section-selector {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 32px;
+  cursor: pointer;
+}
+
+#profile-section-top-divider {
+  width: 96%;
+  position: absolute;
+  top: 480px;
+  left: 2%;
+  background-color: white;
+  height: 2px;
+}
+
+#content-holder {
+  position: absolute;
+  top: 500px;
+  width: 90%;
+  left: 5%;
+  right: 10%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.user-content-album-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-content-album-block-art {
+  width: 185px;
+  height: 185px;
+  cursor: pointer;
+}
+
+.user-content-album-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 185px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  align-items: center;
+
+}
+.user-content-album-buttons-container li {
+    color: rgba(0, 0, 0, 0);
+}
+
+.user-content-album-button {
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  width: 70px;
+  height: 35px;
+  background-color: #8d8d8d;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 500ms;
+  display: flex;
+  align-items: center;
+}
+
+.user-content-album-delete {
+    cursor: pointer;
+  color: white;
+  font-size: 20px;
+  width: 70px;
+  height: 35px;
+  background-color: #8d8d8d;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 500ms;
+  display: flex;
+  align-items: center;
+  margin-top: -16px;
+}
+
+.user-content-album-name {
+  cursor: pointer;
+}
+
+.user-content-album-update:hover {
+  background-color: rgb(70, 70, 70);
+}
+
+.user-content-album-delete:hover {
+  background-color: red;
+  color: black;
+}

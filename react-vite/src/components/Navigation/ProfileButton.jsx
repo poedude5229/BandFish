@@ -1,17 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from 'react-icons/fa';
+// import { FaUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
-import OpenModalMenuItem from "./OpenModalMenuItem";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+// import OpenModalMenuItem from "./OpenModalMenuItem";
+// import LoginFormModal from "../LoginFormModal";
+// import SignupFormModal from "../SignupFormModal";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
-
+  const navigate = useNavigate();
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
@@ -41,34 +42,81 @@ function ProfileButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
+      <button
+        id="pfp-button"
+        style={{ cursor: "pointer", border: "none" }}
+        onClick={toggleMenu}
+      >
+        {user && (
+          <img
+            src={user?.profile_pic}
+            style={{ width: "45px", height: "45px", borderRadius: "50%" }}
+          />
+        )}
       </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
-            <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </>
-          ) : (
-            <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </>
-          )}
-        </ul>
+      {showMenu && user && (
+        <>
+          <ul className={"profile-dropdown"} ref={ulRef}>
+            {user && (
+              <>
+                <li
+                  style={{
+                    height: "50px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <span
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0)",
+                      fontSize: "32px",
+                    }}
+                  >
+                    {user.username}
+                  </span>
+                  <span
+                    style={{ backgroundColor: "rgba(0,0,0,0)" }}
+                    id="profile-button-link"
+                  >
+                    <NavLink
+                      to="/profile"
+                      style={{
+                        color: "#8d8d8d",
+                        backgroundColor: "rgba(0,0,0,0)",
+                        textDecoration: "none",
+                      }}
+                      onClick={closeMenu}
+                    >
+                      profile
+                    </NavLink>
+                  </span>
+                </li>
+                <li>
+                  <NavLink
+                    style={{
+                      backgroundColor: "rgba(0,0,0,0)",
+                      textDecoration: "none",
+                      color: "black",
+                      fontSize: "28px",
+                    }}
+                    to="/new"
+                  >
+                    upload media
+                  </NavLink>
+                </li>
+                <li>
+                  <button
+                    style={{ fontSize: "28px" }}
+                    id="logout-button"
+                    onClick={logout}
+                  >
+                    log out
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
+        </>
       )}
     </>
   );

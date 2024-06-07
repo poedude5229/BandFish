@@ -1,0 +1,356 @@
+#album-details-page-container {
+  position: absolute;
+  top: 147px;
+  padding-left: 24px;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+}
+
+#album-details-page-name {
+  color: white;
+  font-size: 56px;
+  width: 400px;
+  display: flex;
+  gap: 18px;
+}
+#album-details-page-name svg {
+  margin-top: -3px;
+}
+
+#album-details-page-attribution {
+  color: #8d8d8d;
+  display: flex;
+  font-size: 36px;
+  gap: 8px;
+  margin-top: -30px;
+}
+
+#album-details-page-author {
+  color: #962c50;
+}
+
+#bandfish-filler-text {
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+  width: 444px;
+  margin-top: 32px;
+}
+
+#big-track-title {
+  color: #962c50;
+  font-size: 32px;
+  margin-bottom: -14px;
+  margin-top: 0px;
+}
+
+#big-audio {
+  background-color: #f1f3f4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  width: 420px;
+}
+.downloadHider {
+  background-color: #f1f3f4;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 380px;
+}
+
+#big-audio audio {
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#e-commerce-start {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+#e-commerce-start * {
+  font-size: 36px;
+  color: #962c50;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#album-details-page-tracklist {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+#album-details-page-tracklist label {
+  display: flex;
+  flex-direction: column;
+  color: #962c50;
+  justify-content: center;
+  gap: 8px;
+  font-size: 24px;
+}
+
+.downloadBlockerSmall {
+  background-color: #f1f3f4;
+  position: absolute;
+  z-index: 1;
+  height: 40px;
+  width: 40px;
+  margin-left: 240px;
+}
+
+#album-details-page-sidebar {
+  position: absolute;
+  right: 15%;
+  top: 147px;
+  width: 30%;
+}
+
+#album-details-page-sidebar-photo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24px;
+}
+
+#album-details-page-sidebar-art {
+  width: 400px;
+  height: 400px;
+}
+
+#album-details-page-sidebar-artist-pfp {
+  width: 105px;
+  height: 105px;
+}
+
+#album-reviews-container {
+  color: white;
+  position: absolute;
+  top: 470px;
+}
+
+#managerial-component {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  position: absolute;
+  left: 480px;
+  top: 30px;
+  width: 210px;
+  max-width: 240px;
+  height: 150px;
+  gap: 10px;
+}
+
+#managerial-component button {
+  width: 100px;
+  font-size: 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 25px;
+}
+#managerial-component li {
+  height: 25px;
+}
+
+.managerial-update {
+  background-color: #8d8d8d;
+  transition-duration: 500ms;
+}
+.managerial-delete {
+  background-color: #8d8d8d;
+  transition-duration: 500ms;
+}
+.track-add {
+  background-color: #8d8d8d;
+  transition-duration: 500ms;
+  position: absolute;
+  top: 35px;
+  margin-left: 25%;
+}
+.track-add:hover {
+  background-color: white !important;
+}
+
+.managerial-update:hover {
+  color: black;
+  background-color: rgb(70, 70, 70);
+}
+
+.managerial-delete:hover {
+  color: black;
+  background-color: red;
+}
+
+#reviews-list {
+  list-style: none;
+  margin-left: -30px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  gap: 35px;
+}
+
+.album-review {
+  display: flex;
+  margin-left: 30px;
+}
+
+.review-pfp {
+  width: 40px;
+  height: 40px;
+}
+
+.album-review-body {
+  display: flex;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  margin-left: 52px;
+  margin-top: 20px;
+  width: 250px;
+  font-size: 20px;
+}
+
+#album-details-page-sidebar-review-post {
+  /* background-color: #8d8d8d; */
+  position: absolute;
+  top: 410px;
+  list-style: none;
+}
+
+#album-details-page-sidebar-review-post * {
+  background-color: #8d8d8d;
+  height: 50px;
+  width: 100px;
+  font-size: 28px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition-duration: 400ms;
+}
+
+#album-details-page-sidebar-review-post *:hover {
+  background-color: white;
+}
+
+.delete-dialog-trigger-button {
+  background-color: #8d8d8d;
+  font-size: 28px;
+  width: 120px;
+  margin-top: -24px;
+  cursor: pointer;
+  transition-duration: 500ms;
+  border: none;
+  border-radius: 5px;
+}
+
+.delete-dialog-trigger-button:hover {
+  background-color: red;
+}
+
+.update-review-button {
+  background-color: #8d8d8d;
+  font-size: 28px;
+  width: 120px;
+  margin-top: -24px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition-duration: 500ms;
+  border: none;
+  border-radius: 5px;
+}
+
+/* .update-review-button:hover {
+  background-color: rgb(70, 70, 70) !important;
+} */
+
+.delete-review-modal {
+  background-color: #8d8d8d;
+  border-radius: 5px !important;
+}
+
+.delete-modal-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-modal-container h1 {
+  font-size: 50px;
+  width: 500px;
+  margin-left: 12px;
+}
+
+.delete-review-button-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: 24px;
+}
+
+.delete-review-button-container button {
+  height: 50px;
+  width: 100px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#confirm-delete-review-button {
+  background-color: white !important;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 500ms;
+}
+
+#cancel-delete-review-button {
+  background-color: white !important;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 500ms;
+}
+
+#confirm-delete-review-button:hover {
+  background-color: red !important;
+}
+
+#cancel-delete-review-button:hover {
+  background-color: rgb(70, 70, 70) !important;
+  color: white !important;
+}
+
+#album-track-item li {
+  background-color: rgba(0, 0, 0, 0);
+  margin-top: 12px;
+}
+
+#album-track-item li button {
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition-duration: 500ms;
+}
+
+.del-tracko:hover {
+  background-color: red !important;
+}
+
+.update-tracko:hover {
+  background-color: rgb(70, 70, 70) !important;
+  color: white;
+}

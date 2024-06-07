@@ -1,0 +1,65 @@
+#albumFormContainer {
+  position: absolute;
+  top: 120px;
+  margin-left: 12px;
+  padding-bottom: 120px;
+}
+
+#albumFormContainer h1 {
+  font-size: 64px;
+  color: white;
+}
+
+#albumFormContainer hr {
+  height: 10px;
+  color: white;
+  background-color: white;
+  margin-top: -48px;
+  width: 800px;
+}
+
+#albumForm {
+  margin-left: 300px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 18px;
+  width: 400px;
+  padding-bottom: 100px;
+}
+
+#albumForm label {
+  font-size: 36px;
+  display: flex;
+  flex-direction: column;
+}
+#albumForm input {
+  background-color: #d9d9d9;
+  width: 365px;
+  height: 33px;
+  border-radius: 5px;
+  font-size: 36px;
+}
+
+#albumForm select {
+  background-color: #d9d9d9;
+  width: 365px;
+  height: 33px;
+  border-radius: 5px;
+  font-size: 36px;
+}
+#albumForm option {
+  background-color: #d9d9d9;
+}
+
+#albumForm #album-form-submit-button {
+  width: 270px;
+  height: 70px;
+  border-radius: 5px;
+  position: absolute;
+  top: 600px;
+  left: 175px;
+  background-color: #d9d9d9;
+  font-size: 40px;
+  cursor: pointer;
+}
