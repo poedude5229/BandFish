@@ -13,7 +13,11 @@ import {
   UpdateModal,
 } from "./ReviewModals.jsx";
 import "./Album.css";
-import { AddTrackModal, DeleteTrackModal } from "../AlbumForm/AddTrackForm.jsx";
+import {
+  AddTrackModal,
+  DeleteTrackModal,
+  UpdateTrack,
+} from "../AlbumForm/AddTrackForm.jsx";
 
 export function AlbumDetails() {
   const { albumId } = useParams();
@@ -129,22 +133,49 @@ export function AlbumDetails() {
                       controls
                     ></audio>
                   </span>
-                  <OpenModalMenuItem
-                    modalComponent={
-                      <DeleteTrackModal
-                        albumId={betterAlbum?.id}
-                        trackId={track?.id}
+                  {currentUser && currentUser?.id == betterAlbum?.artist_id && (
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <OpenModalMenuItem
+                        modalComponent={
+                          <DeleteTrackModal
+                            albumId={betterAlbum?.id}
+                            trackId={track?.id}
+                          />
+                        }
+                        itemText={
+                          <button
+                            className="del-tracko"
+                            style={{
+                              backgroundColor: "#8d8d8d",
+                              fontSize: "24px",
+                            }}
+                          >
+                            Delete Track
+                          </button>
+                        }
                       />
-                    }
-                    itemText={
-                      <button
-                        className="del-tracko"
-                        style={{ backgroundColor: "#8d8d8d", fontSize: "24px" }}
-                      >
-                        Delete Track
-                      </button>
-                    }
-                  />
+                      <OpenModalMenuItem
+                        modalComponent={
+                          <UpdateTrack
+                            trackId={track?.id}
+                            albumid={betterAlbum?.id}
+                            track={track}
+                          />
+                        }
+                        itemText={
+                          <button
+                            className="del-tracko update-tracko"
+                            style={{
+                              backgroundColor: "#8d8d8d",
+                              fontSize: "24px",
+                            }}
+                          >
+                            Update Track
+                          </button>
+                        }
+                      />
+                    </div>
+                  )}
                 </div>
               </>
             ))}

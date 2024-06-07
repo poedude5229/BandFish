@@ -349,3 +349,8 @@
 .del-tracko:hover {
   background-color: red !important;
 }
+
+.update-tracko:hover {
+  background-color: rgb(70, 70, 70) !important;
+  color: white;
+}

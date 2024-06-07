@@ -296,11 +296,11 @@ def edit_song(id, trackId):
 
         if form.data['duration']:
             songdur = form.data['duration']
-        else:
-            songdur = song_to_update['duration']
+            song_to_update.duration = songdur
+            
         song_to_update.title = form.data['title']
         song_to_update.source = source_url
-        song_to_update.duration = songdur
+
 
         db.session.commit()
 

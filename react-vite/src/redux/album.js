@@ -236,7 +236,7 @@ export const deleteTrackForAlbumThunk =
     });
     const data = await res.json();
     if (!res.ok) return { errors: data };
-    await dispatch(deleteAlbumThunk(trackId));
+    await dispatch(deleteTrackForAlbum(trackId));
   };
 
 function albumReducer(state = {}, action) {

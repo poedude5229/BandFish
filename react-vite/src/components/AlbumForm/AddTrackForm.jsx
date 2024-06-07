@@ -31,7 +31,7 @@ export function AddTrackModal({ albumId }) {
     } else {
       const validFileTypes = ["audio/mpeg", "audio/mp3"];
       if (!validFileTypes.includes(source.type)) {
-        validationErrors.push("Album art must be an mp3 file.");
+        validationErrors.push("Track must be an mp3 file.");
       }
     }
     return validationErrors;
@@ -85,7 +85,7 @@ export function AddTrackModal({ albumId }) {
         <label
           style={{ fontSize: "24px", display: "flex", flexDirection: "column" }}
         >
-          What's the name of this track?
+          What&apos;s the name of this track?
           <input
             type="text"
             value={title}
@@ -93,6 +93,8 @@ export function AddTrackModal({ albumId }) {
           />
         </label>
         <label>
+          {" "}
+          Choose file
           <input type="file" onChange={(e) => setSource(e.target.files[0])} />
         </label>
         <button type="submit">Add Track</button>
@@ -134,5 +136,109 @@ export function DeleteTrackModal({ albumId, trackId }) {
         </div>
       </div>
     </>
+  );
+}
+
+export function UpdateTrack({ trackId, albumid, track }) {
+  const { closeModal } = useModal();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState(track?.title || "");
+  const [source, setSource] = useState(null);
+  const [submitted, setHasSubmitted] = useState(false);
+  const [errorArr, setErrorArr] = useState([]);
+  useEffect(() => {
+    if (track) {
+      setSource(track?.source);
+    }
+  }, [track]);
+
+  const validateForm = () => {
+    const validationErrors = [];
+    if (!title) {
+      validationErrors.push(
+        "Title is required for song and must be less than 256 characters"
+      );
+    }
+    if (!source) {
+      validationErrors.push("File for track is required");
+    } else {
+      const validFileTypes = ["audio/mpeg", "audio/mp3"];
+      if (!validFileTypes.includes(source.type)) {
+        validationErrors.push("Track must be an mp3 file");
+      }
+    }
+    return validationErrors;
+  };
+
+  const updateTrackEvent = async (e) => {
+    e.preventDefault();
+    setHasSubmitted(true);
+    setErrorArr([]);
+
+    const validationErrors = validateForm();
+    if (validationErrors.length > 0) {
+      setErrorArr(validationErrors);
+      setHasSubmitted(false);
+      return;
+    }
+    const formData = new FormData();
+    if (source) {
+      formData.append("source", source);
+    }
+    formData.append("title", title);
+
+    await dispatch(updateTrackForAlbumThunk(albumid, formData, trackId))
+      .then(() => {
+        setHasSubmitted(true);
+        dispatch(loadSingleAlbumThunk(albumid));
+        navigate(`/albums/${albumid}`);
+        closeModal();
+      })
+      .catch((err) => {
+        setErrorArr([err.message]);
+        setHasSubmitted(false);
+      });
+  };
+  return (
+    <div id="addTrackFormContainer" style={{ width: "500px" }}>
+      <h1 style={{ fontSize: "50px", marginLeft: "24px" }}>Edit track</h1>
+      <hr
+        style={{
+          height: "4px",
+          backgroundColor: "black",
+          border: "none",
+          width: "470px",
+          marginTop: "-40px",
+        }}
+      />
+      <form
+        className="trackForm"
+        onSubmit={updateTrackEvent}
+        style={{ display: "flex", flexDirection: "column" }}
+        encType="multipart/form-data"
+      >
+        <label
+          style={{ fontSize: "24px", display: "flex", flexDirection: "column" }}
+        >
+          What&apos;s the name of this track?
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </label>
+        <label>
+          Choose file
+          <input type="file" onChange={(e) => setSource(e.target.files[0])} />
+        </label>
+        <button type="submit">
+          {submitted
+            ? "Submitting.... Please wait for this pop up to close"
+            : "Submit edit"}
+        </button>
+      </form>
+    </div>
   );
 }
