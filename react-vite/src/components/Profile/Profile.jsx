@@ -17,7 +17,7 @@ function Profile() {
   const ownedAlbums = allAlbums?.filter(
     (album) => album?.artist_id == currentUser?.id
   );
-  console.log(ownedAlbums);
+  // console.log(ownedAlbums);
 
   // const [collectionActive, setCollectionActive] = useState(false);
   const [wishlistActive, setWishlistActive] = useState(false);

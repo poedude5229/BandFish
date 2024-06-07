@@ -90,7 +90,7 @@ export const postReviewForAlbumThunk =
       body: review,
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     if (!res.ok) return { errors: data };
     await dispatch(createReview(data));
     return data;
