@@ -146,13 +146,14 @@ export function UpdateTrack({ trackId, albumid, track }) {
 
   const [title, setTitle] = useState(track?.title || "");
   const [source, setSource] = useState(null);
-  const [submitted, setHasSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [errorArr, setErrorArr] = useState([]);
+
   useEffect(() => {
-    if (track) {
-      setSource(track?.source);
+    if (!source) {
+      setSource(track.source);
     }
-  }, [track]);
+  }, [track, source]);
 
   const validateForm = () => {
     const validationErrors = [];
@@ -161,48 +162,42 @@ export function UpdateTrack({ trackId, albumid, track }) {
         "Title is required for song and must be less than 256 characters"
       );
     }
-    if (!source) {
-      validationErrors.push("File for track is required");
-    } else {
-      const validFileTypes = ["audio/mpeg", "audio/mp3"];
-      if (!validFileTypes.includes(source.type)) {
-        validationErrors.push("Track must be an mp3 file");
-      }
-    }
     return validationErrors;
   };
 
   const updateTrackEvent = async (e) => {
     e.preventDefault();
-    setHasSubmitted(true);
+    setSubmitted(true);
     setErrorArr([]);
 
     const validationErrors = validateForm();
     if (validationErrors.length > 0) {
       setErrorArr(validationErrors);
-      setHasSubmitted(false);
+      setSubmitted(false);
       return;
     }
+
     const formData = new FormData();
+    formData.append("title", title);
     if (source) {
       formData.append("source", source);
     }
-    formData.append("title", title);
 
     await dispatch(updateTrackForAlbumThunk(albumid, formData, trackId))
       .then(() => {
-        setHasSubmitted(true);
+        setSubmitted(false);
         dispatch(loadSingleAlbumThunk(albumid));
         navigate(`/albums/${albumid}`);
         closeModal();
       })
       .catch((err) => {
         setErrorArr([err.message]);
-        setHasSubmitted(false);
+        setSubmitted(false);
       });
   };
+
   return (
-    <div id="addTrackFormContainer" style={{ width: "500px" }}>
+    <div id="updateTrackFormContainer" style={{ width: "500px" }}>
       <h1 style={{ fontSize: "50px", marginLeft: "24px" }}>Edit track</h1>
       <hr
         style={{
@@ -222,7 +217,7 @@ export function UpdateTrack({ trackId, albumid, track }) {
         <label
           style={{ fontSize: "24px", display: "flex", flexDirection: "column" }}
         >
-          What&apos;s the name of this track?
+          What's the name of this track?
           <input
             type="text"
             value={title}

@@ -279,12 +279,14 @@ def song_post(id):
 @album_routes.route("/<int:id>/tracks/<int:trackId>", methods=["PUT"])
 @login_required
 def edit_song(id, trackId):
-    selected  = AlbumPodcast.query.get(id)
+    selected = AlbumPodcast.query.get(id)
     if not selected:
-        return {"message":"Album / Podcast couldn't be found or does not exist"}
+        return {"message": "Album / Podcast couldn't be found or does not exist"}
+
     song_to_update = SongEpisode.query.get(trackId)
     form = EditSong()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         if form.source.data:
             source = form.source.data
@@ -292,19 +294,19 @@ def edit_song(id, trackId):
             upload = upload_file_to_s3(source)
             source_url = upload['url']
         else:
-            source_url = song_to_update['source']
+            source_url = song_to_update.source 
 
         if form.data['duration']:
             songdur = form.data['duration']
             song_to_update.duration = songdur
-            
+
         song_to_update.title = form.data['title']
         song_to_update.source = source_url
-
 
         db.session.commit()
 
     return song_to_update.to_dict(), 200
+
 
 
 @album_routes.route("/<int:id>/tracks/<int:trackId>", methods=["DELETE"])
