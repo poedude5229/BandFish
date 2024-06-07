@@ -13,7 +13,7 @@ import {
   UpdateModal,
 } from "./ReviewModals.jsx";
 import "./Album.css";
-import { AddTrackModal } from "../AlbumForm/AddTrackForm.jsx";
+import { AddTrackModal, DeleteTrackModal } from "../AlbumForm/AddTrackForm.jsx";
 
 export function AlbumDetails() {
   const { albumId } = useParams();
@@ -102,7 +102,7 @@ export function AlbumDetails() {
           {betterAlbum?.tracks?.length > 0 &&
             betterAlbum?.tracks?.map((track) => (
               <>
-                <div>
+                <div id="album-track-item">
                   <label>{track?.title}</label>
                   <span
                     style={{
@@ -129,6 +129,22 @@ export function AlbumDetails() {
                       controls
                     ></audio>
                   </span>
+                  <OpenModalMenuItem
+                    modalComponent={
+                      <DeleteTrackModal
+                        albumId={betterAlbum?.id}
+                        trackId={track?.id}
+                      />
+                    }
+                    itemText={
+                      <button
+                        className="del-tracko"
+                        style={{ backgroundColor: "#8d8d8d", fontSize: "24px" }}
+                      >
+                        Delete Track
+                      </button>
+                    }
+                  />
                 </div>
               </>
             ))}

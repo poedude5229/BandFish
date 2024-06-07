@@ -151,10 +151,10 @@
   position: absolute;
   left: 480px;
   top: 30px;
-  width: 240px;
+  width: 210px;
   max-width: 240px;
   height: 150px;
-  gap: 24px;
+  gap: 10px;
 }
 
 #managerial-component button {
@@ -180,7 +180,12 @@
 .track-add {
   background-color: #8d8d8d;
   transition-duration: 500ms;
-  margin-top: -40px;
+  position: absolute;
+  top: 35px;
+  margin-left: 25%;
+}
+.track-add:hover {
+  background-color: white !important;
 }
 
 .managerial-update:hover {
@@ -327,4 +332,20 @@
 #cancel-delete-review-button:hover {
   background-color: rgb(70, 70, 70) !important;
   color: white !important;
+}
+
+#album-track-item li {
+  background-color: rgba(0, 0, 0, 0);
+  margin-top: 12px;
+}
+
+#album-track-item li button {
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition-duration: 500ms;
+}
+
+.del-tracko:hover {
+  background-color: red !important;
 }

@@ -100,3 +100,39 @@ export function AddTrackModal({ albumId }) {
     </div>
   );
 }
+
+export function DeleteTrackModal({ albumId, trackId }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { closeModal } = useModal();
+
+  const deleteTrackEvent = async (e) => {
+    e.preventDefault();
+
+    await dispatch(deleteTrackForAlbumThunk(albumId, trackId));
+    await dispatch(loadSingleAlbumThunk(albumId)).then(
+      navigate(`/albums/${albumId}`)
+    );
+    closeModal();
+  };
+
+  return (
+    <>
+      <div className="delete-track-modal">
+        <div className="delete-track-modal-container">
+          <h1 id="track-delete-confirm">
+            Would you like to delete this track? This cannot be undone.
+          </h1>
+          <div className="delete-track-button-container">
+            <button id="confirm-delete-track-button" onClick={deleteTrackEvent}>
+              Yes {"(Delete Track)"}
+            </button>
+            <button id="cancel-delete-track-button" onClick={closeModal}>
+              No {"(Keep Track)"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
