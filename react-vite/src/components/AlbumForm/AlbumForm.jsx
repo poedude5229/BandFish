@@ -10,6 +10,7 @@ const AlbumCreation = () => {
   const currentUser = useSelector((state) => state.session.user);
   const [name, setName] = useState("");
   const [albumArt, setAlbumArt] = useState(null);
+  const [albumArtPreview, setAlbumArtPreview] = useState(null);
   const [type, setType] = useState("Album");
   const [price, setPrice] = useState("1.00");
   const [genre, setGenre] = useState("Rock");
@@ -19,6 +20,18 @@ const AlbumCreation = () => {
   useEffect(() => {
     if (!currentUser) navigate("/");
   }, [navigate, currentUser]);
+
+  useEffect(() => {
+    if (albumArt) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAlbumArtPreview(reader.result);
+      };
+      reader.readAsDataURL(albumArt);
+    } else {
+      setAlbumArtPreview(null);
+    }
+  }, [albumArt]);
 
   const validateForm = () => {
     const validationErrors = [];
@@ -114,14 +127,29 @@ const AlbumCreation = () => {
             placeholder="Title"
           />
         </label>
-        <label className="album-art-upload">
-          Upload image for media{" "}
-          <input
-            type="file"
-            className="filetypeAlbumArt"
-            onChange={(e) => setAlbumArt(e.target.files[0])}
-          />
-        </label>
+        <div id="container-for-ablum-art-upload">
+          <label className="album-art-upload">
+            Upload image for media{" "}
+            <input
+              type="file"
+              className="filetypeAlbumArt"
+              onChange={(e) => setAlbumArt(e.target.files[0])}
+            />
+            {albumArtPreview && (
+              <div
+                onClick={() => setAlbumArt(null)}
+                style={{ marginLeft: "auto", marginRight: "auto" }}
+              >
+                <span id="remove-album-art">X</span>
+                <img
+                  src={albumArtPreview}
+                  alt="Album Art Preview"
+                  className="album-art-preview"
+                />
+              </div>
+            )}
+          </label>
+        </div>
         <label>
           Is it an album or podcast?
           <select

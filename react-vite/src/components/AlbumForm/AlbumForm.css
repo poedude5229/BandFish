@@ -63,3 +63,38 @@
   font-size: 40px;
   cursor: pointer;
 }
+
+#container-for-ablum-art-upload {
+  position: absolute;
+  left: 700px;
+}
+#container-for-ablum-art-upload input {
+  font-size: 24px;
+  color: black;
+  cursor: pointer;
+}
+
+.album-art-preview {
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  border-radius: 5px;
+}
+
+#remove-album-art {
+  position: absolute;
+  background-color: #d9d9d9;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-radius: 50%;
+  left: 60px;
+  top: 80px;
+  font-size: 32px;
+  cursor: pointer;
+}
