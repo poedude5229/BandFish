@@ -105,3 +105,8 @@ input[type="file"] {
   border-radius: 5px;
   align-self: center;
 }
+
+.signup-title {
+  font-size: 48px;
+  margin-left: 12px;
+}
