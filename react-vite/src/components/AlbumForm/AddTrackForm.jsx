@@ -44,7 +44,7 @@ export function AddTrackModal({ albumId }) {
     const validationErrors = validateForm();
     if (validationErrors.length > 0) {
       setErrorArr(validationErrors);
-      setHasSubmitted(false);
+      setHasSubmitted(true);
       return;
     }
     const formData = new FormData();
@@ -83,21 +83,78 @@ export function AddTrackModal({ albumId }) {
         encType="multipart/form-data"
       >
         <label
-          style={{ fontSize: "24px", display: "flex", flexDirection: "column" }}
+          style={{
+            fontSize: "36px",
+            display: "flex",
+            flexDirection: "column",
+            marginLeft: "12px",
+          }}
         >
           What&apos;s the name of this track?
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            style={{
+              backgroundColor: "white",
+              border: "none",
+              borderRadius: "5px",
+              fontSize: "24px",
+              width: "470px",
+              paddingLeft: "12px",
+            }}
           />
         </label>
-        <label>
+        <label
+          style={{
+            fontSize: "30px",
+            marginLeft: "12px",
+            marginTop: "24px",
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "24px",
+          }}
+        >
           {" "}
           Choose file
-          <input type="file" onChange={(e) => setSource(e.target.files[0])} />
+          <input
+            style={{ fontSize: "24px" }}
+            type="file"
+            onChange={(e) => setSource(e.target.files[0])}
+          />
         </label>
-        <button type="submit">Add Track</button>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: "#01001a",
+            height: "70px",
+            width: "120px",
+            border: "none",
+            borderRadius: "5px",
+            color: "white",
+            fontSize: "32px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "12px",
+            cursor: "pointer",
+            transitionDuration: "500ms",
+          }}
+          id="addtrackSubmitButton"
+        >
+          {submitted ? "Submitting.." : "Add Track"}
+        </button>
+        {submitted && (
+          <p
+            style={{
+              marginLeft: "auto",
+              marginRight: "auto",
+              fontSize: "32px",
+              marginBottom: "12px",
+            }}
+          >
+            Please wait for this pop up to close
+          </p>
+        )}
       </form>
     </div>
   );
@@ -215,24 +272,76 @@ export function UpdateTrack({ trackId, albumid, track }) {
         encType="multipart/form-data"
       >
         <label
-          style={{ fontSize: "24px", display: "flex", flexDirection: "column" }}
+          style={{
+            fontSize: "36px",
+            display: "flex",
+            flexDirection: "column",
+            marginLeft: "12px",
+          }}
         >
           What's the name of this track?
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            style={{
+              backgroundColor: "white",
+              border: "none",
+              borderRadius: "5px",
+              fontSize: "24px",
+              width: "470px",
+              paddingLeft: "12px",
+            }}
           />
         </label>
-        <label>
+        <label
+          style={{
+            fontSize: "30px",
+            marginLeft: "12px",
+            marginTop: "24px",
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "24px",
+          }}
+        >
           Choose file
-          <input type="file" onChange={(e) => setSource(e.target.files[0])} />
+          <input
+            style={{ fontSize: "24px" }}
+            type="file"
+            onChange={(e) => setSource(e.target.files[0])}
+          />
         </label>
-        <button type="submit">
-          {submitted
-            ? "Submitting.... Please wait for this pop up to close"
-            : "Submit edit"}
+        <button
+          type="submit"
+          id="updatetrackSubmitButton"
+          style={{
+            backgroundColor: "#01001a",
+            height: "70px",
+            width: "120px",
+            border: "none",
+            borderRadius: "5px",
+            color: "white",
+            fontSize: "32px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "12px",
+            cursor: "pointer",
+            transitionDuration: "500ms",
+          }}
+        >
+          {submitted ? "Submitting...." : "Submit edit"}
         </button>
+        {submitted && (
+          <p
+            style={{
+              marginLeft: "12px",
+              fontSize: "32px",
+              marginBottom: "12px",
+            }}
+          >
+            Please wait for this pop up to close
+          </p>
+        )}
       </form>
     </div>
   );
