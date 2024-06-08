@@ -98,3 +98,11 @@
   font-size: 32px;
   cursor: pointer;
 }
+
+#addtrackSubmitButton:hover {
+  background-color: green !important;
+}
+
+#updatetrackSubmitButton:hover {
+  background-color: #962c50 !important;
+}
