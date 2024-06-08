@@ -39,7 +39,7 @@ function SignupFormModal() {
       );
     }
     if (password.length < 8) {
-      errorArr.push("Please provide a password longer than 8 characters.");
+      errorArr.push("Please provide a password at least 8 characters long.");
     }
     setErrValids(errorArr);
   }, [firstname, lastname, email, username, password]);

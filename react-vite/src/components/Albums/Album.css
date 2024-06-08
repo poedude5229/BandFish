@@ -225,6 +225,7 @@
   margin-top: 20px;
   width: 250px;
   font-size: 20px;
+  word-break: break-word;
 }
 
 #album-details-page-sidebar-review-post {
