@@ -14,11 +14,14 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const [profileBanner, setProfileBanner] = useState(null);
+  const [profilePicPreview, setProfilePicPreview] = useState(null);
+  const [profileBannerPreview, setProfileBannerPreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [errValids, setErrValids] = useState([]);
   const { closeModal } = useModal();
+
   useEffect(() => {
-    let errorArr = [];
+    const errorArr = [];
     if (firstname.length < 4 || firstname.length > 40) {
       errorArr.push("First name must be between 4 and 40 characters");
     }
@@ -44,6 +47,30 @@ function SignupFormModal() {
     setErrValids(errorArr);
   }, [firstname, lastname, email, username, password]);
 
+  useEffect(() => {
+    if (profilePic) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePicPreview(reader.result);
+      };
+      reader.readAsDataURL(profilePic);
+    } else {
+      setProfilePicPreview(null);
+    }
+  }, [profilePic]);
+
+  useEffect(() => {
+    if (profileBanner) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileBannerPreview(reader.result);
+      };
+      reader.readAsDataURL(profileBanner);
+    } else {
+      setProfileBannerPreview(null);
+    }
+  }, [profileBanner]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -51,9 +78,6 @@ function SignupFormModal() {
         confirmPassword:
           "Confirm Password field must be the same as the Password field",
       });
-
-      // errorObj["confirmPassword"] =
-      //   "Confirm Password field must be the same as the Password field";
     }
 
     const formData = new FormData();
@@ -79,27 +103,11 @@ function SignupFormModal() {
   };
 
   return (
-    <div
-      style={{
-        zIndex: "1000",
-        backgroundColor: "#d9d9d9",
-        borderRadius: "5%",
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "60px",
-          marginLeft: "12px",
-          marginTop: "0px",
-          backgroundColor: "rgba(0,0,0,0)",
-        }}
-      >
-        Sign Up
-      </h1>
+    <div className="signup-modal">
+      <h1 className="signup-title">Sign Up</h1>
       {errors.server && <p className="errValids-message">{errors.server}</p>}
       <form
         id="signupFormModal"
-        style={{ display: "flex", flexDirection: "column" }}
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
@@ -112,12 +120,11 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errValids.length > 0 &&
-          errValids.find((error) => error.includes("First")) && (
-            <p className="errValids-message">
-              {errValids.find((error) => error.includes("First"))}
-            </p>
-          )}
+        {errValids.find((error) => error.includes("First")) && (
+          <p className="errValids-message">
+            {errValids.find((error) => error.includes("First"))}
+          </p>
+        )}
         <label>
           Last Name
           <input
@@ -127,28 +134,26 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errValids.length > 0 &&
-          errValids.find((error) => error.includes("Last")) && (
-            <p className="errValids-message">
-              {errValids.find((error) => error.includes("Last"))}
-            </p>
-          )}
+        {errValids.find((error) => error.includes("Last")) && (
+          <p className="errValids-message">
+            {errValids.find((error) => error.includes("Last"))}
+          </p>
+        )}
         <label>
           Email
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
         {errors.email && <p className="errValids-message">{errors.email}</p>}
-        {errValids.length > 0 &&
-          errValids.find((error) => error.includes("mail")) && (
-            <p className="errValids-message">
-              {errValids.find((error) => error.includes("mail"))}
-            </p>
-          )}
+        {errValids.find((error) => error.includes("mail")) && (
+          <p className="errValids-message">
+            {errValids.find((error) => error.includes("mail"))}
+          </p>
+        )}
         <label>
           Username
           <input
@@ -161,12 +166,11 @@ function SignupFormModal() {
         {errors.username && (
           <p className="errValids-message">{errors.username}</p>
         )}
-        {errValids.length > 0 &&
-          errValids.find((error) => error.includes("ser")) && (
-            <p className="errValids-message">
-              {errValids.find((error) => error.includes("ser"))}
-            </p>
-          )}
+        {errValids.find((error) => error.includes("ser")) && (
+          <p className="errValids-message">
+            {errValids.find((error) => error.includes("ser"))}
+          </p>
+        )}
         <label>
           Password
           <input
@@ -176,53 +180,63 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        {errValids.length > 0 &&
-          errValids.find((error) => error.includes("ass")) && (
-            <p className="errValids-message">
-              {errValids.find((err) => err.includes("ass"))}
-            </p>
-          )}
-        <label>
+        {errors.password && (
+          <p className="errValids-message">{errors.password}</p>
+        )}
+        {errValids.find((error) => error.includes("ass")) && (
+          <p className="errValids-message">
+            {errValids.find((err) => err.includes("ass"))}
+          </p>
+        )}
+        <label style={{ marginBottom: "12px" }}>
           Confirm Password
           <input
             type="password"
-            style={{ marginBottom: "12px" }}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && (
+          <p className="errValids-message">{errors.confirmPassword}</p>
+        )}
         <div id="container-for-profile-uploads">
           <label className="custom-file-upload">
-            Profile Picture
+            Profile Picture {"*\n(REQUIRED!)"}
             <input
               className="filetypeSignup"
-              style={{ backgroundColor: "#d9d9d9" }}
               type="file"
               onChange={(e) => setProfilePic(e.target.files[0])}
               required
             />
+            {profilePicPreview && (
+              <img
+                src={profilePicPreview}
+                alt="Profile Preview"
+                className="image-preview"
+              />
+            )}
           </label>
           <label className="custom-file-upload">
             Profile Banner
             <input
               className="filetypeSignup"
-              style={{ backgroundColor: "#d9d9d9" }}
               type="file"
               onChange={(e) => setProfileBanner(e.target.files[0])}
             />
+            {profileBannerPreview && (
+              <img
+                src={profileBannerPreview}
+                alt="Banner Preview"
+                className="image-preview"
+              />
+            )}
           </label>
         </div>
         <button
           type="submit"
-          disabled={errValids.length}
-          style={
-            errValids.length > 0
-              ? { cursor: "not-allowed" }
-              : { cursor: "pointer" }
-          }
+          disabled={errValids.length > 0}
+          className="submit-button"
         >
           Sign Up
         </button>
