@@ -59,3 +59,40 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.delete-album-modal {
+  width: 500px;
+}
+
+.delete-album-modal h1 {
+  font-size: 50px;
+  margin-left: 12px;
+}
+
+.delete-album-modal p {
+  font-size: 40px;
+  margin-left: 12px;
+  margin-top: -24px;
+}
+
+.delete-album-button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 24px;
+}
+
+.delete-album-button-container button {
+  width: 90px;
+  background-color: #01001a !important;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 24px;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+
+#del-alb-cancel:hover {
+  background-color: #8d8d8d !important;
+}
