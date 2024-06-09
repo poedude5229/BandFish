@@ -44,7 +44,7 @@ export function AddTrackModal({ albumId }) {
     const validationErrors = validateForm();
     if (validationErrors.length > 0) {
       setErrorArr(validationErrors);
-      setHasSubmitted(true);
+      setHasSubmitted(false);
       return;
     }
     const formData = new FormData();
@@ -122,23 +122,43 @@ export function AddTrackModal({ albumId }) {
             type="file"
             onChange={(e) => setSource(e.target.files[0])}
           />
+          {errorArr.length > 0 && (
+            <p>{errorArr.find((error) => error.includes("mp3"))}</p>
+          )}
         </label>
         <button
           type="submit"
-          style={{
-            backgroundColor: "#01001a",
-            height: "70px",
-            width: "120px",
-            border: "none",
-            borderRadius: "5px",
-            color: "white",
-            fontSize: "32px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            marginBottom: "12px",
-            cursor: "pointer",
-            transitionDuration: "500ms",
-          }}
+          style={
+            submitted
+              ? {
+                  cursor: "not-allowed",
+                  backgroundColor: "#01001a",
+                  height: "70px",
+                  width: "120px",
+                  border: "none",
+                  borderRadius: "5px",
+                  color: "white",
+                  fontSize: "32px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: "12px",
+                  transitionDuration: "500ms",
+                }
+              : {
+                  backgroundColor: "#01001a",
+                  height: "70px",
+                  width: "120px",
+                  border: "none",
+                  borderRadius: "5px",
+                  color: "white",
+                  fontSize: "32px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginBottom: "12px",
+                  cursor: "pointer",
+                  transitionDuration: "500ms",
+                }
+          }
           id="addtrackSubmitButton"
         >
           {submitted ? "Submitting.." : "Add Track"}
@@ -295,14 +315,18 @@ export function UpdateTrack({ trackId, albumid, track }) {
           />
         </label>
         <label
-          style={{
-            fontSize: "30px",
-            marginLeft: "12px",
-            marginTop: "24px",
-            display: "flex",
-            flexDirection: "column",
-            marginBottom: "24px",
-          }}
+          style={
+            submitted
+              ? { cursor: "not-allowed" }
+              : {
+                  fontSize: "30px",
+                  marginLeft: "12px",
+                  marginTop: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  marginBottom: "24px",
+                }
+          }
         >
           Choose file
           <input
@@ -310,6 +334,9 @@ export function UpdateTrack({ trackId, albumid, track }) {
             type="file"
             onChange={(e) => setSource(e.target.files[0])}
           />
+          {errorArr.length > 0 && (
+            <p>{errorArr.find((error) => error.includes("mp3"))}</p>
+          )}
         </label>
         <button
           type="submit"
@@ -328,6 +355,7 @@ export function UpdateTrack({ trackId, albumid, track }) {
             cursor: "pointer",
             transitionDuration: "500ms",
           }}
+          disabled={submitted}
         >
           {submitted ? "Submitting...." : "Submit edit"}
         </button>
