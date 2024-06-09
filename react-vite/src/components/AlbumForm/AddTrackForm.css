@@ -1,0 +1,49 @@
+.delete-track-modal {
+    width: 615px
+}
+
+#track-delete-confirm {
+    font-size: 40px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.delete-track-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 24px;
+}
+
+#confirm-delete-track-button {
+    width: 100px;
+    height: 70px;
+    background-color: #01001a !important;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    transition-duration: 500ms;
+}
+
+#confirm-delete-track-button:hover {
+    background-color: red !important;
+    color: black;
+}
+
+#cancel-delete-track-button {
+    width: 100px;
+    height: 70px;
+    background-color: #01001a !important;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    transition-duration: 500ms;
+}
+
+#cancel-delete-track-button:hover {
+    background-color: green !important;
+}

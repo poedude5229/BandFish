@@ -199,7 +199,7 @@ export function DeleteTrackModal({ albumId, trackId }) {
     <>
       <div className="delete-track-modal">
         <div className="delete-track-modal-container">
-          <h1 id="track-delete-confirm">
+          <h1 id="track-delete-confirm" >
             Would you like to delete this track? This cannot be undone.
           </h1>
           <div className="delete-track-button-container">
@@ -319,7 +319,7 @@ export function UpdateTrack({ trackId, albumid, track }) {
             submitted
               ? { cursor: "not-allowed" }
               : {
-                  fontSize: "30px",
+                  fontSize: "26px",
                   marginLeft: "12px",
                   marginTop: "24px",
                   display: "flex",
@@ -328,7 +328,7 @@ export function UpdateTrack({ trackId, albumid, track }) {
                 }
           }
         >
-          Choose file
+          Choose file (Must be an mp3, otherwise track&apos;s source file will not be updated)
           <input
             style={{ fontSize: "24px" }}
             type="file"
