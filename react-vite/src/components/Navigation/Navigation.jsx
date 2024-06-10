@@ -56,9 +56,9 @@ function Navigation() {
       </div>
       <div id="secondNavbar">
         <ul id="secondNavlist">
-          <li>
+          {/* <li>
             <NavLink className="secondNavlist-link">Genres</NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink className="secondNavlist-link" to="/albums">
               Albums
