@@ -24,22 +24,22 @@ def seed_songs():
         artist_id=3, album_id=2, title="Jeremy", source="https://bandfishbucket.s3.amazonaws.com/06.+Jeremy.mp3", duration="5:19"
     )
     beefrapp = SongEpisode(
-        artist_id=1, album_id=13, title="Beef Rapp", source="https://bandfishbucket.s3.amazonaws.com/01-Beef+Rapp.mp3", duration="4:40"
+        artist_id=1, album_id=12, title="Beef Rapp", source="https://bandfishbucket.s3.amazonaws.com/01-Beef+Rapp.mp3", duration="4:40"
     )
     onebeer = SongEpisode(
-        artist_id=1, album_id=13, title="One Beer", source="https://bandfishbucket.s3.amazonaws.com/04-One+Beer.mp3", duration="4:20"
+        artist_id=1, album_id=12, title="One Beer", source="https://bandfishbucket.s3.amazonaws.com/04-One+Beer.mp3", duration="4:20"
     )
     rsk = SongEpisode(
-        artist_id=1, album_id=13, title="Rapp Snitch Knishes (Ft. Mr. Fantastik)", source="https://bandfishbucket.s3.amazonaws.com/13-Rapp+Snitch+Knishes+(Ft.+Mr.+Fantastik).mp3", duration="2:53"
+        artist_id=1, album_id=12, title="Rapp Snitch Knishes (Ft. Mr. Fantastik)", source="https://bandfishbucket.s3.amazonaws.com/13-Rapp+Snitch+Knishes+(Ft.+Mr.+Fantastik).mp3", duration="2:53"
     )
     dday = SongEpisode(
-        artist_id=1, album_id=14, title="Doomsday (Instrumental)", source="https://bandfishbucket.s3.amazonaws.com/18+-+Doomsday+-+Instrumental.mp3", duration="4:58"
+        artist_id=1, album_id=13, title="Doomsday (Instrumental)", source="https://bandfishbucket.s3.amazonaws.com/18+-+Doomsday+-+Instrumental.mp3", duration="4:58"
     )
     rld = SongEpisode(
-        artist_id=1, album_id=14, title="Rhymes Like Dimes (Ft. DJ Cucumber Slice)", source="https://bandfishbucket.s3.amazonaws.com/03-Rhymes+Like+Dimes+(Ft.+Cucumber+Slice).mp3", duration="4:20"
+        artist_id=1, album_id=13, title="Rhymes Like Dimes (Ft. DJ Cucumber Slice)", source="https://bandfishbucket.s3.amazonaws.com/03-Rhymes+Like+Dimes+(Ft.+Cucumber+Slice).mp3", duration="4:20"
     )
     wytia = SongEpisode(
-        artist_id=1, album_id=14, title="Who You Think I Am? (Ft. King Caesar, Rodan, Megalon, K.D., King Geedorah & Kong)", source="https://bandfishbucket.s3.amazonaws.com/wytia", duration="3:24"
+        artist_id=1, album_id=13, title="Who You Think I Am? (Ft. King Caesar, Rodan, Megalon, K.D., King Geedorah & Kong)", source="https://bandfishbucket.s3.amazonaws.com/wytia", duration="3:24"
     )
     rooster = SongEpisode(
         artist_id=7, album_id=5, title="Rooster", source="https://bandfishbucket.s3.amazonaws.com/06+Rooster.mp3", duration="6:15"
@@ -113,35 +113,32 @@ def seed_songs():
     feellikethat = SongEpisode(
         artist_id=5, album_id=11, title="Feel Like That (feat. Bradley Nowell)", source="https://bandfishbucket.s3.amazonaws.com/Sublime+X+Stick+Figure++Feel+Like+That+feat+Bradley+Nowell.mp3", duration="4:12"
     )
-    bddd = SongEpisode(
-        artist_id=6, album_id=12, title="Episode 127: Beee Dah Doh Doop! Beee Dah Doh Doop!", source="https://bandfishbucket.s3.amazonaws.com/Episode+127_+Beee+Dah+Doh+Doop!+Beee.mp3", duration="1:11:42"
-    )
     allcaps = SongEpisode(
-        artist_id=1, album_id=15, title="All Caps", source="https://bandfishbucket.s3.amazonaws.com/Madvillain++All+Caps.mp3", duration="2:14"
+        artist_id=1, album_id=14, title="All Caps", source="https://bandfishbucket.s3.amazonaws.com/Madvillain++All+Caps.mp3", duration="2:14"
     )
     btth = SongEpisode(
-        artist_id=9, album_id=16, title="Back to the Holler", source="https://bandfishbucket.s3.amazonaws.com/10+Back+to+the+Holler.mp3", duration="7:37"
+        artist_id=9, album_id=15, title="Back to the Holler", source="https://bandfishbucket.s3.amazonaws.com/10+Back+to+the+Holler.mp3", duration="7:37"
     )
     possumsprings = SongEpisode(
-        artist_id=9, album_id=16, title="Possum Springs", source="https://bandfishbucket.s3.amazonaws.com/22+Possum+Springs.mp3", duration="5:20"
+        artist_id=9, album_id=15, title="Possum Springs", source="https://bandfishbucket.s3.amazonaws.com/22+Possum+Springs.mp3", duration="5:20"
     )
     maeshouse = SongEpisode(
-        artist_id=9, album_id=17, title="Mae's House", source="https://bandfishbucket.s3.amazonaws.com/03+Mae's+House+II.mp3", duration="2:32"
+        artist_id=9, album_id=16, title="Mae's House", source="https://bandfishbucket.s3.amazonaws.com/03+Mae's+House+II.mp3", duration="2:32"
     )
     twt = SongEpisode(
-        artist_id=9, album_id=17, title="Thryy Wyrd Tyyns", source="https://bandfishbucket.s3.amazonaws.com/36+Thryy+Wyrd+Tyyns.mp3", duration="5:28"
+        artist_id=9, album_id=16, title="Thryy Wyrd Tyyns", source="https://bandfishbucket.s3.amazonaws.com/36+Thryy+Wyrd+Tyyns.mp3", duration="5:28"
     )
     stonelove = SongEpisode(
-        artist_id=10, album_id=18, title="Stone Love", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+Stone+Love.mp3", duration="4:15"
+        artist_id=10, album_id=17, title="Stone Love", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+Stone+Love.mp3", duration="4:15"
     )
     hos = SongEpisode(
-        artist_id=10, album_id=18, title="Ho's", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+Hos.mp3", duration="3:28"
+        artist_id=10, album_id=17, title="Ho's", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+Hos.mp3", duration="3:28"
     )
     twoam = SongEpisode(
-        artist_id=4, album_id=19, title="2AM", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+2am.mp3", duration="5:00"
+        artist_id=4, album_id=18, title="2AM", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+2am.mp3", duration="5:00"
     )
     noco = SongEpisode(
-        artist_id=4, album_id=20, title="No Cocaine", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+No+Cocaine.mp3", duration="4:45"
+        artist_id=4, album_id=19, title="No Cocaine", source="https://bandfishbucket.s3.amazonaws.com/y2mate.com+-+No+Cocaine.mp3", duration="4:45"
     )
     db.session.add(lpotl_ep_331)
     db.session.add(lpotl_ep_332)
@@ -178,7 +175,6 @@ def seed_songs():
     db.session.add(whatigot_r)
     db.session.add(dointime)
     db.session.add(feellikethat)
-    db.session.add(bddd)
     db.session.add(allcaps)
     db.session.add(btth)
     db.session.add(possumsprings)
