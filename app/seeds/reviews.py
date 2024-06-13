@@ -44,47 +44,41 @@ def seed_reviews():
     r11a = Review(
         user_id=14, item_id=11, title="NEW SUBLIMEEE?", body="This song is fantastic, Sublime is back"
     )
-    r12 = Review(
-        user_id=11, item_id=12, title="GENTLEMEN!!!!", body="R.I.P. KB, Fly High Bird Luger. Funniest podcast ever"
-    )
-    r12a = Review(
-        user_id=13, item_id=12, title="Jackie is too funny", body="Good old LPN days, miss Ben on the network"
-    )
     r13a = Review(
-        user_id=14, item_id=13, title="I get a kick outta brew", body="DOOM is a genius"
+        user_id=14, item_id=12, title="I get a kick outta brew", body="DOOM is a genius"
     )
     r13b = Review(
-        user_id=13, item_id=13, title="Rapp Snitches", body="Tellin all they business! Sit in the court and be a star witness to this album"
+        user_id=13, item_id=12, title="Rapp Snitches", body="Tellin all they business! Sit in the court and be a star witness to this album"
     )
     r14a = Review(
-        user_id=11, item_id=14, title="DOOM GOAT", body="I've washed so many dishes while listening to this album"
+        user_id=11, item_id=13, title="DOOM GOAT", body="I've washed so many dishes while listening to this album"
     )
     r14b = Review(
-        user_id=15, item_id=14, title="TikTok brought me here", body="I only listen to music if tiktok tells me it's popular. Sending Madvillain to China"
+        user_id=15, item_id=13, title="TikTok brought me here", body="I only listen to music if tiktok tells me it's popular. Sending Madvillain to China"
     )
     r15 = Review(
-        user_id=12, item_id=15, title="I just remembered ALL CAPS", body="You too should remember all caps when you spell the man name"
+        user_id=12, item_id=14, title="I just remembered ALL CAPS", body="You too should remember all caps when you spell the man name"
     )
     r16 = Review(
-        user_id=11, item_id=16, title="Volume 1 is the best part of the soundtrack", body="Alec Holowka was in his bag when he made this. NITW is the best game fr"
+        user_id=11, item_id=15, title="Volume 1 is the best part of the soundtrack", body="Alec Holowka was in his bag when he made this. NITW is the best game fr"
     )
     r16a = Review(
-        user_id=12, item_id=16, title="R.I.P. Alec Holowka", body="I got cups on my ears, but I still love listening to NITW soundtrack"
+        user_id=12, item_id=15, title="R.I.P. Alec Holowka", body="I got cups on my ears, but I still love listening to NITW soundtrack"
     )
     r17 = Review(
-        user_id=13, item_id=17, title="This game is so cozy partly thanks to the soundtrack", body="Thryy Wyrd Tyyns is a halloween bop"
+        user_id=13, item_id=16, title="This game is so cozy partly thanks to the soundtrack", body="Thryy Wyrd Tyyns is a halloween bop"
     )
     r18 = Review(
-        user_id=11, item_id=18, title="Pepper is awesome Cali Reggae", body="When I'm in that sublime mood, Pepper goes great with it. These guys are so iconic for their sound"
+        user_id=11, item_id=17, title="Pepper is awesome Cali Reggae", body="When I'm in that sublime mood, Pepper goes great with it. These guys are so iconic for their sound"
     )
     r19 = Review(
-        user_id=12, item_id=19, title="2AM is the best song ever", body="So chillaxing, these guys stepped in when we were missing Sublime"
+        user_id=12, item_id=18, title="2AM is the best song ever", body="So chillaxing, these guys stepped in when we were missing Sublime"
     )
     r19a = Review(
-        user_id=11, item_id=19, title="Trumpets on 2AM go crazy", body="I was diagnosed with Chronchitis, I have to listen to chill Cali Reggae and dub every day"
+        user_id=11, item_id=18, title="Trumpets on 2AM go crazy", body="I was diagnosed with Chronchitis, I have to listen to chill Cali Reggae and dub every day"
     )
     r20 = Review(
-        user_id=13, item_id=20, title="Underrated album for sure", body="All we need is good Slightly Stoopid to rule our brains, only one thing sets us free"
+        user_id=13, item_id=19, title="Underrated album for sure", body="All we need is good Slightly Stoopid to rule our brains, only one thing sets us free"
     )
 
     db.session.add(r1)
@@ -101,8 +95,6 @@ def seed_reviews():
     db.session.add(r10a)
     db.session.add(r11)
     db.session.add(r11a)
-    db.session.add(r12)
-    db.session.add(r12a)
     db.session.add(r13a)
     db.session.add(r13b)
     db.session.add(r14a)
