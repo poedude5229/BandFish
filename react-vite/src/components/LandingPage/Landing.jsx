@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { SlArrowRight } from "react-icons/sl";
 import "./Landing.css";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadAlbumsThunk } from "../../redux/album";
 import { useEffect } from "react";
 import { Carousel } from "../Carousel";
+import Footer from "../Footer/Footer";
 export function Landing() {
   let dispatch = useDispatch();
   useEffect(() => {
@@ -51,7 +52,8 @@ export function Landing() {
             />
             <div id="aic-link">
               <NavLink to="/albums/3">
-                You&apos;ll have &quot;No Excuses&quot; not to check out Alice in Chains
+                You&apos;ll have &quot;No Excuses&quot; not to check out Alice
+                in Chains
               </NavLink>
             </div>
           </div>
@@ -59,6 +61,7 @@ export function Landing() {
       </div>
       <h3 id="rest-of-page-header">Hot right now...</h3>
       <Carousel />
+      <Footer />
     </>
   );
 }
