@@ -35,9 +35,6 @@ def seed_albums():
     feellikethat = AlbumPodcast(
         artist_id=5, name="Feel Like That (feat. Bradley Nowell)", album_art="https://i.scdn.co/image/ab67616d0000b27361b7e027205d656d5b14b473", type="Single", price=4.99, genre="Ska"
     )
-    rtog = AlbumPodcast(
-        artist_id=6, name="The Roundtable of Gentlemen", album_art="https://bandfishbucket.s3.amazonaws.com/Round%2BTable.jpg", type="Podcast", price=0.00, genre="Comedy"
-    )
     mmfood = AlbumPodcast(
         artist_id=1, name="MM...FOOD", album_art="https://i.scdn.co/image/ab67616d00001e0252f194d02c39909d1b284799", type="Album", price=9.99, genre="Hip-Hop"
     )
@@ -78,7 +75,6 @@ def seed_albums():
     db.session.add(fortyoztofreedom)
     db.session.add(sblime)
     db.session.add(feellikethat)
-    db.session.add(rtog)
     db.session.add(mmfood)
     db.session.add(opdoomsday)
     db.session.add(madvillainy)

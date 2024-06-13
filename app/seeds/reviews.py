@@ -29,9 +29,6 @@ def seed_reviews():
     r9 = Review(
         user_id=11, item_id=9, title="I don't have to wait for my Ruca anymore", body="This music is priceless, timeless and placeless but still so representative of the LBC. Greatest album of all time"
     )
-    r9a = Review(
-        user_id=12, item_id=9, title="So good", body="Badfish is my favorite track"
-    )
     r9b = Review(
         user_id=13, item_id=9, title="The best Bradley", body="Very chillaxing."
     )
@@ -99,7 +96,6 @@ def seed_reviews():
     db.session.add(r7)
     db.session.add(r8)
     db.session.add(r9)
-    db.session.add(r9a)
     db.session.add(r9b)
     db.session.add(r10)
     db.session.add(r10a)
