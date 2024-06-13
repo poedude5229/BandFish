@@ -33,6 +33,18 @@ const AlbumEdit = () => {
     }
   }, [album]);
 
+  // useEffect(() => {
+  //   if (albumArtPreview) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setAlbumArtPreview(reader.result);
+  //     };
+  //     reader.readAsDataURL(albumArtPreview);
+  //   } else {
+  //     setAlbumArtPreview(null);
+  //   }
+  // }, [albumArtPreview]);
+
   const validateForm = () => {
     const validationErrors = [];
     if (!name) validationErrors.push("Name is required.");
@@ -41,6 +53,7 @@ const AlbumEdit = () => {
       validationErrors.push("Price must be at least 0.99 moneys.");
     }
     if (!genre) validationErrors.push("Genre is required.");
+    // if (albumArt) { }
     return validationErrors;
   };
 
@@ -122,14 +135,24 @@ const AlbumEdit = () => {
               placeholder="Title"
             />
           </label>
-          <label className="album-art-upload">
-            Album Art
-            <input
-              className="filetypeAlbumArt"
-              type="file"
-              onChange={(e) => setAlbumArt(e.target.files[0])}
-            />
-          </label>
+          <div id="container-for-ablum-art-upload">
+            <label className="album-art-upload">
+              Choose New Album Art
+              <p id="albumartuploadlabel2">
+                {
+                  "(Submitting without a png or jpg image will keep the old album art)"
+                }
+              </p>
+              <input
+                className="filetypeAlbumArt"
+                type="file"
+                onChange={(e) => {
+                  setAlbumArt(e.target.files[0]);
+                }}
+              />
+
+            </label>
+          </div>
           <label>
             Type
             <select
