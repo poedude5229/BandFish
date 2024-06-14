@@ -14,6 +14,9 @@ const ADD_TRACK = "albums/ADD_TRACK";
 const MODIFY_TRACK = "albums/MODIFY_TRACK";
 const DELETE_TRACK = "albums/DELETE_TRACK";
 
+const ADD_WISHLIST = "albums/ADD_WISHLIST";
+const REMOVE_WISHLIST = "albums/REMOVE_WISHLIST";
+
 // ALBUM ACTIONS
 const loadAllAlbums = (albums) => ({
   type: LOAD_ALL_ALBUMS,
@@ -64,6 +67,17 @@ const editReview = (review) => ({
 const deleteReview = (reviewId) => ({
   type: DELETE_REVIEW,
   payload: reviewId,
+});
+
+// WISHLIST ACTIONS
+const addWishlist = (albumId) => ({
+  type: ADD_WISHLIST,
+  payload: albumId,
+});
+
+const delWishlist = (wishlistId) => ({
+  type: REMOVE_WISHLIST,
+  payload: wishlistId,
 });
 
 // TRACK ACTIONS
@@ -120,6 +134,30 @@ export const deleteReviewThunk = (albumId, reviewId) => async (dispatch) => {
   }
   await dispatch(deleteReview(reviewId));
 };
+
+// Wishlist Thunks
+export const addAlbumToWishlist = (albumId) => async (dispatch) => {
+  const res = await fetch(`/api/albums/${albumId}/wishlists/new`, {
+    method: "POST",
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    return { errors: data };
+  }
+  await dispatch(addWishlist(albumId));
+};
+
+export const removeAlbumFromWishlist =
+  (albumId, wishlistId) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}/wishlists/${wishlistId}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return { errors: data };
+    }
+    await dispatch(delWishlist(wishlistId));
+  };
 
 // Album Thunks
 export const createAlbumThunk = (album) => async (dispatch) => {
@@ -293,6 +331,16 @@ function albumReducer(state = {}, action) {
       return newState;
     }
     case DELETE_REVIEW: {
+      const newState = { ...state };
+      delete newState[action.payload];
+      return newState;
+    }
+    case ADD_WISHLIST: {
+      const newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    }
+    case REMOVE_WISHLIST: {
       const newState = { ...state };
       delete newState[action.payload];
       return newState;

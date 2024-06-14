@@ -127,6 +127,7 @@ def fetch_album_details(id):
         reviews = Review.query.filter(Review.item_id == id).all()
         songs = SongEpisode.query.filter(SongEpisode.album_id == id).all()
         artist = User.query.get(fetched_album['artist_id'])
+        wls = Wishlist.query.filter(Wishlist.product_id == id).all()
         artistdict = artist.to_dict()
         # fetched_album['reviews']
         album_songs = []
@@ -143,9 +144,16 @@ def fetch_album_details(id):
             reviewdict['user'] = reviewuser.to_dict()['username']
             reviewdict['user_pfp'] = reviewuser.to_dict()['profile_pic']
             album_reviews.append(reviewdict)
+        album_wishlists = []
+        for wl in wls:
+            wldict = wl.to_dict()
+            wl_user = User.query.get(wldict['user_id'])
+            wldict['user'] = wl_user.to_dict()['username']
+            album_wishlists.append(wldict)
         fetched_album['artist'] = f"{artistdict['firstname']} {artistdict['lastname']}"
         fetched_album['artist_pfp'] = artistdict['profile_pic']
         fetched_album['reviews'] = album_reviews
+        fetched_album['wishlists'] = album_wishlists
         return fetched_album
     return {"message":"Album/Podcast could not be found or does not exist"}, 404
 

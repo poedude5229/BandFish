@@ -2,26 +2,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
 import { useEffect, useState } from "react";
-import { loadAlbumsThunk } from "../../redux/album";
+import { loadAlbumsThunk, removeAlbumFromWishlist } from "../../redux/album";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeleteAlbumModal from "./DeleteModal";
-
+import { thunkAuthenticate } from "../../redux/session";
+import { DeleteWishlistModal } from "./DeleteWishlistModal";
 function Profile() {
   const currentUser = useSelector((state) => state.session.user);
   const allAlbums = Object.values(useSelector((state) => state.albums));
+  // const [unWishlisted, setUnWishlisted] = useState(false);
+  const [wishlistActive, setWishlistActive] = useState(false);
+  const [contentActive, setContentActive] = useState(true);
+  const [toggle1, setToggle1] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadAlbumsThunk());
-  }, [dispatch]);
+  }, [toggle1]);
   const ownedAlbums = allAlbums?.filter(
     (album) => album?.artist_id == currentUser?.id
   );
-  // console.log(ownedAlbums);
 
   // const [collectionActive, setCollectionActive] = useState(false);
-  const [wishlistActive, setWishlistActive] = useState(false);
-  const [contentActive, setContentActive] = useState(true);
 
   useEffect(() => {
     if (!currentUser) {
@@ -29,11 +31,13 @@ function Profile() {
     }
   }, [currentUser, navigate]);
 
-//   const handleCollectionClick = () => {
-//     setCollectionActive(true);
-//     setWishlistActive(false);
-//     setContentActive(false);
-//   };
+  const wishlisted = currentUser?.wishlists;
+  // console.log(wishlisted);
+  //   const handleCollectionClick = () => {
+  //     setCollectionActive(true);
+  //     setWishlistActive(false);
+  //     setContentActive(false);
+  //   };
 
   const handleWishlistClick = () => {
     // setCollectionActive(false);
@@ -125,6 +129,44 @@ function Profile() {
                     </button>
                   }
                   modalComponent={<DeleteAlbumModal id={album?.id} />}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {wishlistActive && (
+        <div id="wishlist-holder">
+          {wishlisted?.map((album) => (
+            <div key={album?.id} className="user-content-album-block">
+              <img
+                className="user-content-album-block-art"
+                src={album?.product?.album_art}
+                alt="An album cover"
+                onClick={() => navigate(`/albums/${album?.product_id}`)}
+              />
+              <span
+                className="user-content-album-name"
+                style={{
+                  color: "white",
+                  fontSize: "25px",
+                  width: "185px",
+                  marginTop: "10px",
+                }}
+                onClick={() => navigate(`/albums/${album?.product_id}`)}
+              >
+                {album?.product?.name}
+              </span>
+              <div className="user-content-album-buttons-container">
+                <OpenModalMenuItem
+                  itemText={<button>remove from wishlist</button>}
+                  modalComponent={
+                    <DeleteWishlistModal
+                      albumid={album?.product_id}
+                      wishlistId={album?.id}
+                      setToggle1={setToggle1}
+                    />
+                  }
                 />
               </div>
             </div>

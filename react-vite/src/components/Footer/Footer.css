@@ -1,7 +1,7 @@
 footer {
   background: linear-gradient(100deg, rgb(60, 60, 60), #01001a);
   position: absolute !important;
-  top: 180%;
+  top: 170%;
   left: 0;
   width: 100%;
   color: white;
@@ -9,7 +9,10 @@ footer {
   bottom: 0;
   margin: 0;
   display: flex;
+  flex-direction: row;
+  align-items: center;
   border-top: 2px solid #01001a;
+  z-index: -1;
 }
 
 #topfootersection {

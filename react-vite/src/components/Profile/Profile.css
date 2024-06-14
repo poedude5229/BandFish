@@ -86,6 +86,17 @@
   flex-flow: row wrap;
 }
 
+#wishlist-holder {
+  position: absolute;
+  top: 500px;
+  width: 90%;
+  left: 5%;
+  right: 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .user-content-album-block {
   display: flex;
   flex-direction: column;
@@ -104,10 +115,9 @@
   margin-top: 5px;
   margin-bottom: 10px;
   align-items: center;
-
 }
 .user-content-album-buttons-container li {
-    color: rgba(0, 0, 0, 0);
+  color: rgba(0, 0, 0, 0);
 }
 
 .user-content-album-button {
@@ -125,7 +135,7 @@
 }
 
 .user-content-album-delete {
-    cursor: pointer;
+  cursor: pointer;
   color: white;
   font-size: 20px;
   width: 70px;
