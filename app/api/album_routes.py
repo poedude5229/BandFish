@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, json, request, redirect
-from app.models import AlbumPodcast, Review, User, SongEpisode, db
+from app.models import AlbumPodcast, Review, User, SongEpisode, db, Wishlist
 from flask_login import login_required, current_user
 from app.forms import AlbumForm, EditAlbumForm, ReviewForm, EditReviewForm, SongForm, EditSong
 from .aws_helpers import upload_file_to_s3, get_unique_filename
@@ -294,7 +294,7 @@ def edit_song(id, trackId):
             upload = upload_file_to_s3(source)
             source_url = upload['url']
         else:
-            source_url = song_to_update.source 
+            source_url = song_to_update.source
 
         if form.data['duration']:
             songdur = form.data['duration']
@@ -321,3 +321,44 @@ def delete_song(id, trackId):
     db.session.delete(get_song)
     db.session.commit()
     return json.dumps({"message":"Successfully deleted song."})
+
+@album_routes.route("/<int:id>/wishlists", methods=["GET"])
+def get_wls(id):
+    alb_wishlists = Wishlist.query.filter(Wishlist.product_id == id).all()
+
+    if alb_wishlists is not None:
+        wl_list = []
+        for each in alb_wishlists:
+            better_format_wl = each.to_dict()
+            wl_user = User.query.get(better_format_wl['user_id'])
+            better_format_wl['user'] = wl_user.to_dict()['username']
+            wl_list.append(better_format_wl)
+        all_wishlists = {'wishlisted': wl_list}
+    else:
+        all_wishlists = {"wishlisted": []}
+    return all_wishlists
+
+
+@album_routes.route("/<int:id>/wishlists/new", methods=["POST"])
+@login_required
+def add_alb_to_wishlist(id):
+    new_wishlist = Wishlist(
+        user_id = current_user.id,
+        product_id = id
+    )
+    db.session.add(new_wishlist)
+    db.session.commit()
+
+    return {"message":"Album successfully added to wishlist"}, 201
+
+@album_routes.route("/<int:id>/wishlists/<int:wishlistId>", methods=["DELETE"])
+@login_required
+def get_wl(id, wishlistId):
+    wishlist1 = Wishlist.query.get(wishlistId)
+    if not wishlist1:
+        return {"message":"Couldn't find wishlist entry"}, 404
+    else:
+        db.session.delete(wishlist1)
+        db.session.commit()
+
+    return json.dumps({"message":"Successfully removed from wishlist"})

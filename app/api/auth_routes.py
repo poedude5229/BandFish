@@ -1,5 +1,5 @@
-from flask import Blueprint, request
-from app.models import User, db
+from flask import Blueprint, request, jsonify
+from app.models import User, db, Wishlist, AlbumPodcast
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -13,7 +13,15 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        userdict = current_user.to_dict()
+        wishlists = Wishlist.query.filter(Wishlist.user_id == userdict['id'])
+        userdict['wishlists'] = []
+        for wishlist in wishlists:
+            wishlist_dict = wishlist.to_dict()
+            wishlistalb = AlbumPodcast.query.get(wishlist_dict['product_id'])
+            wishlist_dict['product'] = wishlistalb.to_dict()
+            userdict['wishlists'].append(wishlist_dict)
+        return jsonify(userdict)
     return {'errors': {'message': 'Unauthorized'}}, 401
 
 

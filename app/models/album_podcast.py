@@ -19,6 +19,8 @@ class AlbumPodcast(db.Model):
     user_owns = db.relationship('UserOwns', back_populates='album_podcast', cascade='all, delete-orphan')
     reviews = db.relationship('Review', back_populates='album_podcast', cascade='all, delete-orphan')
 
+    wishlists = db.relationship('Wishlist', back_populates='album_podcast', cascade='all, delete-orphan')
+
     def to_dict(self):
         return {
             'id': self.id,
