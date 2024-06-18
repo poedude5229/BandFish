@@ -115,7 +115,7 @@
 
 #album-details-page-sidebar {
   position: absolute;
-  right: 15%;
+  right: 20%;
   top: 147px;
   width: 30%;
 }
@@ -233,6 +233,8 @@
   position: absolute;
   top: 410px;
   list-style: none;
+  display: flex;
+  gap: 24px;
 }
 
 #album-details-page-sidebar-review-post * {
@@ -244,6 +246,14 @@
   border-radius: 5px;
   cursor: pointer;
   transition-duration: 400ms;
+}
+
+#add-to-wishlist-button {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#add-to-wishlist-button:hover {
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 #album-details-page-sidebar-review-post *:hover {
@@ -354,4 +364,12 @@
 .update-tracko:hover {
   background-color: rgb(70, 70, 70) !important;
   color: white;
+}
+
+#rm-wishlist-button {
+  font-size: 22px;
+}
+
+#rm-wishlist-button:hover {
+  background-color: red !important;
 }

@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { loadSingleAlbumThunk } from "../../redux/album";
+import { addAlbumToWishlist, loadSingleAlbumThunk } from "../../redux/album";
 import { BsExplicitFill } from "react-icons/bs";
 // import { NavLink } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
@@ -19,6 +19,9 @@ import {
   UpdateTrack,
 } from "../AlbumForm/AddTrackForm.jsx";
 
+import heart from "../../../public/heart.png";
+import { thunkAuthenticate } from "../../redux/session.js";
+
 export function AlbumDetails() {
   const { albumId } = useParams();
   let dispatch = useDispatch();
@@ -27,15 +30,35 @@ export function AlbumDetails() {
     dispatch(loadSingleAlbumThunk(albumId));
   }, [dispatch, albumId]);
   let currentUser = useSelector((state) => state.session.user);
+  // console.log(currentUser);
+  let [toggle3, setToggle3] = useState(false);
   let album = useSelector((state) => state.albums);
   if (!album) {
     () => dispatch(loadSingleAlbumThunk(albumId));
   }
+  useEffect(() => {
+    if (currentUser && currentUser != null) {
+      setToggle3(true);
+    }
+  }, [currentUser, toggle3]);
   let betterAlbum = Object?.values({ ...album })?.[0];
   let betterAlbReviewsIds = [];
   betterAlbum?.reviews?.forEach((review) =>
     betterAlbReviewsIds.push(review?.user_id)
   );
+  let [currentWishlists, setCurrentWishlists] = useState([]);
+  let [wlId, setCurrentWlId] = useState(0);
+  let [toggle2, setToggle2] = useState(false);
+  useEffect(() => {
+    let wls = [];
+    if (currentUser && toggle3 == true) {
+      currentUser?.wishlists?.forEach((wishlist) =>
+        wls.push(wishlist.product_id)
+      );
+    }
+    setCurrentWishlists(wls);
+  }, [currentUser, toggle3]);
+
   // console.log(betterAlbReviewsIds);
   //   console.log(betterAlbum?.tracks?.[0].source);
   useEffect(() => {
@@ -268,16 +291,37 @@ export function AlbumDetails() {
             </span>
           </div>
         </div>
-        {currentUser &&
-          !betterAlbReviewsIds.includes(currentUser?.id) &&
-          currentUser?.id !== betterAlbum?.artist_id && (
-            <div id="album-details-page-sidebar-review-post">
+        <div id="album-details-page-sidebar-review-post">
+          {currentUser &&
+            !betterAlbReviewsIds?.includes(currentUser?.id) &&
+            currentUser?.id !== betterAlbum?.artist_id && (
               <OpenModalMenuItem
                 itemText={<button>Leave a Review!</button>}
                 modalComponent={<CreateReviewModal albumId={betterAlbum?.id} />}
               />
-            </div>
-          )}
+            )}
+          {currentUser &&
+            currentUser?.id !== betterAlbum?.artist_id &&
+            !currentWishlists?.includes(betterAlbum?.id) && (
+              <img
+                id="add-to-wishlist-button"
+                src={heart}
+                name="Add to wishlist"
+                onClick={() => {
+                  dispatch(addAlbumToWishlist(betterAlbum?.id));
+                  dispatch(loadSingleAlbumThunk(betterAlbum?.id));
+                  dispatch(thunkAuthenticate());
+                  setToggle2(!toggle2);
+                }}
+              />
+            )}
+          {/* {currentUser && currentUser?.id !== betterAlbum?.artist_id &&
+            currentWishlists.includes(betterAlbum?.id) && (
+            <button id="rm-wishlist-button" onClick={() => {
+              dispatch()
+            }}>Remove from wishlist</button>
+          )} */}
+        </div>
       </div>
     </>
   );

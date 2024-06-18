@@ -17,6 +17,10 @@ function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(thunkAuthenticate());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(loadAlbumsThunk());
   }, [toggle1]);
   const ownedAlbums = allAlbums?.filter(
