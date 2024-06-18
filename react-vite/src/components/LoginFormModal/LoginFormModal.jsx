@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { thunkLogin } from "../../redux/session";
+import { thunkAuthenticate, thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
@@ -25,6 +25,7 @@ function LoginFormModal() {
       setErrors(serverResponse);
     } else {
       closeModal();
+      dispatch(thunkAuthenticate());
     }
   };
 
@@ -41,7 +42,11 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.email && <p style={{textAlign: "center", color: "red", fontSize:"20px"}}>{errors.email}</p>}
+        {errors.email && (
+          <p style={{ textAlign: "center", color: "red", fontSize: "20px" }}>
+            {errors.email}
+          </p>
+        )}
         <label>
           Password
           <input
@@ -51,7 +56,11 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p style={{textAlign: "center", color: "red", fontSize:"20px"}}>{errors.password}</p>}
+        {errors.password && (
+          <p style={{ textAlign: "center", color: "red", fontSize: "20px" }}>
+            {errors.password}
+          </p>
+        )}
         <button type="submit">Log In</button>
         <div style={{ display: "flex", width: "300px", alignItems: "center" }}>
           <hr
