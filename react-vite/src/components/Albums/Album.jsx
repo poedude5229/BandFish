@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addAlbumToWishlist, loadSingleAlbumThunk } from "../../redux/album";
+import {
+  addAlbumToWishlist,
+  loadSingleAlbumThunk,
+  removeAlbumFromWishlist,
+} from "../../redux/album";
 import { BsExplicitFill } from "react-icons/bs";
 // import { NavLink } from "react-router-dom";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
@@ -47,8 +51,9 @@ export function AlbumDetails() {
     betterAlbReviewsIds.push(review?.user_id)
   );
   let [currentWishlists, setCurrentWishlists] = useState([]);
-  let [wlId, setCurrentWlId] = useState(0);
+  let [userWl, setUserWl] = useState({});
   let [toggle2, setToggle2] = useState(false);
+  let [toggle4, setToggle4] = useState(true);
   useEffect(() => {
     let wls = [];
     if (currentUser && toggle3 == true) {
@@ -59,7 +64,19 @@ export function AlbumDetails() {
     setCurrentWishlists(wls);
   }, [currentUser, toggle3]);
 
-  // console.log(betterAlbReviewsIds);
+  useEffect(() => {
+    let bro;
+    if (currentUser && currentUser != null) {
+      bro = currentUser?.wishlists?.find(
+        (wishlist) => wishlist.product_id == +betterAlbum?.id
+      );
+    }
+    // console.log(bro);
+    if (bro) {
+      setUserWl(bro);
+    }
+  }, [currentUser, betterAlbum?.id]);
+  console.log(userWl);
   //   console.log(betterAlbum?.tracks?.[0].source);
   useEffect(() => {
     const audioElements = document.querySelectorAll(".audio");
@@ -306,21 +323,37 @@ export function AlbumDetails() {
               <img
                 id="add-to-wishlist-button"
                 src={heart}
-                name="Add to wishlist"
+                title="Add to wishlist"
                 onClick={() => {
                   dispatch(addAlbumToWishlist(betterAlbum?.id));
                   dispatch(loadSingleAlbumThunk(betterAlbum?.id));
+                  dispatch(thunkAuthenticate());
                   dispatch(thunkAuthenticate());
                   setToggle2(!toggle2);
                 }}
               />
             )}
-          {/* {currentUser && currentUser?.id !== betterAlbum?.artist_id &&
-            currentWishlists.includes(betterAlbum?.id) && (
-            <button id="rm-wishlist-button" onClick={() => {
-              dispatch()
-            }}>Remove from wishlist</button>
-          )} */}
+          {currentUser &&
+            userWl?.id &&
+            currentUser?.wishlists?.find(
+              (wishlist) => wishlist?.product_id == betterAlbum?.id
+            ) && (
+              <button
+                id="rm-wishlist-button"
+                onClick={() => {
+                  dispatch(
+                    removeAlbumFromWishlist(betterAlbum?.id, userWl?.id)
+                  );
+                  dispatch(loadSingleAlbumThunk(betterAlbum?.id));
+                  dispatch(thunkAuthenticate());
+                  dispatch(thunkAuthenticate());
+                  setToggle4(false);
+                  setUserWl(null);
+                }}
+              >
+                Remove From Wishlist
+              </button>
+            )}
         </div>
       </div>
     </>
