@@ -1,24 +1,24 @@
 footer {
   background: linear-gradient(100deg, rgb(60, 60, 60), #01001a);
   position: absolute !important;
-  top: 170%;
+  top: 180%;
   left: 0;
   width: 100%;
   color: white;
-  height: 30%;
+  height: 40%;
   bottom: 0;
   margin: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   border-top: 2px solid #01001a;
-  z-index: -1;
+  z-index: 1;
 }
 
 #topfootersection {
   z-index: 1;
   position: absolute;
-  top: 20px;
+  top: 20%;
   background-color: rgba(0, 0, 0, 0);
   color: white;
 }
@@ -58,4 +58,19 @@ footer {
   gap: 8px;
   color: white;
   text-decoration: none;
+}
+
+@media screen and (min-width: 1768px) {
+  footer {
+    top: 160%;
+  }
+
+}
+
+@media screen and (max-height: 549px) {
+  footer {
+    top: 250%;
+    position: fixed;
+    height: 60%;
+  }
 }

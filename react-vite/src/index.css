@@ -25,3 +25,34 @@
   background-color: #01001a !important;
   width: 100px;
 }
+
+@media screen and (max-width: 1210px){
+  #lpotl-link {
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 1135px) {
+  #sidebar-promo-container {
+    right: 0;
+    left: 71%;
+    position: absolute;
+    margin: 0;
+  }
+  #lpotl-link {
+    width: 200px;
+    right: 5%;
+    height: 15%;
+  }
+  #bbb-lpotl * {
+    font-size: 20px !important;
+  }
+  #aic-link {
+    width: 200px;
+    right: 5%;
+    height: 15%;
+  }
+  #aic-link * {
+    font-size: 20px !important;
+  }
+}
