@@ -16,7 +16,12 @@ function ProfileButton() {
   const albums = useSelector((state) => state.albumReducer);
   const [cartOpen, setCartOpen] = useState(false);
   const cartRef = useRef();
-
+  // let albItems = [];
+  // albums?.forEach((album) => {
+  //   const albDetails = album ?? [];
+  //   albItems.push(...albDetails);
+  // });
+  // console.log(albItems);
   useEffect(() => {
     const storedCartState = localStorage.getItem("cartState");
     if (storedCartState) {
@@ -78,7 +83,16 @@ function ProfileButton() {
 
   return (
     <>
-      {user && <img src={cart} id="cart-button" alt="" />}
+      {user && (
+        <img
+          src={cart}
+          id="cart-button"
+          alt="The shopping cart logo. You don't need an alt tag for everything"
+          onClick={() => {
+            setCartOpen(cartOpen === true ? false : true);
+          }}
+        />
+      )}
       <button
         id="pfp-button"
         style={{ cursor: "pointer", border: "none" }}
@@ -91,6 +105,25 @@ function ProfileButton() {
           />
         )}
       </button>
+      {user && cartOpen && (
+        <>
+          <div className="cartMenu">
+            <div class="triangle-container">
+              <div class="triangle-top"></div>
+              <div class="triangle-bottom"></div>
+            </div>
+            <span id="cart-title">Shopping Cart</span>
+            <hr id="cart-break-top" />
+            <span
+              id="cart-close-button"
+              title="Close Cart"
+              onClick={() => setCartOpen(false)}
+            >
+              X
+            </span>
+          </div>
+        </>
+      )}
       {showMenu && user && (
         <>
           <ul className={"profile-dropdown"} ref={ulRef}>

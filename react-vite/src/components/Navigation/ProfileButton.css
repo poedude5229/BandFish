@@ -6,3 +6,80 @@
   margin-bottom: 3%;
   cursor: pointer;
 }
+
+.cartMenu {
+  background-color: #fff;
+  position: absolute;
+  height: 300px;
+  width: 300px;
+  top: 80px;
+  right: 12%;
+  z-index: 5;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+}
+
+.triangle-container {
+  width: 0;
+  height: 0;
+  border-left: 22.5px solid transparent;
+  border-right: 22.5px solid transparent;
+  border-top: 39px solid transparent;
+  position: absolute;
+  right: 17%;
+  top: -20px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.triangle-container * {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.triangle-top {
+  position: absolute;
+  bottom: -1px;
+  left: -22.5px;
+  width: 45px;
+  height: 39px;
+  /* border-left: 1px solid black; */
+  /* border-right: 1px solid black;
+  border-bottom: 1px solid black; */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.triangle-bottom {
+  position: absolute;
+  bottom: 0;
+  left: -22.5px;
+  width: 45px;
+  height: 39px;
+  background-color: white;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+#cart-title {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 32px;
+  position: absolute;
+  top: 3.5%;
+  left: 3%;
+  /* text-decoration: underline; */
+}
+
+#cart-break-top {
+  position: relative;
+  margin-top: 15%;
+  height: 2px;
+  width: 95%;
+
+
+}
+
+#cart-close-button {
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  right: 3%;
+  top: 2%;
+  cursor: pointer;
+}
