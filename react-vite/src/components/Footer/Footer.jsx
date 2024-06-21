@@ -18,7 +18,7 @@ function Footer() {
                 <a href="https://github.com/poedude5229">
                   Joseph Rashid On GitHub <FaSquareGithub />
                 </a>
-                <a href="https://www.linkedin.com/in/joe-rashid-3571a830a/">
+                <a href="https://www.linkedin.com/in/joseph-rashid/">
                   Joseph Rashid On LinkedIn <FaLinkedin />
                 </a>
               </div>
