@@ -76,7 +76,7 @@ export function AlbumDetails() {
       setUserWl(bro);
     }
   }, [currentUser, betterAlbum?.id]);
-  console.log(userWl);
+  // console.log(userWl);
   //   console.log(betterAlbum?.tracks?.[0].source);
   useEffect(() => {
     const audioElements = document.querySelectorAll(".audio");

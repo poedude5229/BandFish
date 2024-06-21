@@ -6,12 +6,48 @@ import { thunkLogout } from "../../redux/session";
 // import LoginFormModal from "../LoginFormModal";
 // import SignupFormModal from "../SignupFormModal";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import cart from "../../../public/cart.png";
+import "./ProfileButton.css";
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const user = useSelector((store) => store.session.user);
   const ulRef = useRef();
+  const albums = useSelector((state) => state.albumReducer);
+  const [cartOpen, setCartOpen] = useState(false);
+  const cartRef = useRef();
+
+  useEffect(() => {
+    const storedCartState = localStorage.getItem("cartState");
+    if (storedCartState) {
+      dispatch(setCartState(JSON.parse(storedCartState)));
+    }
+  }, [dispatch]);
+  let cartItems = useSelector((state) => state.cart);
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem("cartState", JSON.stringify(cartState));
+    } else if (cartItems.length == 0) {
+      localStorage.removeItem("cartState");
+    }
+  });
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (cartRef.current && !cartRef.current.contains(e.target)) {
+        setCartOpen(false);
+      }
+    }
+    if (cartOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [cartOpen]);
+
   const navigate = useNavigate();
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -42,6 +78,7 @@ function ProfileButton() {
 
   return (
     <>
+      {user && <img src={cart} id="cart-button" alt="" />}
       <button
         id="pfp-button"
         style={{ cursor: "pointer", border: "none" }}
