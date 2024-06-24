@@ -4,6 +4,9 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
 ## Live Link
 [https://bandfish.onrender.com](https://bandfish.onrender.com)
 
+## Connect with the creator!
+[Joe Rashid on LinkedIn](https://www.linkedin.com/in/joseph-rashid)
+
 - Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
 ```txt
 - ℹ️: Podcasts are treated like an album, albeit with a larger collection of tracks, the same way that Spotify or iTunes classify Podcasts.
