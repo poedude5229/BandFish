@@ -45,7 +45,7 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
     "username": "joemama",
     "profile_banner": "https://bandfishbucket.s3.amazonaws.com/indianajonesbanner.jpg",
     "profile_pic": "https://bandfishbucket.s3.amazonaws.com/1c69f339e921465fb528ef78a5f87e76.jpg",
-    "wishlists": [{"id": 1, product: {"album_art": "https://i.scdn.co/image/ab67616d0000b27361b7e027205d656d5b14b473", "artist_id": 5, "genre": "Ska", "id": 11, "name": "Feel Like That (feat. Bradley Nowell)", "price": "4.99", "type": "Single"  } }]
+    "wishlists": [{"id": 1, "product": {"album_art": "https://i.scdn.co/image/ab67616d0000b27361b7e027205d656d5b14b473", "artist_id": 5, "genre": "Ska", "id": 11, "name": "Feel Like That (feat. Bradley Nowell)", "price": "4.99", "type": "Single"  } }]
   ```
 
 ---
