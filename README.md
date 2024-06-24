@@ -5,7 +5,51 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
 [https://bandfish.onrender.com](https://bandfish.onrender.com)
 
 ## Connect with the creator!
-[Joe Rashid on LinkedIn](https://www.linkedin.com/in/joseph-rashid)
+[Joe Rashid on LinkedIn](https://www.linkedin.com/in/joseph-rashid/)
+
+---
+## Tech Stack
+### Frameworks and Libraries
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+### Database:
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
+### Hosting:
+![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)
+
+## Wiki
+[View the wiki's table of contents here](https://github.com/poedude5229/BandFish/wiki)
+
+## Endpoints
+
+### Log In User
+- Method: POST
+- URL: `/api/auth/login`
+- Body:
+
+    ```json
+    {
+      "email": "joemama@email.com",
+      "password": "password123"
+    }
+    ```
+- Successful Response:
+  ```json
+  {
+    "email": "joemama@email.com",
+    "firstname": "Joe",
+    "lastname": "Mama",
+    "id": 3,
+    "role": "User",
+    "username": "joemama",
+    "profile_banner": "https://bandfishbucket.s3.amazonaws.com/indianajonesbanner.jpg",
+    "profile_pic": "https://bandfishbucket.s3.amazonaws.com/1c69f339e921465fb528ef78a5f87e76.jpg",
+    "wishlists": [{"id": 1, product: {"album_art": "https://i.scdn.co/image/ab67616d0000b27361b7e027205d656d5b14b473", "artist_id": 5, "genre": "Ska", "id": 11, "name": "Feel Like That (feat. Bradley Nowell)", "price": "4.99", "type": "Single"  } }]
+  ```
+
+---
+
 
 - Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
 ```txt
