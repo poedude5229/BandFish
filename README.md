@@ -95,7 +95,9 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
  - Body: none
 
  - Successful Response:
- ```txt There are many more albums and podcasts but for the truncation of this document, the general structure of this response is just tens of more albums and podcasts in objects in this array```
+ ```txt
+There are many more albums and podcasts but for the truncation of this document, the general structure of this response is just tens of more albums and podcasts in objects in this array
+```
    ```json
     {
      "albums_and_podcasts": [
