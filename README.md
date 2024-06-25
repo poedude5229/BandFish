@@ -79,11 +79,40 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
   "genre": "True Crime/Comedy",
   "id": 1,
   "name": "The Last Podcast on the Left",
-  "price": "5.99"
+  "price": "5.99",
+  "reviews": [],
+  "tracks": [],
+  "type": "Podcast",
+  "wishlists": []
   }
   ```
 
 ---
+
+### View all Albums and Podcasts
+ - Method: GET
+ - URL: `/api/albums/all`
+ - Body: none
+
+ - Successful Response:
+ ```txt There are many more albums and podcasts but for the truncation of this document, the general structure of this response is just tens of more albums and podcasts in objects in this array```
+   ```json
+    {
+     "albums_and_podcasts": [
+    {
+      "album_art": "https://images.squarespace-cdn.com/content/v1/58d952abbf629acc7be750e4/5c5cb10b-30de-4b4c-ad43-b44bfaa657a6/lpotl+text+only+logo.jpg?format=1500w",
+      "artist": "The Last Podcast Network",
+      "artist-pfp": "https://bandfishbucket.s3.amazonaws.com/lpn.jpg",
+      "artist_id": 6,
+      "genre": "True Crime/Comedy",
+      "id": 1,
+      "name": "The Last Podcast on the Left",
+      "price": "5.99",
+      "type": "Podcast"
+    },
+    ]
+   }
+   ```
 
 - Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
 ```txt
