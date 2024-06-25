@@ -49,7 +49,41 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
   ```
 
 ---
+## Albums
+### Create an Album
+- Method: POST
+- URL: `/api/albums/new`
+- Body:
 
+    ```json
+    {  
+   "album_art": "https://images.squarespace-cdn.com/content/v1/58d952abbf629acc7be750e4/5c5cb10b-30de-4b4c-ad43-b44bfaa657a6/lpotl+text+only+logo.jpg?format=1500w",
+    "artist": "The Last Podcast Network",
+    "artist-pfp": "https://bandfishbucket.s3.amazonaws.com/lpn.jpg",
+    "artist_id": 6,
+    "genre": "True Crime/Comedy",
+    "id": 1,
+    "name": "The Last Podcast on the Left",
+    "price": "5.99",
+    "type": "Podcast"
+    }
+    ```
+
+- Successful Response:
+  ```json
+  {
+  "album_art": "https://images.squarespace-cdn.com/content/v1/58d952abbf629acc7be750e4/5c5cb10b-30de-4b4c-ad43-b44bfaa657a6/lpotl+text+only+logo.jpg?format=1500w",
+  "artist": "The Last Podcast Network",
+  "artist_id": 6,
+  "artist_pfp": "https://bandfishbucket.s3.amazonaws.com/lpn.jpg",
+  "genre": "True Crime/Comedy",
+  "id": 1,
+  "name": "The Last Podcast on the Left",
+  "price": "5.99"
+  }
+  ```
+
+---
 
 - Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
 ```txt
