@@ -7,7 +7,7 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
 [Tech Stack](https://github.com/poedude5229/BandFish?tab=readme-ov-file#tech-stack)\
 [Link to the Wiki](https://github.com/poedude5229/BandFish?tab=readme-ov-file#wiki)\
 [The summary!](https://github.com/poedude5229/BandFish/tree/main?tab=readme-ov-file#summary)\
-[Images from development](https://github.com/poedude5229/BandFish/tree/main?tab=readme-ov-file)\
+[Images from development](https://github.com/poedude5229/BandFish/blob/main/README.md#images-from-development-)\
 [API Endpoints](https://github.com/poedude5229/BandFish?tab=readme-ov-file#endpoints)
 
 ## Summary
