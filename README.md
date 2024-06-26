@@ -115,7 +115,188 @@ There are many more albums and podcasts but for the truncation of this document,
     ]
    }
    ```
+---
 
+### View an individual Album/Podcast
+- Method: GET
+- URL: `/api/albums/:albumId`
+- Body: none
+
+- Successful Response:
+  ```json
+  {
+  "album_art": "https://images.squarespace-cdn.com/content/v1/58d952abbf629acc7be750e4/5c5cb10b-30de-4b4c-ad43-b44bfaa657a6/lpotl+text+only+logo.jpg?format=1500w",
+  "artist": "The Last Podcast Network",
+  "artist_id": 6,
+  "artist_pfp": "https://bandfishbucket.s3.amazonaws.com/lpn.jpg",
+  "genre": "True Crime/Comedy",
+  "id": 1,
+  "name": "The Last Podcast on the Left",
+  "price": "5.99",
+  "reviews": [
+    {
+      "body": "This podcast has been my absolute favorite for going on 6 years. Was better with Ben Kissel though.",
+      "id": 1,
+      "item_id": 1,
+      "title": "I LOVE THIS POD",
+      "user": "joemama",
+      "user_id": 11,
+      "user_pfp": "https://avatars.githubusercontent.com/u/148486236?v=4"
+    }
+  ],
+  "tracks": [
+    {
+      "album_id": 1,
+      "artist_id": 6,
+      "duration": "1:29:44",
+      "id": 1,
+      "source": "https://bandfishbucket.s3.amazonaws.com/Episode+331_+The+Donner+Party+Part+I.mp3",
+      "title": "Episode 331: The Donner Party Part I - Salt of the Earth"
+    },
+    {
+      "album_id": 1,
+      "artist_id": 6,
+      "duration": "1:48:24",
+      "id": 2,
+      "source": "https://bandfishbucket.s3.amazonaws.com/Episode+332_+The+Donner+Party+Part+I.mp3",
+      "title": "Episode 332: The Donner Party Part II - The Forlorn Hope"
+    }
+  ],
+  "type": "Podcast",
+  "wishlists": []
+  }
+  ```
+---
+
+### Update an Album
+ - Method: PUT
+ - URL: `/api/albums/:albumId`
+ - Body:
+
+     ```json
+     {  
+   "album_art": "https://images.squarespace-cdn.com/content/v1/58d952abbf629acc7be750e4/5c5cb10b-30de-4b4c-ad43-b44bfaa657a6/lpotl+text+only+logo.jpg?format=1500w",
+    "artist": "The Last Podcast Network",
+    "artist-pfp": "https://bandfishbucket.s3.amazonaws.com/lpn.jpg",
+    "artist_id": 6,
+    "genre": "UPDATED",
+    "id": 1,
+    "name": "The UPDATED Last Podcast on the Left",
+    "price": "7.99",
+    "type": "Podcast"
+    }
+     ```
+- Successful Reponse:
+    ```json
+    {
+  "album_art": "https://images.squarespace-cdn.com/content/v1/58d952abbf629acc7be750e4/5c5cb10b-30de-4b4c-ad43-b44bfaa657a6/lpotl+text+only+logo.jpg?format=1500w",
+  "artist": "The Last Podcast Network",
+  "artist_id": 6,
+  "artist_pfp": "https://bandfishbucket.s3.amazonaws.com/lpn.jpg",
+  "genre": "UPDATED",
+  "id": 1,
+  "name": "The UPDATED Last Podcast on the Left",
+  "price": "7.99",
+  "reviews": [],
+  "tracks": [],
+  "type": "Podcast",
+  "wishlists": []
+  }
+    ```
+---
+
+### Delete an album
+- Method: DELETE
+- URL: `/api/albums/:albumId`
+- Body: none
+
+- Successful Response:
+  ```json
+    {
+      "message": "Successfully deleted the album"
+    }
+  ```
+---
+
+## Tracks
+### Create a track
+- Method: POST
+- URL: `/api/albums/:albumId/tracks/new`
+- Body:
+    ```json
+    {
+    "title": "What I Got (Reprise)",
+    "source": "https://bandfishbucket.s3.amazonaws.com/SublimeWhat+I+Got+Reprise.mp3"
+    }
+    ```
+- Successful Response:
+  ```json
+    {
+  "album_id": 10,
+  "artist_id": 5,
+  "id": 33,
+  "source": "https://bandfishbucket.s3.amazonaws.com/SublimeWhat+I+Got+Reprise.mp3",
+  "title": "What I Got (Reprise)"    
+  }
+  ```
+---
+### Update a Track
+- Method: PUT,
+- URL: `/api/albums/:albumId/tracks/
+- Body:
+  ```json
+    {
+      "title": "What I Got (Reprise) UPDATED",
+      "source": "https://sampleurlforupdatedtrack.net/bababooey"
+    }
+  ```
+- Successful Response:
+  ```json
+  {
+  "album_id": 10,
+  "artist_id": 5,
+  "id": 33,
+  "source": "https://sampleurlforupdatedtrack.net/bababooey",
+  "title": "What I Got (Reprise) UPDATED"
+  }
+  ```
+
+---
+### Delete a track
+- Method: DELETE,
+- URL: `/api/albums/:albumId/tracks/:trackId`
+- Body: none
+
+- Successful Response:
+```json
+  { "message": "Successfully deleted song" }
+```
+
+---
+
+## Reviews
+### Create a Review
+- Method: POST
+- URL: `/api/albums/:albumId/reviews/new`
+- Body: 
+ ```json
+ {
+  "title": "A review title",
+  "body": "The body for the review"
+ }
+
+ ```
+- Successful Response:
+  ```json
+   {
+    "user_id": 5,
+    "item_id": 2,
+    "title": "A review title",
+    "body": "The body for the review"
+  }
+
+
+---
 - Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
 ```txt
 - ℹ️: Podcasts are treated like an album, albeit with a larger collection of tracks, the same way that Spotify or iTunes classify Podcasts.
