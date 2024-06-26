@@ -6,7 +6,8 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
 [Connect with the creator!](https://github.com/poedude5229/BandFish?tab=readme-ov-file#connect-with-the-creator)\
 [Tech Stack](https://github.com/poedude5229/BandFish?tab=readme-ov-file#tech-stack)\
 [Link to the Wiki](https://github.com/poedude5229/BandFish?tab=readme-ov-file#wiki)\
-[API Endpoints](https://github.com/poedude5229/BandFish?tab=readme-ov-file#endpoints)\
+[The summary!](https://github.com/poedude5229/BandFish/tree/main?tab=readme-ov-file#summary)
+[API Endpoints](https://github.com/poedude5229/BandFish?tab=readme-ov-file#endpoints)
 
 ## Summary
 - Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
@@ -16,6 +17,7 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
 - Users can "shop" for albums or podcasts, and add them to their cart. They can complete a simplified checkout process. Users can add podcasts or albums to their wishlist from the details page of that track group.
 - Bandfish supports user-created content as well, allowing artists to publish their work and host their albums on the site. 
 
+## Images from development :)
 ### Database Schema
 ![Schema png](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716932696/BandFish_Database_Schema_hhaafd.png)
 
