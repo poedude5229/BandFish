@@ -1,6 +1,40 @@
 # BandFish
 Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project incorporates my favorite aspects of the BandCamp website, and includes in-depth feature emulation of its real-life counterpart. Users can explore an expansive list of albums, with details pages for each featuring artist information, reviews and tracks that can be freely streamed (FOR DEMONSTRATIVE PURPOSES ONLY). The application supports user-created content, allowing members to upload their own albums, podcasts, and songs or episodes. They can read and write reviews, leaving feedback for both artists and future customers. With an intuitive interface, users can signup and make their profile page their own with avatars and banners, customize their albums/podcasts or change track information, and place orders for other artists' content directly through the application. The service aims to streamline the digital audio marketplace, ensuring an enjoyable and thoughtful experience for all users.
 
+## Table of Contents
+[Live Link](https://github.com/poedude5229/BandFish?tab=readme-ov-file#live-link)\
+[Connect with the creator!](https://github.com/poedude5229/BandFish?tab=readme-ov-file#connect-with-the-creator)\
+[Tech Stack](https://github.com/poedude5229/BandFish?tab=readme-ov-file#tech-stack)\
+[Link to the Wiki](https://github.com/poedude5229/BandFish?tab=readme-ov-file#wiki)\
+[API Endpoints](https://github.com/poedude5229/BandFish?tab=readme-ov-file#endpoints)\
+
+## Summary
+- Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
+```txt
+- ℹ️: Podcasts are treated like an album, albeit with a larger collection of tracks, the same way that Spotify or iTunes classify Podcasts.
+```
+- Users can "shop" for albums or podcasts, and add them to their cart. They can complete a simplified checkout process. Users can add podcasts or albums to their wishlist from the details page of that track group.
+- Bandfish supports user-created content as well, allowing artists to publish their work and host their albums on the site. 
+
+### Database Schema
+![Schema png](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716932696/BandFish_Database_Schema_hhaafd.png)
+
+### Landing Page Wireframe
+![landing page](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882113/landing_ngxzdf.png)
+
+### Example Product Details Wireframe
+![product details](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882124/Desktop_-_1_yrdaaa.png)
+
+### Example Profile page and Collection
+![Profile / Collection](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882113/Profile_-_Collection_jpygqa.png)
+
+### Example Profile page and Wishlist
+![Profile / Wishlist](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882123/Profile_-_Wishlist_bspoik.png)
+
+### Uploading media wireframe
+![Uploading content](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882123/Create_An_Album_fxkafi.png)
+
+
 ## Live Link
 [https://bandfish.onrender.com](https://bandfish.onrender.com)
 
@@ -113,7 +147,7 @@ There are many more albums and podcasts but for the truncation of this document,
       "type": "Podcast"
     },
     ]
-   }
+    }
    ```
 ---
 
@@ -184,7 +218,7 @@ There are many more albums and podcasts but for the truncation of this document,
     "name": "The UPDATED Last Podcast on the Left",
     "price": "7.99",
     "type": "Podcast"
-    }
+     }
      ```
 - Successful Reponse:
     ```json
@@ -201,7 +235,7 @@ There are many more albums and podcasts but for the truncation of this document,
   "tracks": [],
   "type": "Podcast",
   "wishlists": []
-  }
+   }
     ```
 ---
 
@@ -232,12 +266,12 @@ There are many more albums and podcasts but for the truncation of this document,
 - Successful Response:
   ```json
     {
-  "album_id": 10,
-  "artist_id": 5,
-  "id": 33,
-  "source": "https://bandfishbucket.s3.amazonaws.com/SublimeWhat+I+Got+Reprise.mp3",
-  "title": "What I Got (Reprise)"    
-  }
+     "album_id": 10,
+     "artist_id": 5,
+     "id": 33,
+     "source": "https://bandfishbucket.s3.amazonaws.com/SublimeWhat+I+Got+Reprise.mp3",
+     "title": "What I Got (Reprise)"    
+    }
   ```
 ---
 ### Update a Track
@@ -252,13 +286,13 @@ There are many more albums and podcasts but for the truncation of this document,
   ```
 - Successful Response:
   ```json
-  {
-  "album_id": 10,
-  "artist_id": 5,
-  "id": 33,
-  "source": "https://sampleurlforupdatedtrack.net/bababooey",
-  "title": "What I Got (Reprise) UPDATED"
-  }
+   {
+   "album_id": 10,
+   "artist_id": 5,
+   "id": 33,
+   "source": "https://sampleurlforupdatedtrack.net/bababooey",
+   "title": "What I Got (Reprise) UPDATED"
+   }
   ```
 
 ---
@@ -291,35 +325,43 @@ There are many more albums and podcasts but for the truncation of this document,
    {
     "user_id": 5,
     "item_id": 2,
+    "id": 2,
     "title": "A review title",
     "body": "The body for the review"
+   }
+---
+
+### Update a Review
+- Method: PUT
+- URL: `/api/albums/:albumId/reviews/:reviewId`
+- Body:
+  ```json
+    {
+      "title": "An updated review title",
+      "body": "The UPDATED body for the review"
+    }
+
+- Successful Response:
+  ```json
+  {
+      "user_id": 5,
+      "item_id": 2,
+      "id": 2,
+      "title": "An updated review title",
+      "body": "The UPDATED body for the review"
   }
 
+  ```
+---
+### Delete a Review
+- Method: DELETE,
+- URL: `/api/albums/:albumId/reviews/::reviewId`
+- Body: none
+
+- Successful Response: 
+  ```json
+  { "message": "Successfully deleted the review" }
+  ```
 
 ---
-- Users can browse the website to find an album or a podcast they enjoy, and stream the tracks from that group for their enjoyment. Upon signing up, a user can choose a profile picture avatar for themselves, as well as a banner for their profile's page.
-```txt
-- ℹ️: Podcasts are treated like an album, albeit with a larger collection of tracks, the same way that Spotify or iTunes classify Podcasts.
-```
-- Users can "shop" for albums or podcasts, and add them to their cart. They can complete a simplified checkout process. Users can add podcasts or albums to their wishlist from the details page of that track group.
-- Bandfish supports user-created content as well, allowing artists to publish their work and host their albums on the site. 
 
-On their
-
-## Database Schema
-![Schema png](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716932696/BandFish_Database_Schema_hhaafd.png)
-
-## Landing Page Wireframe
-![landing page](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882113/landing_ngxzdf.png)
-
-## Example Product Details Wireframe
-![product details](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882124/Desktop_-_1_yrdaaa.png)
-
-## Example Profile page and Collection
-![Profile / Collection](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882113/Profile_-_Collection_jpygqa.png)
-
-## Example Profile page and Wishlist
-![Profile / Wishlist](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882123/Profile_-_Wishlist_bspoik.png)
-
-## Uploading media wireframe
-![Uploading content](https://res.cloudinary.com/dyr9v2ynr/image/upload/v1716882123/Create_An_Album_fxkafi.png)
