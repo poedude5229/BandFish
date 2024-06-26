@@ -16,7 +16,8 @@ Bandfish is a conceptual spin off of BandCamp done by Joe Rashid. This project i
 - ℹ️: Podcasts are treated like an album, albeit with a larger collection of tracks, the same way that Spotify or iTunes classify Podcasts.
 ```
 - Users can "shop" for albums or podcasts, and add them to their cart. They can complete a simplified checkout process. Users can add podcasts or albums to their wishlist from the details page of that track group.
-- Bandfish supports user-created content as well, allowing artists to publish their work and host their albums on the site. 
+- Bandfish supports user-created content as well, allowing artists to publish their work and host their albums on the site.
+- Users can also review other artists' content, leaving feedback for new customers or the artist themselves
 
 ## Images from development :)
 ### Database Schema
