@@ -237,3 +237,9 @@
 .carousel-button:focus {
   outline: none;
 }
+
+@media screen and (max-width: 1010px) {
+  /* #sublime-promo {
+    width: 72%;
+  } */
+}

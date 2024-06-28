@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import { loadAlbumsThunk } from "../../redux/album";
 import { useEffect } from "react";
 import { Carousel } from "../Carousel";
-import Footer from "../Footer/Footer";
+import { FaLinkedin, FaSquareGithub } from "react-icons/fa6";
+import "../Footer/Footer.css";
+// import Footer from "../Footer/Footer";
 export function Landing() {
   let dispatch = useDispatch();
   useEffect(() => {
@@ -61,7 +63,32 @@ export function Landing() {
       </div>
       <h3 id="rest-of-page-header">Hot right now...</h3>
       <Carousel />
-      <Footer />
+      {/* <Footer /> */}
+      <>
+        <footer id="footer">
+          <div id="topfootersection">
+            <ul>
+              <li>
+                {"© "} this site, the name BandFish and site logo were created
+                by Joseph Rashid in 2024. all works unless otherwise noted are
+                not the property of this site's author, are not for sale or for
+                distribution and are hosted on this site solely for
+                demonstrative purposes.
+              </li>
+              <li>
+                <div id="about-links-container">
+                  <a href="https://github.com/poedude5229">
+                    Joseph Rashid On GitHub <FaSquareGithub />
+                  </a>
+                  <a href="https://www.linkedin.com/in/joseph-rashid/">
+                    Joseph Rashid On LinkedIn <FaLinkedin />
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </>
     </>
   );
 }
